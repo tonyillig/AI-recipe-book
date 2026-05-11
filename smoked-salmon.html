@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Traeger Smoked Salmon — Bytes &amp; Bites</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>:root{--cream:#faf6ef;--warm:#f0e6d3;--gold:#c9963a;--deep:#1a1209;--rust:#b85c2a;--sage:#7a8c6e;--accent:#e8c87a;--surface:#faf6ef;--border:#e0d8c8;--text-main:#1a1209;--text-body:#3a2d1a;--text-muted:#7a6e5a}
+[data-theme="dark"]{--cream:#1a1209;--warm:#221808;--gold:#c9963a;--deep:#f0ead8;--rust:#e07a40;--sage:#9aac8e;--accent:#e8c87a;--surface:#1a1209;--border:#3a2e1a;--text-main:#f0ead8;--text-body:#c8b898;--text-muted:#7a6e5a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text-main);min-height:100vh;transition:background .3s,color .3s}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.5}
+.page{max-width:780px;margin:0 auto;padding:40px 24px 80px;position:relative;z-index:1}
+.back-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(250,246,239,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background .3s}
+[data-theme="dark"] .back-nav{background:rgba(26,18,9,0.95)}
+.back-link{display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.back-link:hover{color:var(--rust)}.back-link::before{content:'←';font-size:13px}
+.nav-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rust)}
+.nav-right-group{display:flex;align-items:center;gap:6px}
+.nav-icon-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 10px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.nav-icon-btn:hover{border-color:var(--gold);color:var(--gold)}
+.header{text-align:center;margin-bottom:48px;margin-top:72px;animation:fadeDown .8s ease both}
+.tag-wrap{margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;color:white;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:2px}
+.tag-gold{background:var(--gold)}.tag-rust{background:var(--rust)}.tag-sage{background:var(--sage)}
+.status-badge{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:2px;display:inline-block}
+.status-human{background:rgba(74,107,82,.15);color:#5a9a6a;border:1px solid rgba(74,107,82,.3)}
+.status-ai{background:rgba(176,88,42,.15);color:var(--rust);border:1px solid rgba(176,88,42,.25)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(34px,7vw,58px);line-height:1.05;color:var(--text-main);margin-bottom:8px}
+h1 em{color:var(--rust);font-style:italic}
+.subtitle{font-size:14px;color:var(--sage);letter-spacing:1px;font-weight:300;margin-bottom:16px}
+.dietary-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+.dietary-badge{font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:2px;font-weight:700}
+.badge-pescatarian{background:rgba(74,107,82,.15);color:#5a9a6a;border:1px solid rgba(74,107,82,.3)}
+.badge-vegetarian{background:rgba(74,140,82,.15);color:#4a9a5a;border:1px solid rgba(74,140,82,.3)}
+.badge-vegan{background:rgba(60,120,60,.15);color:#3a8a3a;border:1px solid rgba(60,120,60,.3)}
+.badge-gf{background:rgba(201,150,58,.15);color:#c9963a;border:1px solid rgba(201,150,58,.3)}
+.badge-lf{background:rgba(100,160,200,.12);color:#5090b0;border:1px solid rgba(100,160,200,.25)}
+.divider{display:flex;align-items:center;gap:12px;justify-content:center;margin:20px 0;color:var(--gold);font-size:18px}
+.divider::before,.divider::after{content:'';height:1px;width:80px;background:linear-gradient(to right,transparent,var(--gold))}
+.divider::after{transform:scaleX(-1)}
+.stats{display:flex;justify-content:center;border:1px solid var(--accent);border-radius:8px;overflow:hidden;margin-bottom:20px}
+.stat{flex:1;text-align:center;padding:16px 8px;border-right:1px solid var(--accent)}.stat:last-child{border-right:none}
+.stat-val{font-family:'Playfair Display',serif;font-size:22px;color:var(--rust);display:block}
+.stat-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--sage);font-family:'Space Mono',monospace}
+.controls-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--warm);border:1px solid var(--border);padding:12px 16px;border-radius:8px;margin-bottom:28px}
+[data-theme="dark"] .controls-bar{background:#221808;border-color:var(--border)}
+.controls-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-right:2px}
+.controls-divider{width:1px;height:20px;background:var(--border);margin:0 4px}
+.scale-btn,.unit-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;cursor:pointer;transition:all .2s;border-radius:2px}
+.scale-btn:hover,.unit-btn:hover{border-color:var(--gold);color:var(--gold)}
+.scale-btn.active{background:var(--gold);border-color:var(--gold);color:white}
+.unit-btn.active{background:var(--rust);border-color:var(--rust);color:white}
+.shopping-section{background:var(--warm);border:1px solid var(--border);border-radius:8px;margin-bottom:40px;overflow:hidden}
+[data-theme="dark"] .shopping-section{background:#221808;border-color:var(--border)}
+.shopping-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border);cursor:pointer}
+.shopping-header-left{display:flex;align-items:center;gap:10px}
+.shopping-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust)}
+.shopping-count{font-family:'Space Mono',monospace;font-size:9px;color:var(--text-muted)}
+.shopping-toggle{font-size:12px;color:var(--text-muted);transition:transform .2s}.shopping-toggle.open{transform:rotate(180deg)}
+.shopping-body{padding:16px 20px}
+.shopping-item{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.shopping-item:last-child{border-bottom:none}
+.shopping-item input[type="checkbox"]{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0;cursor:pointer}
+.shopping-item label{font-size:14px;color:var(--text-body);cursor:pointer;transition:all .2s;flex:1}
+.shopping-item.checked label{text-decoration:line-through;color:var(--text-muted);opacity:.6}
+.item-qty{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);min-width:80px;flex-shrink:0}
+.shopping-actions{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap}
+.shop-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:8px 14px;cursor:pointer;transition:all .2s;border-radius:2px}
+.shop-btn:hover{border-color:var(--gold);color:var(--gold)}
+.shop-btn.primary{background:var(--rust);border-color:var(--rust);color:white}.shop-btn.primary:hover{background:var(--gold);border-color:var(--gold)}
+.intro-card{background:var(--deep);color:#f0ead8;border-radius:12px;padding:28px 32px;margin-bottom:40px;position:relative;overflow:hidden}
+[data-theme="dark"] .intro-card{background:#2a1a08}
+.intro-card::before{content:'✦';position:absolute;top:-20px;right:-10px;font-size:120px;opacity:.05;color:var(--gold)}
+.intro-card p{font-size:15px;line-height:1.75;color:#e8dece;font-weight:300}
+.intro-card p strong{color:var(--accent);font-weight:500}
+.section{margin-bottom:40px}
+.section-title{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:20px;display:flex;align-items:center;gap:12px;color:var(--text-main)}
+.section-title .num{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;border:1px solid var(--gold);padding:3px 8px;border-radius:2px}
+.ing-group{margin-bottom:24px}
+.ing-group-title{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--rust);border-bottom:1px solid var(--warm);padding-bottom:8px;margin-bottom:12px}
+[data-theme="dark"] .ing-group-title{border-bottom-color:var(--border)}
+.ingredient-list{list-style:none}
+.ingredient-list li{display:flex;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:15px;line-height:1.4;color:var(--text-body)}
+.ingredient-list li:last-child{border-bottom:none}
+.ing-amount{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);min-width:72px;flex-shrink:0}
+.ing-note{font-size:12px;color:var(--sage);font-style:italic}
+.qty-inline{font-family:'Space Mono',monospace;font-size:.9em;color:var(--rust);font-weight:500}
+.step{display:grid;grid-template-columns:48px 1fr;gap:20px;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--warm)}
+[data-theme="dark"] .step{border-bottom-color:var(--border)}.step:last-child{border-bottom:none}
+.step-num{width:48px;height:48px;background:var(--deep);color:var(--accent);font-family:'Playfair Display',serif;font-size:20px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;margin-top:2px}
+[data-theme="dark"] .step-num{background:#2a1a08}
+.step-content h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:8px;color:var(--text-main)}
+.step-content p{font-size:14.5px;line-height:1.8;color:var(--text-body);font-weight:300}
+.step-content p strong{color:var(--rust);font-weight:500}
+.genz{background:var(--warm);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 16px;margin:12px 0;font-size:13px;color:var(--rust);font-style:italic}
+[data-theme="dark"] .genz{background:#221808}.genz::before{content:'💬 '}
+.tip{background:#f5f0e8;border:1px solid var(--accent);border-radius:8px;padding:14px 18px;margin:14px 0;font-size:13px;color:#5a4520;line-height:1.65}
+[data-theme="dark"] .tip{background:#2a2010;color:var(--text-body)}.tip::before{content:'⚡ Pro tip: ';font-weight:600;color:var(--gold)}
+.warning{background:#fff0ec;border-left:3px solid var(--rust);border-radius:0 8px 8px 0;padding:10px 16px;margin:12px 0;font-size:13px;color:#7a2a10;line-height:1.65;font-style:italic}
+[data-theme="dark"] .warning{background:#2a1808;color:#e08060}
+.warning::before{content:'⚠ Watch out: ';font-family:'Space Mono',monospace;font-style:normal;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--rust);display:block;margin-bottom:4px}
+.section-divider{display:flex;align-items:center;gap:16px;margin:40px 0 32px}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--warm)}
+[data-theme="dark"] .section-divider::before,[data-theme="dark"] .section-divider::after{background:var(--border)}
+.section-divider span{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--rust)}
+.final{background:linear-gradient(135deg,var(--deep) 0%,#2d1f08 100%);color:#f0ead8;border-radius:12px;padding:32px;text-align:center;margin-top:48px}
+[data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
+.final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
+.final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
+[data-theme="dark"] .bottom-nav{background:#0f0a05}
+.bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
+.bottom-nav a:hover{color:var(--accent)}
+.bottom-nav .site-name{font-family:'Playfair Display',serif;font-size:14px;color:var(--accent);font-style:italic}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:480px){.back-nav{padding:12px 14px}.nav-icon-btn{padding:5px 8px;font-size:8px}.stats{flex-wrap:wrap}.stat{min-width:50%;border-bottom:1px solid var(--accent)}.step{grid-template-columns:36px 1fr;gap:14px}.step-num{width:36px;height:36px;font-size:16px}.bottom-nav{padding:20px;flex-direction:column;gap:12px;text-align:center;margin-left:-24px;margin-right:-24px}}
+@media print{.back-nav,.noise,.controls-bar,.shopping-section,.bottom-nav{display:none!important}body{background:white;color:black}.page{padding:0}.header{margin-top:0}}</style></head><body>
+<div class="noise"></div>
+<nav class="back-nav">
+  <a href="index.html" class="back-link">All Recipes</a>
+  <span class="nav-title">Bytes &amp; Bites</span>
+  <div class="nav-right-group">
+    <button class="nav-icon-btn" id="unit-metric" onclick="setUnit('metric',this)">Metric</button>
+    <button class="nav-icon-btn unit-btn" id="unit-us" onclick="setUnit('us',this)">US</button>
+    <button class="nav-icon-btn" id="darkToggle" onclick="toggleDark()">☀️ Light</button>
+    <button class="nav-icon-btn" onclick="window.print()">🖨️ Print</button>
+  </div>
+</nav>
+<div class="page">
+  <div class="header">
+    <div class="tag-wrap">
+      <span class="tag tag-gold">Main Dish</span>
+      <span class="status-badge status-human">✓ Human Approved</span>
+    </div>
+    <h1>Traeger Smoked Salmon</h1>
+    <p class="subtitle">Brown Sugar Brine · Alder Smoke · Pellicle · Low & Slow</p>
+    <div class="dietary-row"><span class="dietary-badge badge-pescatarian">🐟 Pescatarian</span><span class="dietary-badge badge-gf">🌾 Gluten Free</span><span class="dietary-badge badge-lf">🥛 Lactose Free</span></div>
+    <div class="divider">✦</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><span class="stat-val">12–18h</span><span class="stat-label">Total Time</span></div>
+    <div class="stat"><span class="stat-val" id="servingDisplay">4–6</span><span class="stat-label">Servings</span></div>
+    <div class="stat"><span class="stat-val">Weekend</span><span class="stat-label">Patience</span></div>
+    <div class="stat"><span class="stat-val">180°F</span><span class="stat-label">Finish Temp</span></div>
+  </div>
+  <div class="controls-bar">
+    <span class="controls-label">Scale:</span>
+    <button class="scale-btn" onclick="setScale(0.5,this)">½×</button>
+    <button class="scale-btn active" onclick="setScale(1,this)">1×</button>
+    <button class="scale-btn" onclick="setScale(2,this)">2×</button>
+    <button class="scale-btn" onclick="setScale(3,this)">3×</button>
+  </div>
+  <div class="shopping-section">
+    <div class="shopping-header" onclick="toggleShopping()">
+      <div class="shopping-header-left">
+        <span class="shopping-title">🛒 Shopping List</span>
+        <span class="shopping-count" id="shopCount">0 of 10 checked</span>
+      </div>
+      <span class="shopping-toggle" id="shopToggle">▼</span>
+    </div>
+    <div class="shopping-body" id="shopBody" style="display:none">
+      <div id="shopList"></div>
+      <div class="shopping-actions">
+        <button class="shop-btn" onclick="checkAllShopping()">✓ Check all</button>
+        <button class="shop-btn" onclick="clearShopping()">↺ Reset</button>
+        <button class="shop-btn primary" onclick="printShoppingList()">🖨️ Print remaining</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro-card"><p><strong>The vibe:</strong> You brine it the night before, wake up, fire up the Traeger, and spend the day doing literally nothing while the salmon slowly transforms into the most impressive thing you've ever served. This is main character behaviour for your grill. The most patient thing you'll ever cook. Worth every single hour.</p></div>
+
+  <div class="section"><div class="section-title"><span class="num">01</span> The Brown Sugar Brine</div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;line-height:1.8;color:var(--text-body);margin-bottom:24px;">The brine is where the magic starts. Salt pulls moisture out of the fish and then the fish reabsorbs a seasoned, sweetened liquid that penetrates deep into the flesh. Brown sugar balances the salt and adds a subtle caramel sweetness that plays perfectly against the smoke. A brined salmon and an unbrined salmon are two completely different dishes.</p>
+    <div class="ing-group"><div class="ing-group-title">Brine Ingredients</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="900" data-unit="g" data-metric="900g" data-us="2.0 lb" data-noscale="false">900g</span><span>fresh salmon fillet, skin-on <span class="ing-note">— King, sockeye, or coho; skin-on keeps it together on the grill</span></span></li>
+      <li><span class="ing-amount" data-base="120" data-unit="g" data-metric="120g" data-us="4.2 oz" data-noscale="false">120g</span><span>kosher salt <span class="ing-note">— do NOT use table salt</span></span></li>
+      <li><span class="ing-amount" data-base="120" data-unit="g" data-metric="120g" data-us="4.2 oz" data-noscale="false">120g</span><span>dark brown sugar, packed</span></li>
+      <li><span class="ing-amount" data-base="960" data-unit="ml" data-metric="960ml" data-us="4 cups" data-noscale="false">960ml</span><span>cold water <span class="ing-note">— must be cold; warm water starts cooking the fish</span></span></li>
+      <li><span class="ing-amount" data-base="2" data-unit="tbsp" data-metric="2 tbsp" data-us="2 tbsp" data-noscale="false">2 tbsp</span><span>soy sauce <span class="ing-note">— optional but sends the umami factor to another dimension</span></span></li>
+      <li><span class="ing-amount" data-base="1" data-unit="tsp" data-metric="1 tsp" data-us="1 tsp" data-noscale="false">1 tsp</span><span>black pepper, cracked</span></li>
+      <li><span class="ing-amount" data-base="2" data-unit="cloves" data-metric="2 cloves" data-us="2 cloves" data-noscale="false">2 cloves</span><span>garlic, smashed</span></li>
+      <li><span class="ing-amount" data-base="1" data-unit="" data-metric="1" data-us="1" data-noscale="false">1</span><span>lemon, sliced into rounds <span class="ing-note">— optional</span></span></li>
+    </ul></div>
+
+    <div class="step"><div class="step-num">1</div><div class="step-content">
+      <h3>Mix the Brine</h3>
+      <p>In a large container, combine <span class="qty-inline" data-base="960" data-unit="ml" data-metric="960ml" data-us="4 cups" data-noscale="false">960ml</span> cold water, <span class="qty-inline" data-base="120" data-unit="g" data-metric="120g" data-us="4.2 oz" data-noscale="false">120g</span> kosher salt, <span class="qty-inline" data-base="120" data-unit="g" data-metric="120g" data-us="4.2 oz" data-noscale="false">120g</span> brown sugar, soy sauce, black pepper, smashed garlic, and lemon slices. Stir until the salt and sugar are fully dissolved — about 2 minutes. Taste the brine: it should be aggressively salty and sweet, almost uncomfortably so. That's exactly right — the fish won't absorb all of it, and a lot washes away when you rinse.</p>
+    </div></div>
+
+    <div class="step"><div class="step-num">2</div><div class="step-content">
+      <h3>Check for Pin Bones</h3>
+      <p>Before the fish goes in, run your fingers along the centre of the fillet from head to tail. You'll feel tiny bones poking up — those are pin bones. Use <strong>clean needle-nose pliers or tweezers</strong>, grip each bone, and pull it out at a slight angle toward the head end. There are usually 10–20 of them in a full fillet. This takes 3 minutes and it's the difference between a great experience and your guests picking bones out of their teeth.</p>
+    </div></div>
+
+    <div class="step"><div class="step-num">3</div><div class="step-content">
+      <h3>Submerge &amp; Refrigerate for 8–12 Hours</h3>
+      <p>Place the salmon <strong>skin-side up</strong> in a large zip-lock bag or glass baking dish. Pour the brine over it — the fish should be fully submerged. Seal or cover and <strong>refrigerate for 8–12 hours</strong>. Overnight is perfect. Don't go longer than 12 hours on a thick fillet — over-brining makes the texture rubbery and the flavour too salty. Set a timer.</p>
+      <div class="warning">Do NOT leave it in the brine for 24 hours. The salt does its job in 8–12 hours. Respect the process.</div>
+    </div></div>
+  </div>
+
+  <div class="section"><div class="section-title"><span class="num">02</span> Building the Pellicle</div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;line-height:1.8;color:var(--text-body);margin-bottom:24px;">This is the step that separates good smoked salmon from legendary smoked salmon. A pellicle is a thin, tacky, protein-based skin that forms on the surface as the fish air-dries. It looks a little weird. It feels sticky. And it is <strong>the reason smoke adheres to your salmon</strong> instead of just floating past it.</p>
+
+    <div class="step"><div class="step-num">4</div><div class="step-content">
+      <h3>Rinse, Then Pat Dry</h3>
+      <p>Remove the salmon from the brine and <strong>rinse thoroughly under cold running water</strong> for 30–60 seconds — you're washing off excess surface salt. Pat completely dry with paper towels on both sides, including the skin. Get it as dry as you can.</p>
+    </div></div>
+
+    <div class="step"><div class="step-num">5</div><div class="step-content">
+      <h3>Air Dry on a Rack — 1 to 2 Hours</h3>
+      <p>Place the salmon <strong>skin-side down</strong> on a wire rack set over a baking sheet. Put it in your refrigerator — uncovered — for <strong>1–2 hours</strong>. You're looking for the surface to become slightly tacky and shiny, like it has a thin glaze on it. When you touch it lightly, it should feel sticky, not wet.</p>
+      <div class="tip">If it's a cool, dry day (under 18°C / 65°F), you can air-dry it outside in the shade with a fan blowing across it — it'll pellicle in 45–60 minutes. Don't do this in summer heat.</div>
+      <div class="genz">The pellicle looks suspicious. It looks like the salmon is doing something. It IS doing something. Trust the process. Your salmon is levelling up right now and you don't have to do anything. This is the GOAT step.</div>
+    </div></div>
+  </div>
+
+  <div class="section"><div class="section-title"><span class="num">03</span> Smoking on the Traeger</div>
+    <div class="step"><div class="step-num">6</div><div class="step-content">
+      <h3>Fire Up the Traeger to 74°C / 165°F</h3>
+      <p>Set your Traeger to <strong>74°C / 165°F (or the "Smoke" setting)</strong> and let it preheat for 15 minutes with the lid closed. Load with alder pellets — the classic Pacific Northwest choice for salmon. Light, slightly sweet, delicate smoke that doesn't overwhelm the fish.</p>
+      <div class="tip">Avoid hickory, mesquite, or oak for salmon — they're too aggressive and will completely overpower the fish. Save those for brisket.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">7</div><div class="step-content">
+      <h3>Place the Salmon — Skin Down, Don't Touch It</h3>
+      <p>Place the salmon <strong>skin-side down</strong> directly on the grill grates. Do not use foil — the grates give better smoke circulation. Close the lid and <strong>do not open it for at least 1 hour</strong>. Every time you open the lid you lose smoke and heat.</p>
+    </div></div>
+
+    <div class="step"><div class="step-num">8</div><div class="step-content">
+      <h3>After 2 Hours: Raise to 107°C / 225°F</h3>
+      <p>Once your probe reads around <strong>38–43°C / 100–110°F</strong> internal (roughly 2 hours into the smoke at 74°C), bump the cooker temperature up to <strong>107°C / 225°F</strong> to finish the cook. If the fish is climbing faster than expected, make the bump earlier — go by the probe, not the clock. At this point you can optionally brush the salmon with a thin glaze of 2 tablespoons of maple syrup or honey mixed with 1 teaspoon of soy sauce. It will caramelise into a beautiful, sticky lacquer. Reapply once more 30 minutes later if you want extra glaze action.</p>
+      <div class="genz">That glaze hitting the hot salmon surface and caramelising? The sizzle? The colour? It's giving everything. It's giving literally everything.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">9</div><div class="step-content">
+      <h3>Probe It — Pull at 63°C / 145°F Internal</h3>
+      <p>After about 3–4 hours total, start checking internal temperature with an <strong>instant-read thermometer</strong>. Insert it into the thickest part of the fillet. Pull at <strong>63°C / 145°F</strong>. At 63°C the salmon is fully safe, moist, and flaky. At 71°C it starts drying out. There is no coming back from overcooked smoked salmon.</p>
+      <div class="warning">The salmon will continue cooking slightly after you pull it (carryover cooking). Pull at 60–62°C and let it rest — it'll coast to 63–65°C on its own.</div>
+      <div class="tip">Total smoke time varies by thickness: thin fillets (under 2.5cm) can be done in 2.5–3 hours. Thick fillets (4cm+) may take 4–5 hours. Always go by internal temperature, not time.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">10</div><div class="step-content">
+      <h3>Rest for 15 Minutes Before Touching It</h3>
+      <p>Carefully slide a spatula under the salmon and transfer to a cutting board or serving platter. <strong>Let it rest for 15 minutes</strong> before breaking into it. The juices redistribute as it rests. If you cut into it immediately, all that moisture runs out onto the board and you get dry salmon.</p>
+    </div></div>
+  </div>
+
+  <div class="section"><div class="section-title"><span class="num">04</span> Serving &amp; Storing</div>
+    <div class="serve-grid">
+      <div class="serve-item"><div class="serve-title">Classic</div><div class="serve-text">Flaked over cream cheese on toasted bagels with capers, red onion, and a squeeze of lemon. No notes. Perfect dish.</div></div>
+      <div class="serve-item"><div class="serve-title">Fancy Dinner</div><div class="serve-text">Whole fillet on a wooden board with crème fraîche, dill, cucumber ribbons, and crackers. Instant dinner party centrepiece.</div></div>
+      <div class="serve-item"><div class="serve-title">Next-Day Breakfast</div><div class="serve-text">Flaked into scrambled eggs with chives and a little butter. Life-changing. This is the move the morning after.</div></div>
+      <div class="serve-item"><div class="serve-title">Storage</div><div class="serve-text">Refrigerate wrapped tightly for up to 5 days. Freeze for up to 3 months. Reheat gently at 135°C / 275°F for 10 minutes.</div></div>
+    </div>
+    <div class="genz" style="margin-top:16px;">You spent 12+ hours on this. You brined it. You pellicled it. You smoked it low and slow. You glazed it. You waited. This fish went through a whole character arc and came out the other side absolutely iconic. Serve it like you know what you did. Because you do.</div>
+  </div>
+
+  <div class="final"><h2>That's a Smoke. 🔥</h2><p>Cold-smoked salmon from a deli costs £30+ per kg. Yours cost a fraction of that, took patience instead of money, and tastes like something a person who really knows what they're doing made. Because now, that person is you.</p></div>
+  <div class="bottom-nav">
+    <a href="index.html">← Back to All Recipes</a>
+    <span class="site-name">Bytes &amp; Bites</span>
+    <a href="https://github.com/tonyillig/AI-recipe-book" target="_blank">GitHub ↗</a>
+  </div>
+</div>
+<script>
+
+(function(){const s=localStorage.getItem('bb-theme')||'dark';applyTheme(s);})();
+function applyTheme(t){document.documentElement.setAttribute('data-theme',t);const b=document.getElementById('darkToggle');if(b)b.textContent=t==='dark'?'☀️ Light':'🌙 Dark';localStorage.setItem('bb-theme',t);}
+function toggleDark(){const c=document.documentElement.getAttribute('data-theme')||'dark';applyTheme(c==='dark'?'light':'dark');}
+
+let currentScale=1, currentUnit='metric';
+
+function setScale(s,btn){
+  currentScale=s;
+  document.querySelectorAll('.scale-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const sd=document.getElementById('servingDisplay');
+  if(sd) sd.textContent=Math.round(5*s);
+  updateAllQty();
+  buildShoppingList();
+}
+
+function setUnit(u,btn){
+  currentUnit=u;
+  document.querySelectorAll('.unit-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  localStorage.setItem('bb-unit',u);
+  updateAllQty();
+  buildShoppingList();
+}
+
+function scaleValue(base, scale){
+  const v = base * scale;
+  if(Number.isInteger(v)) return v;
+  const r = Math.round(v * 10) / 10;
+  return r;
+}
+
+function fmtCount(v){
+  // Format a scaled count value with nice fractions
+  const fracs={0.25:'¼',0.33:'⅓',0.5:'½',0.67:'⅔',0.75:'¾',0.125:'⅛'};
+  const whole=Math.floor(v), frac=Math.round((v-whole)*12)/12;
+  if(frac===0) return whole===0?'0':String(whole);
+  const fkey=Object.keys(fracs).find(k=>Math.abs(parseFloat(k)-frac)<0.04);
+  const fs=fkey?fracs[fkey]:Math.round(frac*10)/10;
+  return whole>0?whole+fs:String(fs);
+}
+
+function getQtyText(el, scale, unit){
+  if(el.dataset.noscale==='true') return el.dataset.metric;
+  const base = parseFloat(el.dataset.base);
+  const s = scaleValue(base, scale);
+  const metricUnit = el.dataset.unit || '';
+  
+  // Handle ranges (e.g. 4-6 chillies -> 8-12 at 2x)
+  if(el.dataset.rangeHi){
+    const hi = parseFloat(el.dataset.rangeHi);
+    const sLo = Math.round(s), sHi = Math.round(hi * scale);
+    const unitStr = metricUnit ? ' '+metricUnit : '';
+    return sLo+'\u2013'+sHi+unitStr;
+  }
+  
+  // For count/label units (not g/ml/kg/l) - format as fractions, no unit conversion
+  const u = metricUnit.toLowerCase().trim();
+  const isMeasuredUnit = ['g','kg','ml','l','litre','litres','liter','liters','°c','c','celsius'].includes(u);
+  
+  if(!isMeasuredUnit){
+    // Count or label unit - same in metric and US, use fraction formatting
+    const unitStr = metricUnit ? ' '+metricUnit : '';
+    return fmtCount(s)+unitStr;
+  }
+  
+  // Measured unit
+  const metricLabel = fmtCount(s)+metricUnit;
+  if(unit === 'metric') return metricLabel;
+  return computeUS(s, metricUnit, el.dataset.us, base);
+}
+
+function computeUS(scaledVal, unit, us1x, base1x){
+  // us1x is the US label at scale 1x. Scale it proportionally.
+  const ratio = scaledVal / base1x;
+  // Parse the 1x US label and scale
+  const u = unit.toLowerCase().trim();
+  if(u === 'g'){
+    const oz = Math.round(scaledVal * 0.03527 * 10) / 10;
+    return oz >= 16 ? (Math.round(scaledVal/453.6*10)/10) + ' lb' : oz + ' oz';
+  }
+  if(u === 'kg') return (Math.round(scaledVal * 2.205 * 10)/10) + ' lb';
+  if(u === 'ml'){
+    if(scaledVal >= 240){
+      const cups = scaledVal / 240;
+      const fracs = [[7/8,'⅞'],[3/4,'¾'],[2/3,'⅔'],[1/2,'½'],[1/3,'⅓'],[1/4,'¼'],[1/8,'⅛']];
+      const whole = Math.floor(cups);
+      const frac = cups - whole;
+      let fracStr = '';
+      if(frac > 0.05){
+        const best = fracs.reduce((a,b)=>Math.abs(b[0]-frac)<Math.abs(a[0]-frac)?b:a);
+        if(Math.abs(best[0]-frac)<0.08) fracStr=best[1];
+        else fracStr=Math.round(frac*10)/10;
+      }
+      const label = (whole>0?whole:'')+fracStr+' cup'+(cups>=1.9?'s':'');
+      return label.trim() || '1 cup';
+    }
+    if(scaledVal >= 14){
+      const t = Math.round(scaledVal/15*10)/10;
+      return t+' tbsp';
+    }
+    const t = Math.round(scaledVal/5*10)/10;
+    return t+' tsp';
+  }
+  if(u === 'l' || u === 'litre' || u === 'litres'){
+    return computeUS(scaledVal*1000,'ml',us1x,base1x*1000);
+  }
+  // Temp
+  if(u === '°c' || u === 'c'){
+    return Math.round(scaledVal*9/5+32)+'°F';
+  }
+  // Unchanged units (tbsp, tsp, cups, counts)
+  const baseScaled = scaledVal;
+  if(Number.isInteger(baseScaled)) return baseScaled + (unit?' '+unit:'');
+  return (Math.round(baseScaled*10)/10) + (unit?' '+unit:'');
+}
+
+function updateAllQty(){
+  // Update ingredient amounts
+  document.querySelectorAll('.ing-amount[data-base], .qty-inline[data-base]').forEach(el=>{
+    el.textContent = getQtyText(el, currentScale, currentUnit);
+  });
+}
+
+// ── Shopping list ─────────────────────────────────────────────────────────────
+const SHOP_KEY='bb-shop-smoked-salmon';
+const SI=[{"name": "fresh salmon fillet, skin-on", "base": 900, "unit": "g", "metricLabel": "900g", "usLabel": "2.0 lb", "noScale": false}, {"name": "kosher salt", "base": 120, "unit": "g", "metricLabel": "120g", "usLabel": "4.2 oz", "noScale": false}, {"name": "dark brown sugar", "base": 120, "unit": "g", "metricLabel": "120g", "usLabel": "4.2 oz", "noScale": false}, {"name": "cold water", "base": 960, "unit": "ml", "metricLabel": "960ml", "usLabel": "4 cups", "noScale": false}, {"name": "soy sauce", "base": 0, "unit": "", "metricLabel": "2 tbsp", "usLabel": "2 tbsp", "noScale": true}, {"name": "black pepper, cracked", "base": 0, "unit": "", "metricLabel": "1 tsp", "usLabel": "1 tsp", "noScale": true}, {"name": "garlic cloves, smashed", "base": 0, "unit": "", "metricLabel": "2", "usLabel": "2", "noScale": true}, {"name": "lemon, sliced into rounds", "base": 0, "unit": "", "metricLabel": "1", "usLabel": "1", "noScale": true}, {"name": "alder wood pellets", "base": 0, "unit": "", "metricLabel": "as needed", "usLabel": "as needed", "noScale": true}, {"name": "maple syrup or honey (optional glaze)", "base": 0, "unit": "", "metricLabel": "2 tbsp", "usLabel": "2 tbsp", "noScale": true}];
+
+function shopQtyLabel(item){
+  if(item.noScale) return item.metricLabel;
+  const scaled = item.base * currentScale;
+  const u = (item.unit||'').toLowerCase().trim();
+  const isMeasured = ['g','kg','ml','l','litre','litres','liter','liters'].includes(u);
+  if(!isMeasured){
+    // Count/label - fraction-format, same in both systems
+    const unitStr = item.unit ? ' '+item.unit : '';
+    return fmtCount(scaled)+unitStr;
+  }
+  if(currentUnit === 'metric'){
+    const v = Number.isInteger(scaled)?scaled:Math.round(scaled*10)/10;
+    return v+(item.unit||'');
+  }
+  return computeUS(scaled, item.unit||'', item.usLabel||'', item.base);
+}
+
+function buildShoppingList(){
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  const list=document.getElementById('shopList');
+  if(!list) return;
+  list.innerHTML='';
+  SI.forEach((item,i)=>{
+    const isC=checked[i]||false;
+    const div=document.createElement('div');
+    div.className='shopping-item'+(isC?' checked':'');
+    const qty=shopQtyLabel(item);
+    div.innerHTML=`<input type="checkbox" id="si-${i}" ${isC?'checked':''} onchange="toggleShopItem(${i},this)"><span class="item-qty">${qty}</span><label for="si-${i}">${item.name}</label>`;
+    list.appendChild(div);
+  });
+  updateShopCount();
+}
+
+function toggleShopItem(idx,cb){
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  checked[idx]=cb.checked;
+  localStorage.setItem(SHOP_KEY,JSON.stringify(checked));
+  cb.closest('.shopping-item').classList.toggle('checked',cb.checked);
+  updateShopCount();
+}
+function updateShopCount(){
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  const n=Object.values(checked).filter(Boolean).length;
+  const el=document.getElementById('shopCount');
+  if(el) el.textContent=n+' of '+SI.length+' checked';
+}
+function checkAllShopping(){const all={};SI.forEach((_,i)=>all[i]=true);localStorage.setItem(SHOP_KEY,JSON.stringify(all));buildShoppingList();}
+function clearShopping(){localStorage.removeItem(SHOP_KEY);buildShoppingList();}
+function toggleShopping(){
+  const body=document.getElementById('shopBody'),toggle=document.getElementById('shopToggle');
+  const open=body.style.display!=='none';
+  body.style.display=open?'none':'block';
+  toggle.classList.toggle('open',!open);
+  if(!open) buildShoppingList();
+}
+function printShoppingList(){
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  const remaining=SI.filter((_,i)=>!checked[i]);
+  if(remaining.length===0){alert('You have everything! Go smoke that salmon! 🔥');return;}
+  const win=window.open('','_blank');
+  win.document.write(`<html><head><title>Shopping List — Traeger Smoked Salmon</title><style>body{font-family:Georgia,serif;max-width:400px;margin:40px auto}h1{font-size:22px}p{font-size:12px;color:#888;margin-bottom:24px}ul{list-style:none;padding:0}li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #eee;font-size:15px}li::before{content:'☐';color:#ccc}.qty{font-family:monospace;font-size:12px;color:#c9963a;min-width:80px}</style></head><body><h1>Traeger Smoked Salmon</h1><p>${remaining.length} items needed</p><ul>${remaining.map(item=>`<li><span class="qty">${shopQtyLabel(item)}</span>${item.name}</li>`).join('')}</ul></body></html>`);
+  win.document.close();win.print();
+}
+
+// Init
+(function(){
+  const savedUnit = localStorage.getItem('bb-unit')||'metric';
+  currentUnit = savedUnit;
+  const btn = document.getElementById('unit-'+savedUnit);
+  if(btn){ btn.classList.add('active'); }
+  buildShoppingList();
+})();
+
+</script>
+</body></html>
