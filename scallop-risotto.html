@@ -1,634 +1,434 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scallop Risotto — Bytes & Bites</title>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Scallop Risotto — Bytes &amp; Bites</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --cream: #faf6ef;
-    --warm: #f0e6d3;
-    --gold: #c9963a;
-    --deep: #1a1209;
-    --rust: #b85c2a;
-    --sage: #7a8c6e;
-    --accent: #e8c87a;
-    --surface: #f5f0e8;
-    --border: #e0d8c8;
-    --text-main: #1a1209;
-    --text-body: #3a2d1a;
-    --text-muted: #7a6e5a;
-  }
-  [data-theme="dark"] {
-    --cream: #1a1209;
-    --warm: #221808;
-    --gold: #c9963a;
-    --deep: #f0ead8;
-    --rust: #e07a40;
-    --sage: #9aac8e;
-    --accent: #e8c87a;
-    --surface: #221a0a;
-    --border: #3a2e1a;
-    --text-main: #f0ead8;
-    --text-body: #c8b898;
-    --text-muted: #7a6e5a;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background-color: var(--cream);
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text-main);
-    min-height: 100vh;
-    transition: background 0.3s, color 0.3s;
-  }
-  .noise {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    opacity: 0.5;
-  }
-  .page { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; position: relative; z-index: 1; }
-
-  /* NAV */
-  .back-nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 16px 40px;
-    background: rgba(250,246,239,0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    transition: background 0.3s;
-  }
-  [data-theme="dark"] .back-nav { background: rgba(26,18,9,0.95); }
-  .back-link {
-    display: flex; align-items: center; gap: 10px;
-    font-family: 'Space Mono', monospace;
-    font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
-    color: var(--text-muted); transition: color 0.2s; text-decoration: none;
-  }
-  .back-link:hover { color: var(--rust); }
-  .back-link::before { content: '←'; font-size: 14px; }
-  .nav-title { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); }
-  .nav-right-group { display: flex; align-items: center; gap: 10px; }
-  .nav-icon-btn {
-    background: none; border: 1px solid var(--border);
-    color: var(--text-muted); font-family: 'Space Mono', monospace;
-    font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 6px 12px; cursor: pointer; transition: all 0.2s;
-  }
-  .nav-icon-btn:hover { border-color: var(--gold); color: var(--gold); }
-
-  /* HEADER */
-  .header { text-align: center; margin-bottom: 48px; margin-top: 72px; animation: fadeDown 0.8s ease both; }
-  .tag {
-    display: inline-block; background: var(--gold); color: white;
-    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px;
-    text-transform: uppercase; padding: 5px 14px; border-radius: 2px; margin-bottom: 16px;
-  }
-  h1 { font-family: 'Playfair Display', serif; font-size: clamp(38px, 8vw, 64px); line-height: 1.05; color: var(--text-main); margin-bottom: 8px; }
-  h1 em { color: var(--rust); font-style: italic; }
-  .subtitle { font-size: 14px; color: var(--sage); letter-spacing: 1px; font-weight: 300; margin-bottom: 16px; }
-
-  /* DIETARY BADGES */
-  .dietary-row { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-bottom: 20px; }
-  .dietary-badge { font-size: 8px; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; font-weight: 700; }
-  .badge-pescatarian { background: rgba(74,107,82,0.15); color: #5a9a6a; border: 1px solid rgba(74,107,82,0.3); }
-  .badge-vegetarian  { background: rgba(74,140,82,0.15); color: #4a9a5a; border: 1px solid rgba(74,140,82,0.3); }
-  .badge-gf          { background: rgba(201,150,58,0.15); color: #c9963a; border: 1px solid rgba(201,150,58,0.3); }
-  .badge-lf          { background: rgba(100,160,200,0.12); color: #5090b0; border: 1px solid rgba(100,160,200,0.25); }
-
-  .divider { display: flex; align-items: center; gap: 12px; justify-content: center; margin: 20px 0; color: var(--gold); font-size: 18px; }
-  .divider::before, .divider::after { content: ''; height: 1px; width: 80px; background: linear-gradient(to right, transparent, var(--gold)); }
-  .divider::after { transform: scaleX(-1); }
-
-  /* STATS */
-  .stats { display: flex; justify-content: center; border: 1px solid var(--accent); border-radius: 8px; overflow: hidden; margin-bottom: 28px; animation: fadeUp 0.8s 0.2s ease both; }
-  .stat { flex: 1; text-align: center; padding: 16px 8px; border-right: 1px solid var(--accent); }
-  .stat:last-child { border-right: none; }
-  .stat-val { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--rust); display: block; }
-  .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sage); font-family: 'Space Mono', monospace; }
-
-  /* CONTROLS BAR */
-  .controls-bar {
-    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
-    background: var(--warm); border: 1px solid var(--border);
-    padding: 14px 18px; border-radius: 8px; margin-bottom: 32px;
-    animation: fadeUp 0.8s 0.25s ease both;
-  }
-  [data-theme="dark"] .controls-bar { background: var(--surface); }
-  .controls-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-right: 4px; }
-  .scale-btn, 
-  .scale-btn:hover, 
-  .scale-btn.active, 
-  .controls-divider { width: 1px; height: 24px; background: var(--border); margin: 0 6px; }
-
-  /* SHOPPING LIST */
-  .shopping-section {
-    background: var(--warm); border: 1px solid var(--border);
-    border-radius: 8px; margin-bottom: 40px; overflow: hidden;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-  [data-theme="dark"] .shopping-section { background: var(--surface); }
-  .shopping-header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 16px 20px; border-bottom: 1px solid var(--border); cursor: pointer;
-  }
-  .shopping-header-left { display: flex; align-items: center; gap: 10px; }
-  .shopping-title { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--rust); }
-  .shopping-count { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--text-muted); }
-  .shopping-toggle { font-size: 12px; color: var(--text-muted); transition: transform 0.2s; }
-  .shopping-toggle.open { transform: rotate(180deg); }
-  .shopping-body { padding: 16px 20px; }
-  .shopping-item {
-    display: flex; align-items: center; gap: 12px;
-    padding: 9px 0; border-bottom: 1px dashed var(--border); cursor: pointer;
-  }
-  .shopping-item:last-child { border-bottom: none; }
-  .shopping-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--gold); flex-shrink: 0; cursor: pointer; }
-  .shopping-item label { font-size: 14px; color: var(--text-body); cursor: pointer; transition: all 0.2s; flex: 1; }
-  .shopping-item.checked label { text-decoration: line-through; color: var(--text-muted); opacity: 0.6; }
-  .shopping-item .item-qty { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--gold); min-width: 80px; flex-shrink: 0; }
-  .shopping-actions { display: flex; gap: 10px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); flex-wrap: wrap; }
-  .shop-btn {
-    background: none; border: 1px solid var(--border);
-    color: var(--text-muted); font-family: 'Space Mono', monospace;
-    font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 8px 14px; cursor: pointer; transition: all 0.2s; border-radius: 2px;
-  }
-  .shop-btn:hover { border-color: var(--gold); color: var(--gold); }
-  .shop-btn.primary { background: var(--rust); border-color: var(--rust); color: white; }
-  .shop-btn.primary:hover { background: var(--gold); border-color: var(--gold); }
-
-  /* INTRO CARD */
-  .intro-card { background: var(--deep); color: var(--cream); border-radius: 12px; padding: 28px 32px; margin-bottom: 40px; position: relative; overflow: hidden; animation: fadeUp 0.8s 0.3s ease both; }
-  [data-theme="dark"] .intro-card { background: #2a1a08; }
-  .intro-card::before { content: '✦'; position: absolute; top: -20px; right: -10px; font-size: 120px; opacity: 0.05; color: var(--gold); }
-  .intro-card p { font-size: 15px; line-height: 1.75; color: #e8dece; font-weight: 300; }
-  .intro-card p strong { color: var(--accent); font-weight: 500; }
-
-  /* SECTIONS */
-  .section { margin-bottom: 40px; animation: fadeUp 0.7s ease both; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; color: var(--text-main); }
-  .section-title .num { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 2px; border: 1px solid var(--gold); padding: 3px 8px; border-radius: 2px; }
-
-  /* INGREDIENTS */
-  .ing-group { margin-bottom: 24px; }
-  .ing-group-title { font-family: 'Space Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--rust); border-bottom: 1px solid var(--warm); padding-bottom: 8px; margin-bottom: 12px; }
-  [data-theme="dark"] .ing-group-title { border-bottom-color: var(--border); }
-  .ingredient-list { list-style: none; }
-  .ingredient-list li { display: flex; align-items: baseline; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--border); font-size: 15px; line-height: 1.4; color: var(--text-body); }
-  .ingredient-list li:last-child { border-bottom: none; }
-  .ing-amount { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--gold); min-width: 72px; flex-shrink: 0; }
-  .ing-note { font-size: 12px; color: var(--sage); font-style: italic; }
-
-  /* STEPS */
-  .step { display: grid; grid-template-columns: 48px 1fr; gap: 20px; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--warm); position: relative; }
-  [data-theme="dark"] .step { border-bottom-color: var(--border); }
-  .step:last-child { border-bottom: none; }
-  .step-num { width: 48px; height: 48px; background: var(--deep); color: var(--accent); font-family: 'Playfair Display', serif; font-size: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; margin-top: 2px; }
-  [data-theme="dark"] .step-num { background: #2a1a08; }
-  .step-content h3 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 8px; color: var(--text-main); }
-  .step-content p { font-size: 14.5px; line-height: 1.8; color: var(--text-body); font-weight: 300; }
-  .step-content p strong { color: var(--rust); font-weight: 500; }
-
-  /* CALLOUTS */
-  .genz { background: var(--warm); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 10px 16px; margin: 12px 0; font-size: 13px; color: var(--rust); font-style: italic; }
-  [data-theme="dark"] .genz { background: var(--surface); }
-  .genz::before { content: '💬 '; }
-  .tip { background: #f5f0e8; border: 1px solid var(--accent); border-radius: 8px; padding: 14px 18px; margin: 14px 0; font-size: 13px; color: #5a4520; line-height: 1.65; }
-  [data-theme="dark"] .tip { background: #2a2010; color: var(--text-body); }
-  .tip::before { content: '⚡ Pro tip: '; font-weight: 600; color: var(--gold); }
-
-  /* FINAL */
-  .final { background: linear-gradient(135deg, var(--deep) 0%, #2d1f08 100%); color: var(--cream); border-radius: 12px; padding: 32px; text-align: center; margin-top: 48px; }
-  [data-theme="dark"] .final { background: linear-gradient(135deg, #2a1a08 0%, #1a1005 100%); }
-  .final h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--accent); margin-bottom: 12px; }
-  .final p { font-size: 14px; color: #c8b898; line-height: 1.7; font-weight: 300; }
-
-  /* BOTTOM NAV */
-  .bottom-nav {
-    background: var(--deep); display: flex; justify-content: space-between; align-items: center;
-    padding: 28px 40px; border-top: 1px solid rgba(255,255,255,0.06);
-    margin-top: 60px; margin-left: -24px; margin-right: -24px;
-  }
-  [data-theme="dark"] .bottom-nav { background: #0f0a05; }
-  .bottom-nav a { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #8a7d65; transition: color 0.2s; text-decoration: none; }
-  .bottom-nav a:hover { color: var(--accent); }
-  .bottom-nav .site-name { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--accent); font-style: italic; }
-
-  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-  @media (max-width: 480px) {
-    .back-nav { padding: 14px 16px; }
-    .stats { flex-wrap: wrap; }
-    .stat { min-width: 50%; border-bottom: 1px solid var(--accent); }
-    .step { grid-template-columns: 36px 1fr; gap: 14px; }
-    .step-num { width: 36px; height: 36px; font-size: 16px; }
-    .bottom-nav { padding: 20px; flex-direction: column; gap: 12px; text-align: center; margin-left: -24px; margin-right: -24px; }
-    .controls-bar { gap: 6px; }
-  }
-
-  /* PRINT */
-  @media print {
-    .back-nav, .noise, .controls-bar, .shopping-section, .nav-right-group, .bottom-nav, .final { display: none !important; }
-    body { background: white; color: black; }
-    .page { padding: 0; }
-    .header { margin-top: 0; }
-    .step-num { background: #eee; color: #333; }
-    .intro-card { background: #f5f5f5; color: #333; border-radius: 0; }
-    .intro-card p { color: #333; }
-    .genz { background: #f9f9f9; color: #555; }
-    .tip { background: #fffbe8; }
-    h1, h2, h3, .section-title { color: #1a1209; }
-  }
-
+<style>:root{--cream:#faf6ef;--warm:#f0e6d3;--gold:#c9963a;--deep:#1a1209;--rust:#b85c2a;--sage:#7a8c6e;--accent:#e8c87a;--surface:#faf6ef;--border:#e0d8c8;--text-main:#1a1209;--text-body:#3a2d1a;--text-muted:#7a6e5a}
+[data-theme="dark"]{--cream:#1a1209;--warm:#221808;--gold:#c9963a;--deep:#f0ead8;--rust:#e07a40;--sage:#9aac8e;--accent:#e8c87a;--surface:#1a1209;--border:#3a2e1a;--text-main:#f0ead8;--text-body:#c8b898;--text-muted:#7a6e5a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text-main);min-height:100vh;transition:background .3s,color .3s}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.5}
+.page{max-width:780px;margin:0 auto;padding:40px 24px 80px;position:relative;z-index:1}
+.back-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(250,246,239,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background .3s}
+[data-theme="dark"] .back-nav{background:rgba(26,18,9,0.95)}
+.back-link{display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.back-link:hover{color:var(--rust)}.back-link::before{content:'←';font-size:13px}
+.nav-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rust)}
+.nav-right-group{display:flex;align-items:center;gap:6px}
+.nav-icon-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 10px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.nav-icon-btn:hover{border-color:var(--gold);color:var(--gold)}
+.header{text-align:center;margin-bottom:48px;margin-top:72px;animation:fadeDown .8s ease both}
 .tag-wrap{margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;color:white;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:2px}
+.tag-gold{background:var(--gold)}.tag-rust{background:var(--rust)}.tag-sage{background:var(--sage)}
 .status-badge{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:2px;display:inline-block}
-.status-human{background:rgba(74,107,82,0.15);color:#5a9a6a;border:1px solid rgba(74,107,82,0.3)}
-</style>
-</head>
-<body>
+.status-human{background:rgba(74,107,82,.15);color:#5a9a6a;border:1px solid rgba(74,107,82,.3)}
+.status-ai{background:rgba(176,88,42,.15);color:var(--rust);border:1px solid rgba(176,88,42,.25)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(34px,7vw,58px);line-height:1.05;color:var(--text-main);margin-bottom:8px}
+h1 em{color:var(--rust);font-style:italic}
+.subtitle{font-size:14px;color:var(--sage);letter-spacing:1px;font-weight:300;margin-bottom:16px}
+.dietary-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+.dietary-badge{font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:2px;font-weight:700}
+.badge-pescatarian{background:rgba(74,107,82,.15);color:#5a9a6a;border:1px solid rgba(74,107,82,.3)}
+.badge-vegetarian{background:rgba(74,140,82,.15);color:#4a9a5a;border:1px solid rgba(74,140,82,.3)}
+.badge-vegan{background:rgba(60,120,60,.15);color:#3a8a3a;border:1px solid rgba(60,120,60,.3)}
+.badge-gf{background:rgba(201,150,58,.15);color:#c9963a;border:1px solid rgba(201,150,58,.3)}
+.badge-lf{background:rgba(100,160,200,.12);color:#5090b0;border:1px solid rgba(100,160,200,.25)}
+.divider{display:flex;align-items:center;gap:12px;justify-content:center;margin:20px 0;color:var(--gold);font-size:18px}
+.divider::before,.divider::after{content:'';height:1px;width:80px;background:linear-gradient(to right,transparent,var(--gold))}
+.divider::after{transform:scaleX(-1)}
+.stats{display:flex;justify-content:center;border:1px solid var(--accent);border-radius:8px;overflow:hidden;margin-bottom:20px}
+.stat{flex:1;text-align:center;padding:16px 8px;border-right:1px solid var(--accent)}.stat:last-child{border-right:none}
+.stat-val{font-family:'Playfair Display',serif;font-size:22px;color:var(--rust);display:block}
+.stat-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--sage);font-family:'Space Mono',monospace}
+.controls-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--warm);border:1px solid var(--border);padding:12px 16px;border-radius:8px;margin-bottom:28px}
+[data-theme="dark"] .controls-bar{background:#221808;border-color:var(--border)}
+.controls-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-right:2px}
+.controls-divider{width:1px;height:20px;background:var(--border);margin:0 4px}
+.scale-btn,.unit-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;cursor:pointer;transition:all .2s;border-radius:2px}
+.scale-btn:hover,.unit-btn:hover{border-color:var(--gold);color:var(--gold)}
+.scale-btn.active{background:var(--gold);border-color:var(--gold);color:white}
+.unit-btn.active{background:var(--rust);border-color:var(--rust);color:white}
+.shopping-section{background:var(--warm);border:1px solid var(--border);border-radius:8px;margin-bottom:40px;overflow:hidden}
+[data-theme="dark"] .shopping-section{background:#221808;border-color:var(--border)}
+.shopping-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border);cursor:pointer}
+.shopping-header-left{display:flex;align-items:center;gap:10px}
+.shopping-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust)}
+.shopping-count{font-family:'Space Mono',monospace;font-size:9px;color:var(--text-muted)}
+.shopping-toggle{font-size:12px;color:var(--text-muted);transition:transform .2s}.shopping-toggle.open{transform:rotate(180deg)}
+.shopping-body{padding:16px 20px}
+.shopping-item{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.shopping-item:last-child{border-bottom:none}
+.shopping-item input[type="checkbox"]{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0;cursor:pointer}
+.shopping-item label{font-size:14px;color:var(--text-body);cursor:pointer;transition:all .2s;flex:1}
+.shopping-item.checked label{text-decoration:line-through;color:var(--text-muted);opacity:.6}
+.item-qty{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);min-width:80px;flex-shrink:0}
+.shopping-actions{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap}
+.shop-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:8px 14px;cursor:pointer;transition:all .2s;border-radius:2px}
+.shop-btn:hover{border-color:var(--gold);color:var(--gold)}
+.shop-btn.primary{background:var(--rust);border-color:var(--rust);color:white}.shop-btn.primary:hover{background:var(--gold);border-color:var(--gold)}
+.intro-card{background:var(--deep);color:#f0ead8;border-radius:12px;padding:28px 32px;margin-bottom:40px;position:relative;overflow:hidden}
+[data-theme="dark"] .intro-card{background:#2a1a08}
+.intro-card::before{content:'✦';position:absolute;top:-20px;right:-10px;font-size:120px;opacity:.05;color:var(--gold)}
+.intro-card p{font-size:15px;line-height:1.75;color:#e8dece;font-weight:300}
+.intro-card p strong{color:var(--accent);font-weight:500}
+.section{margin-bottom:40px}
+.section-title{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:20px;display:flex;align-items:center;gap:12px;color:var(--text-main)}
+.section-title .num{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;border:1px solid var(--gold);padding:3px 8px;border-radius:2px}
+.ing-group{margin-bottom:24px}
+.ing-group-title{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--rust);border-bottom:1px solid var(--warm);padding-bottom:8px;margin-bottom:12px}
+[data-theme="dark"] .ing-group-title{border-bottom-color:var(--border)}
+.ingredient-list{list-style:none}
+.ingredient-list li{display:flex;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:15px;line-height:1.4;color:var(--text-body)}
+.ingredient-list li:last-child{border-bottom:none}
+.ing-amount{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);min-width:72px;flex-shrink:0}
+.ing-note{font-size:12px;color:var(--sage);font-style:italic}
+.qty-inline{font-family:'Space Mono',monospace;font-size:.9em;color:var(--rust);font-weight:500}
+.step{display:grid;grid-template-columns:48px 1fr;gap:20px;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--warm)}
+[data-theme="dark"] .step{border-bottom-color:var(--border)}.step:last-child{border-bottom:none}
+.step-num{width:48px;height:48px;background:var(--deep);color:var(--accent);font-family:'Playfair Display',serif;font-size:20px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;margin-top:2px}
+[data-theme="dark"] .step-num{background:#2a1a08}
+.step-content h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:8px;color:var(--text-main)}
+.step-content p{font-size:14.5px;line-height:1.8;color:var(--text-body);font-weight:300}
+.step-content p strong{color:var(--rust);font-weight:500}
+.genz{background:var(--warm);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 16px;margin:12px 0;font-size:13px;color:var(--rust);font-style:italic}
+[data-theme="dark"] .genz{background:#221808}.genz::before{content:'💬 '}
+.tip{background:#f5f0e8;border:1px solid var(--accent);border-radius:8px;padding:14px 18px;margin:14px 0;font-size:13px;color:#5a4520;line-height:1.65}
+[data-theme="dark"] .tip{background:#2a2010;color:var(--text-body)}.tip::before{content:'⚡ Pro tip: ';font-weight:600;color:var(--gold)}
+.warning{background:#fff0ec;border-left:3px solid var(--rust);border-radius:0 8px 8px 0;padding:10px 16px;margin:12px 0;font-size:13px;color:#7a2a10;line-height:1.65;font-style:italic}
+[data-theme="dark"] .warning{background:#2a1808;color:#e08060}
+.warning::before{content:'⚠ Watch out: ';font-family:'Space Mono',monospace;font-style:normal;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--rust);display:block;margin-bottom:4px}
+.section-divider{display:flex;align-items:center;gap:16px;margin:40px 0 32px}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--warm)}
+[data-theme="dark"] .section-divider::before,[data-theme="dark"] .section-divider::after{background:var(--border)}
+.section-divider span{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--rust)}
+.final{background:linear-gradient(135deg,var(--deep) 0%,#2d1f08 100%);color:#f0ead8;border-radius:12px;padding:32px;text-align:center;margin-top:48px}
+[data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
+.final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
+.final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
+[data-theme="dark"] .bottom-nav{background:#0f0a05}
+.bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
+.bottom-nav a:hover{color:var(--accent)}
+.bottom-nav .site-name{font-family:'Playfair Display',serif;font-size:14px;color:var(--accent);font-style:italic}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:480px){.back-nav{padding:12px 14px}.nav-icon-btn{padding:5px 8px;font-size:8px}.stats{flex-wrap:wrap}.stat{min-width:50%;border-bottom:1px solid var(--accent)}.step{grid-template-columns:36px 1fr;gap:14px}.step-num{width:36px;height:36px;font-size:16px}.bottom-nav{padding:20px;flex-direction:column;gap:12px;text-align:center;margin-left:-24px;margin-right:-24px}}
+@media print{.back-nav,.noise,.controls-bar,.shopping-section,.bottom-nav{display:none!important}body{background:white;color:black}.page{padding:0}.header{margin-top:0}}</style></head><body>
 <div class="noise"></div>
-
-<!-- NAV -->
 <nav class="back-nav">
   <a href="index.html" class="back-link">All Recipes</a>
   <span class="nav-title">Bytes &amp; Bites</span>
   <div class="nav-right-group">
+    <button class="nav-icon-btn" id="unit-metric" onclick="setUnit('metric',this)">Metric</button>
+    <button class="nav-icon-btn unit-btn" id="unit-us" onclick="setUnit('us',this)">US</button>
     <button class="nav-icon-btn" id="darkToggle" onclick="toggleDark()">☀️ Light</button>
-    <button class="nav-icon-btn" onclick="printRecipe()">🖨️ Print (Boomer Mode)</button>
-    <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--text-muted)">Recipe 01</span>
+    <button class="nav-icon-btn" onclick="window.print()">🖨️ Print</button>
   </div>
 </nav>
-
 <div class="page">
-
   <div class="header">
-    <div class="tag-wrap"><span class="tag">Main Course · Seafood</span><span class="status-badge status-human">✓ Human Approved</span></div>
-    <h1>Scallop <em>Risotto</em></h1>
-    <p class="subtitle">Bay Scallops · Parmesan · White Wine · Fresh Herbs</p>
-    <div class="dietary-row">
-      <span class="dietary-badge badge-pescatarian">🐟 Pescatarian</span>
+    <div class="tag-wrap">
+      <span class="tag tag-gold">Main Dish</span>
+      <span class="status-badge status-human">✓ Human Approved</span>
     </div>
+    <h1>Scallop Risotto</h1>
+    <p class="subtitle">Bay Scallops · Parmesan · White Wine · Fresh Herbs</p>
+    <div class="dietary-row"><span class="dietary-badge badge-pescatarian">🐟 Pescatarian</span></div>
     <div class="divider">✦</div>
   </div>
-
   <div class="stats">
-    <div class="stat"><span class="stat-val">~45</span><span class="stat-label">Minutes</span></div>
+    <div class="stat"><span class="stat-val">~45 min</span><span class="stat-label">Total</span></div>
     <div class="stat"><span class="stat-val" id="servingDisplay">4</span><span class="stat-label">Servings</span></div>
     <div class="stat"><span class="stat-val">Med</span><span class="stat-label">Difficulty</span></div>
-    <div class="stat"><span class="stat-val">680g</span><span class="stat-label">Scallops</span></div>
+    <div class="stat"><span class="stat-val">Scallops</span><span class="stat-label">680g</span></div>
   </div>
-
-  <!-- CONTROLS -->
   <div class="controls-bar">
-    <span class="controls-label">Serves:</span>
-    <button class="scale-btn" data-scale="0.5" onclick="setScale(0.5, this)">½×</button>
-    <button class="scale-btn active" data-scale="1" onclick="setScale(1, this)">1×</button>
-    <button class="scale-btn" data-scale="2" onclick="setScale(2, this)">2×</button>
-    <button class="scale-btn" data-scale="3" onclick="setScale(3, this)">3×</button>
+    <span class="controls-label">Scale:</span>
+    <button class="scale-btn" onclick="setScale(0.5,this)">½×</button>
+    <button class="scale-btn active" onclick="setScale(1,this)">1×</button>
+    <button class="scale-btn" onclick="setScale(2,this)">2×</button>
+    <button class="scale-btn" onclick="setScale(3,this)">3×</button>
   </div>
-
-  <!-- SHOPPING LIST -->
   <div class="shopping-section">
     <div class="shopping-header" onclick="toggleShopping()">
       <div class="shopping-header-left">
         <span class="shopping-title">🛒 Shopping List</span>
-        <span class="shopping-count" id="shopCount">0 of 15 checked</span>
+        <span class="shopping-count" id="shopCount">0 of 13 checked</span>
       </div>
       <span class="shopping-toggle" id="shopToggle">▼</span>
     </div>
-    <div class="shopping-body" id="shopBody" style="display:none;">
+    <div class="shopping-body" id="shopBody" style="display:none">
       <div id="shopList"></div>
       <div class="shopping-actions">
         <button class="shop-btn" onclick="checkAllShopping()">✓ Check all</button>
         <button class="shop-btn" onclick="clearShopping()">↺ Reset</button>
-        <button class="shop-btn primary" onclick="printShoppingList()">🖨️ Print remaining list</button>
+        <button class="shop-btn primary" onclick="printShoppingList()">🖨️ Print remaining</button>
       </div>
     </div>
   </div>
 
-  <div class="intro-card">
-    <p>Okay bestie, no cap — this is <strong>the most bougie thing you will ever cook</strong>, and it's actually not that hard. Risotto is just rice that needs your attention. Think of it like a Tamagotchi: ignore it and it dies. Stay with it, keep stirring, and you'll have something that absolutely <strong>slaps</strong>. Your family will think you went to culinary school. We keep that between us.</p>
+  <div class="intro-card"><p>Okay bestie, no cap — this is <strong>the most bougie thing you will ever cook</strong>, and it's actually not that hard. Risotto is just rice that needs your attention. Think of it like a Tamagotchi: ignore it and it dies. Stay with it, keep stirring, and you'll have something that absolutely <strong>slaps</strong>. Your family will think you went to culinary school. We keep that between us.</p></div>
+
+  <div class="section"><div class="section-title"><span class="num">01</span> Ingredients</div>
+    <div class="ing-group"><div class="ing-group-title">The Main Characters</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="680" data-unit="g" data-metric="680g" data-us="1.5 lb" data-noscale="false">680g</span><span>frozen bay scallops (40–60 per lb) <span class="ing-note">— thaw in fridge overnight or in cold water for 30 min</span></span></li>
+      <li><span class="ing-amount" data-base="280" data-unit="g" data-metric="280g" data-us="9.9 oz" data-noscale="false">280g</span><span>Arborio rice <span class="ing-note">— must be Arborio, regular rice won't slay the same</span></span></li>
+      <li><span class="ing-amount" data-base="1200" data-unit="ml" data-metric="1200ml" data-us="5 cups" data-noscale="false">1200ml</span><span>seafood or chicken broth, warmed <span class="ing-note">— low sodium preferred</span></span></li>
+      <li><span class="ing-amount" data-base="180" data-unit="ml" data-metric="180ml" data-us="¾ cup" data-noscale="false">180ml</span><span>dry white wine <span class="ing-note">— Pinot Grigio or Sauvignon Blanc; sub extra broth if needed</span></span></li>
+    </ul></div>
+    <div class="ing-group"><div class="ing-group-title">The Supporting Cast (still iconic)</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="3 large" data-us="3 large" data-noscale="true">3 large</span><span>shallots, finely diced <span class="ing-note">— shallots are milder and sweeter than onion, perfect for delicate seafood</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="4 cloves" data-us="4 cloves" data-noscale="true">4 cloves</span><span>garlic, minced <span class="ing-note">— fresh is the vibe; jarred is a last resort</span></span></li>
+      <li><span class="ing-amount" data-base="45" data-unit="g" data-metric="45g" data-us="1.6 oz" data-noscale="false">45g</span><span>unsalted butter, divided</span></li>
+      <li><span class="ing-amount" data-base="30" data-unit="ml" data-metric="30ml" data-us="2 tbsp" data-noscale="false">30ml</span><span>olive oil, divided</span></li>
+      <li><span class="ing-amount" data-base="100" data-unit="g" data-metric="100g" data-us="3.5 oz" data-noscale="false">100g</span><span>freshly grated Parmesan <span class="ing-note">— grate it yourself, pre-shredded is lowkey mid</span></span></li>
+      <li><span class="ing-amount" data-base="30" data-unit="ml" data-metric="30ml" data-us="2 tbsp" data-noscale="false">30ml</span><span>fresh lemon juice <span class="ing-note">— about 1 lemon; bottled is not it</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1 tsp" data-us="1 tsp" data-noscale="true">1 tsp</span><span>lemon zest</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="handful" data-us="handful" data-noscale="true">handful</span><span>fresh parsley, chopped</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="to taste" data-us="to taste" data-noscale="true">to taste</span><span>kosher salt and black pepper</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="pinch" data-us="pinch" data-noscale="true">pinch</span><span>red pepper flakes <span class="ing-note">— optional but it adds rizz</span></span></li>
+    </ul></div>
+    <div class="ing-group"><div class="ing-group-title">Equipment You'll Need</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1 large" data-us="1 large" data-noscale="true">1 large</span><span>wide, heavy-bottomed pot or Dutch oven <span class="ing-note">— risotto headquarters</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1 medium" data-us="1 medium" data-noscale="true">1 medium</span><span>saucepan <span class="ing-note">— for keeping broth warm</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1 large" data-us="1 large" data-noscale="true">1 large</span><span>skillet or frying pan <span class="ing-note">— for the scallops</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="—" data-us="—" data-noscale="true">—</span><span>ladle, wooden spoon, paper towels, box grater or microplane</span></li>
+    </ul></div>
   </div>
 
-  <!-- INGREDIENTS -->
-  <div class="section">
-    <div class="section-title"><span class="num">01</span> Ingredients</div>
-    <div class="ing-group">
-      <div class="ing-group-title">The Main Characters</div>
-      <ul class="ingredient-list">
-        <li><span class="ing-amount" data-base="680" data-unit-us="g scallops" data-unit-metric="g scallops">680g</span> <span>frozen bay scallops (40–60 per lb) <span class="ing-note">— thaw in fridge overnight or in cold water for 30 min</span></span></li>
-        <li><span class="ing-amount" data-base="280" data-unit-us="g Arborio rice" data-unit-metric="g Arborio rice">280g</span> <span>Arborio rice <span class="ing-note">— must be Arborio, regular rice won't slay the same</span></span></li>
-        <li><span class="ing-amount" data-base="1200" data-unit-us="ml broth" data-unit-metric="ml broth">1200ml</span> <span>seafood or chicken broth, warmed <span class="ing-note">— low sodium preferred</span></span></li>
-        <li><span class="ing-amount" data-base="180" data-unit-us="ml white wine" data-unit-metric="ml white wine">180ml</span> <span>dry white wine <span class="ing-note">— Pinot Grigio or Sauvignon Blanc; sub extra broth if needed</span></span></li>
-      </ul>
-    </div>
-    <div class="ing-group">
-      <div class="ing-group-title">The Supporting Cast (still iconic)</div>
-      <ul class="ingredient-list">
-        <li><span class="ing-amount" data-base="3" data-unit-us="large shallots" data-unit-metric="large shallots" data-nodiv="1">3</span> <span>shallots, finely diced <span class="ing-note">— small pieces; shallots are milder and sweeter than onion</span></span></li>
-        <li><span class="ing-amount" data-base="4" data-unit-us="cloves garlic" data-unit-metric="cloves garlic" data-nodiv="1">4</span> <span>cloves garlic, minced <span class="ing-note">— fresh is the vibe; jarred is a last resort</span></span></li>
-        <li><span class="ing-amount" data-base="45" data-unit-us="g butter" data-unit-metric="g butter">45g</span> <span>unsalted butter, divided</span></li>
-        <li><span class="ing-amount" data-base="30" data-unit-us="ml olive oil" data-unit-metric="ml olive oil">30ml</span> <span>olive oil, divided</span></li>
-        <li><span class="ing-amount" data-base="100" data-unit-us="g Parmesan" data-unit-metric="g Parmesan">100g</span> <span>freshly grated Parmesan <span class="ing-note">— grate it yourself, the pre-shredded stuff is lowkey mid</span></span></li>
-        <li><span class="ing-amount" data-base="30" data-unit-us="ml lemon juice" data-unit-metric="ml lemon juice">30ml</span> <span>fresh lemon juice <span class="ing-note">— about 1 lemon; bottled is not it</span></span></li>
-        <li><span class="ing-amount" data-base="1" data-unit-us="tsp lemon zest" data-unit-metric="tsp lemon zest" data-small="1">1 tsp</span> <span>lemon zest</span></li>
-        <li><span class="ing-amount" data-base="1" data-unit-us="¼ cup parsley" data-unit-metric="15g parsley" data-small="1">¼ cup</span> <span>fresh parsley, chopped</span></li>
-        <li><span class="ing-amount" data-base="1" data-unit-us="to taste" data-unit-metric="to taste" data-nodiv="1">to taste</span> <span>kosher salt and black pepper</span></li>
-        <li><span class="ing-amount" data-base="1" data-unit-us="pinch" data-unit-metric="pinch" data-nodiv="1">pinch</span> <span>red pepper flakes <span class="ing-note">— optional but it adds rizz</span></span></li>
-      </ul>
-    </div>
+  <div class="section"><div class="section-title"><span class="num">02</span> Let's Cook (No Skipping Steps, frl)</div>
+    <div class="step"><div class="step-num">1</div><div class="step-content">
+      <h3>Thaw &amp; Prep the Scallops</h3>
+      <p>If you didn't thaw the scallops overnight in the fridge, place them in a zip-lock bag and run <strong>cold water</strong> over them for 20–30 minutes. Never use warm water — that's cooked fish before you even start. Once thawed, dump them onto a plate lined with <strong>two layers of paper towels</strong>, press gently, and let sit for <strong>10–15 minutes</strong>. The drier they are, the better they'll cook. Pat them again right before they hit the pan.</p>
+      <div class="genz">Wet scallops = sad, gray, steamed scallops. Dry scallops = golden, caramelized, absolutely sending. We want sending.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">2</div><div class="step-content">
+      <h3>Warm the Broth</h3>
+      <p>Pour <span class="qty-inline" data-base="1200" data-unit="ml" data-metric="1200ml" data-us="5 cups" data-noscale="false">1200ml</span> broth into the medium saucepan and set it over <strong>low heat</strong>. You want it warm — not boiling, not cold, just quietly steaming. Keep it on the back burner the entire time you're making the risotto. Adding cold broth to risotto shocks the rice, messes with the starch release, and makes the whole texture go off. Warm broth = smooth, creamy risotto. This is not a drill.</p>
+      <div class="tip">Keep a ladle right in the broth pot so you're not fumbling for it every 2 minutes. Future you says thanks.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">3</div><div class="step-content">
+      <h3>Build the Flavour Base (The Soffritto Era)</h3>
+      <p>In your large, heavy pot, heat <strong><span class="qty-inline" data-base="15" data-unit="g" data-metric="15g" data-us="0.5 oz" data-noscale="false">15g</span> butter and <span class="qty-inline" data-base="15" data-unit="ml" data-metric="15ml" data-us="1 tbsp" data-noscale="false">15ml</span> olive oil</strong> over <strong>medium heat</strong>. Once the butter melts and stops foaming, add your finely diced shallots. Cook for <strong>4–5 minutes</strong> until soft, translucent, and fragrant — you're not browning them, you're softening them. Low and slow is the main character energy here.</p>
+      <p style="margin-top:10px;">Once the shallots are soft, add the <strong>minced garlic</strong> and red pepper flakes if using. Stir constantly for about <strong>60 seconds</strong>. Garlic burns fast — literally in under a minute on high heat — and burnt garlic tastes bitter and will ghost your entire dish's flavour.</p>
+      <div class="genz">The smell at this point? Absolutely bussin. Your whole house is about to smell incredible. That's the flex.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">4</div><div class="step-content">
+      <h3>Toast the Rice (Yes, You Toast It)</h3>
+      <p>Add <span class="qty-inline" data-base="280" data-unit="g" data-metric="280g" data-us="9.9 oz" data-noscale="false">280g</span> Arborio rice directly into the pot. Stir around so every grain gets coated in the butter and oil. Keep stirring over <strong>medium heat</strong> for <strong>2 minutes</strong>. The rice will go from chalky white to slightly translucent at the edges — that's the toast. Toasting the rice builds a little armour around each grain so it cooks evenly and stays al dente instead of turning to mush. This step is non-negotiable.</p>
+    </div></div>
+
+    <div class="step"><div class="step-num">5</div><div class="step-content">
+      <h3>Deglaze with Wine (The Fancy Part)</h3>
+      <p>Pour in <span class="qty-inline" data-base="180" data-unit="ml" data-metric="180ml" data-us="¾ cup" data-noscale="false">180ml</span> white wine all at once. It will sizzle loudly — that's normal and also extremely dramatic, just how we like it. Stir constantly until the wine is almost completely absorbed by the rice, about <strong>2–3 minutes</strong>. The wine adds acidity and depth that makes the finished dish taste complex and restaurant-worthy.</p>
+      <div class="genz">That sizzle sound is the rice saying "I'm that girl." Respect it.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">6</div><div class="step-content">
+      <h3>The Stirring Arc (This Is the Main Quest)</h3>
+      <p>Now begins the most important part: adding broth, one ladle at a time. Add <strong>one ladle of warm broth</strong> (about 120ml) to the rice and stir. Keep stirring — not frantic, just consistent — until the broth is almost completely absorbed. Then add <strong>another ladle</strong> and repeat. This process takes <strong>20–25 minutes total</strong>.</p>
+      <p style="margin-top:10px;">You don't have to stir like a maniac every second, but stir often — every 20–30 seconds at minimum. This friction releases the starch from the Arborio rice, which is what makes risotto creamy without any actual cream. <strong>Science is undefeated.</strong></p>
+      <div class="tip">Taste the rice around the 18-minute mark. It should be just barely firm in the very centre — called al dente. If it's crunchy, keep going. If it's mushy, you went too far.</div>
+      <div class="genz">Risotto is literally a relationship. It needs your time, your presence, and consistent effort. You can't just dump it and dip. Stay in your lane and stir.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">7</div><div class="step-content">
+      <h3>The Mantecatura (The Big Finish)</h3>
+      <p>When the rice is al dente and the mixture looks creamy and thick, <strong>remove the pot from the heat</strong>. Immediately add the remaining <strong><span class="qty-inline" data-base="30" data-unit="g" data-metric="30g" data-us="1.1 oz" data-noscale="false">30g</span> cold butter</strong>, all <span class="qty-inline" data-base="100" data-unit="g" data-metric="100g" data-us="3.5 oz" data-noscale="false">100g</span> Parmesan, <span class="qty-inline" data-base="30" data-unit="ml" data-metric="30ml" data-us="2 tbsp" data-noscale="false">30ml</span> lemon juice, and the lemon zest. Stir vigorously for <strong>1–2 minutes</strong>. The cold butter emulsifies into the rice and creates that glossy, silky, luxurious texture. Season generously with salt and pepper.</p>
+      <div class="genz">This moment? It's the character development. Everything before this was the origin story. Now we're in the glow-up era.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">8</div><div class="step-content">
+      <h3>Sear the Scallops (The Grand Finale)</h3>
+      <p>Heat your large skillet over <strong>medium-high heat</strong> until very hot — give it 2 full minutes to preheat. Add <span class="qty-inline" data-base="15" data-unit="ml" data-metric="15ml" data-us="1 tbsp" data-noscale="false">15ml</span> olive oil. Right before the oil starts to smoke, add the pat-dry scallops in a single layer. Do NOT crowd them — cook in two batches if needed. Let them cook <strong>without touching them</strong> for <strong>2 minutes</strong>. Then toss for another <strong>1–2 minutes</strong>. They're done when opaque and golden. Season with salt and pepper.</p>
+      <div class="tip">Bay scallops don't get a hard sear like sea scallops — they're too small. Keep the pan hot and don't overthink it.</div>
+      <div class="genz">Those tiny golden scallops on creamy white risotto? The visual is immaculate. Main character plating energy incoming.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">9</div><div class="step-content">
+      <h3>Plate It Up (Serve ASAP)</h3>
+      <p>Risotto waits for no one — it firms up quickly as it cools. <strong>Serve immediately.</strong> Spoon a generous mound of risotto into wide, shallow bowls. Top with a portion of the seared scallops. Scatter fresh chopped parsley over the top. Optionally, a thin slice of lemon on the side and a tiny drizzle of good olive oil. If it looks like something you'd post, it's ready.</p>
+      <div class="genz">A warm bowl. Creamy risotto. Little golden scallops. A sprinkle of green. This is a certified banger. Photograph it. You earned it. Fr fr.</div>
+    </div></div>
   </div>
 
-  <!-- EQUIPMENT -->
-  <div class="section">
-    <div class="section-title"><span class="num">02</span> Equipment You'll Need</div>
-    <ul class="ingredient-list">
-      <li><span class="ing-amount">1 large</span><span>wide, heavy-bottomed pot or Dutch oven <span class="ing-note">— risotto headquarters</span></span></li>
-      <li><span class="ing-amount">1 medium</span><span>saucepan <span class="ing-note">— for keeping broth warm</span></span></li>
-      <li><span class="ing-amount">1 large</span><span>skillet or frying pan <span class="ing-note">— for the scallops</span></span></li>
-      <li><span class="ing-amount">—</span><span>ladle, wooden spoon, paper towels, box grater or microplane</span></li>
-    </ul>
-  </div>
-
-  <!-- STEPS -->
-  <div class="section">
-    <div class="section-title"><span class="num">03</span> Let's Cook (No Skipping Steps, frl)</div>
-
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-content">
-        <h3>Thaw &amp; Prep the Scallops</h3>
-        <p>If you didn't thaw the scallops overnight in the fridge, place them in a zip-lock bag or colander and run <strong>cold water</strong> over them for 20–30 minutes until fully defrosted. Never use warm water — that's cooked fish before you even start. Once thawed, dump them onto a plate lined with <strong>two layers of paper towels</strong>. Lay more paper towels on top and press gently. Let them sit and dry for at least <strong>10–15 minutes</strong>. The drier they are, the better they'll cook. Pat them again right before they go in the pan.</p>
-        <div class="genz">Wet scallops = sad, gray, steamed scallops. Dry scallops = golden, caramelized, absolutely sending. We want sending.</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-content">
-        <h3>Warm the Broth (Don't Skip This — It's Lowkey Important)</h3>
-        <p>Pour your broth into the medium saucepan and set it over <strong>low heat</strong>. You want it warm — not boiling, not cold, just quietly steaming. Keep it on the back burner on low the entire time you're making the risotto. Adding cold broth to risotto shocks the rice, messes with the starch release, and makes the whole texture go off. Warm broth = smooth, creamy risotto. This is not a drill.</p>
-        <div class="tip">Keep a ladle right in the broth pot so you're not fumbling for it every 2 minutes. Future you says thanks.</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-content">
-        <h3>Build the Flavor Base (The Soffritto Era)</h3>
-        <p>In your large, heavy pot, heat <strong>15g of butter and 15ml of olive oil</strong> over <strong>medium heat</strong>. Once the butter melts and stops foaming, add your <strong>finely diced shallots</strong>. Cook for <strong>4–5 minutes</strong> until soft, translucent, and fragrant. You're not trying to brown them — low and slow is the main character energy here.</p>
-        <p style="margin-top:10px;">Once the shallots are soft, add the <strong>minced garlic</strong> and <strong>red pepper flakes</strong> if using. Stir constantly for about <strong>60 seconds</strong>. Garlic burns fast — literally in under a minute on high heat — and burnt garlic tastes bitter and will ghost your entire dish's flavor.</p>
-        <div class="genz">The smell at this point? Absolutely bussin. Your whole house is about to smell incredible. That's the flex.</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">4</div>
-      <div class="step-content">
-        <h3>Toast the Rice (Yes, You Toast It)</h3>
-        <p>Add the <strong>Arborio rice</strong> directly into the pot with the shallots and garlic. Stir it around so every grain gets coated in the butter and oil. Keep stirring over <strong>medium heat</strong> for <strong>2 minutes</strong>. The rice will go from chalky white to slightly translucent at the edges. Toasting the rice builds a little armor around each grain so it cooks evenly and stays al dente instead of turning to mush.</p>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">5</div>
-      <div class="step-content">
-        <h3>Deglaze with Wine (The Fancy Part)</h3>
-        <p>Pour in the <strong>white wine</strong> all at once. It will sizzle loudly — that's normal and also extremely dramatic, just how we like it. Stir constantly until the wine is almost completely absorbed by the rice, about <strong>2–3 minutes</strong>. The wine adds acidity and depth that makes the finished dish taste complex and restaurant-worthy.</p>
-        <div class="genz">That sizzle sound is the rice saying "I'm that girl." Respect it.</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">6</div>
-      <div class="step-content">
-        <h3>The Stirring Arc (This Is the Main Quest)</h3>
-        <p>Now begins the most important part: adding broth, one ladle at a time. Add <strong>one ladle of warm broth</strong> (about 120ml) to the rice and stir it in. Keep stirring — not frantic, just consistent — until the broth is almost completely absorbed. Then add <strong>another ladle</strong> and repeat. This process takes <strong>20–25 minutes</strong> total.</p>
-        <p style="margin-top:10px;">You don't have to stir like a maniac every second, but stir often — every 20–30 seconds at minimum. This friction releases the starch from the Arborio rice, which is what makes risotto creamy without any actual cream. <strong>Science is undefeated.</strong></p>
-        <div class="tip">Taste the rice around the 18-minute mark. It should be just barely firm in the very center — called al dente. If it's crunchy, keep going. If it's mushy, you went too far.</div>
-        <div class="genz">Risotto is literally a relationship. It needs your time, your presence, and consistent effort. You can't just dump it and dip. Stay in your lane and stir.</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">7</div>
-      <div class="step-content">
-        <h3>The Mantecatura (Italian for "the big finish")</h3>
-        <p>When the rice is al dente and the mixture looks creamy and thick, <strong>remove the pot from the heat</strong>. Immediately add the remaining <strong>30g of cold butter</strong>, the <strong>Parmesan</strong>, <strong>lemon juice</strong>, and <strong>lemon zest</strong>. Stir vigorously for <strong>1–2 minutes</strong>. The cold butter emulsifies into the rice and creates that glossy, silky, luxurious texture. Season generously with <strong>salt and pepper</strong>.</p>
-        <div class="genz">This moment? It's the character development. Everything before this was the origin story. Now we're in the glow-up era.</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">8</div>
-      <div class="step-content">
-        <h3>Sear the Scallops (The Grand Finale)</h3>
-        <p>Heat your large skillet over <strong>medium-high heat</strong> until very hot — give it 2 full minutes to preheat. Add <strong>15ml of olive oil</strong>. Right before the oil starts to smoke, add the <strong>pat-dry scallops</strong> in a single layer. Do NOT crowd them — cook in two batches if needed. Let them cook <strong>without touching them</strong> for <strong>2 minutes</strong>. Then toss for another <strong>1–2 minutes</strong>. They're done when opaque and golden. Season with salt and pepper.</p>
-        <div class="tip">Bay scallops don't get a hard sear like sea scallops — they're too small. But you still want good color and heat. Keep the pan hot and don't overthink it.</div>
-        <div class="genz">Those tiny golden scallops on creamy white risotto? The visual is immaculate. Main character plating energy incoming.</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-num">9</div>
-      <div class="step-content">
-        <h3>Plate It Up (Serve ASAP)</h3>
-        <p>Risotto waits for no one — it firms up quickly as it cools. <strong>Serve immediately</strong>. Spoon a generous mound of risotto into wide, shallow bowls. Top with a portion of the seared scallops. Scatter <strong>fresh chopped parsley</strong> over the top. Optionally, add a thin slice of lemon on the side and a tiny drizzle of good olive oil. If it looks like something you'd post, it's ready.</p>
-        <div class="genz">A warm bowl. Creamy risotto. Little golden scallops. A sprinkle of green. This is a certified banger. Photograph it. You earned it. Fr fr.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="final">
-    <h2>You Actually Did That. 🤌</h2>
-    <p>Risotto is one of those dishes that sounds intimidating but is really just about attention and patience. You gave it both. That makes you a cook now — no cap. Save this recipe. Make it again. Next time you'll be even faster, even more confident, and it'll taste even better because you'll know exactly what you're doing. That's called getting good at something, and it never gets old.</p>
-  </div>
-
+  <div class="final"><h2>You Actually Did That. 🤌</h2><p>Risotto is one of those dishes that sounds intimidating but is really just about attention and patience. You gave it both. That makes you a cook now — no cap. Save this recipe. Make it again. Next time you'll be even faster, even more confident, and it'll taste even better because you'll know exactly what you're doing. That's called getting good at something, and it never gets old.</p></div>
   <div class="bottom-nav">
     <a href="index.html">← Back to All Recipes</a>
     <span class="site-name">Bytes &amp; Bites</span>
     <a href="https://github.com/tonyillig/AI-recipe-book" target="_blank">GitHub ↗</a>
   </div>
-
 </div>
-
 <script>
-// ── THEME ──
-(function(){
-  const saved = localStorage.getItem('bb-theme') || 'dark';
-  applyTheme(saved);
-})();
-function applyTheme(theme){
-  document.documentElement.setAttribute('data-theme', theme);
-  const btn = document.getElementById('darkToggle');
-  if(btn) btn.textContent = theme === 'dark' ? '☀️ Light' : '🌙 Dark';
-  localStorage.setItem('bb-theme', theme);
-}
-function toggleDark(){
-  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
-  applyTheme(cur === 'dark' ? 'light' : 'dark');
-}
 
-// ── SCALING & UNITS ──
-let currentScale = 1;
-let currentUnit = 'us';
-const BASE_SERVINGS = 4;
+(function(){const s=localStorage.getItem('bb-theme')||'dark';applyTheme(s);})();
+function applyTheme(t){document.documentElement.setAttribute('data-theme',t);const b=document.getElementById('darkToggle');if(b)b.textContent=t==='dark'?'☀️ Light':'🌙 Dark';localStorage.setItem('bb-theme',t);}
+function toggleDark(){const c=document.documentElement.getAttribute('data-theme')||'dark';applyTheme(c==='dark'?'light':'dark');}
 
-function setScale(scale, btn){
-  currentScale = scale;
-  document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
+let currentScale=1, currentUnit='metric';
+
+function setScale(s,btn){
+  currentScale=s;
+  document.querySelectorAll('.scale-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('servingDisplay').textContent = Math.round(BASE_SERVINGS * scale);
-  updateAmounts();
-}
-
-    return scaled + unitMetric.replace(/^\d+\s*/,'');
-  } else {
-    let scaled = Math.round(base * scale);
-    if(scaled >= 1000){
-      return (scaled/1000).toFixed(1).replace(/\.0$/,'') + 'kg ' + unitUs.replace(/^\d+\s*/,'').replace(/^[\d.]+\s*(kg|g|ml)\s*/,'');
-    }
-    return scaled + unitUs.replace(/^\d+\s*/,'');
-  }
-}
-
-function updateAmounts(){
-  document.querySelectorAll('.ing-amount[data-base]').forEach(el => {
-    const base = parseFloat(el.dataset.base);
-    const unitUs = el.dataset.unitUs || '';
-    const unitMetric = el.dataset.unitMetric || unitUs;
-    const isSmall = el.dataset.small === '1';
-    const noDiv = el.dataset.nodiv === '1';
-    el.textContent = formatQty(base, currentScale, unitUs, unitMetric, isSmall, noDiv);
-  });
+  const sd=document.getElementById('servingDisplay');
+  if(sd) sd.textContent=Math.round(4*s);
+  updateAllQty();
   buildShoppingList();
 }
 
-// ── SHOPPING LIST ──
-const SHOP_KEY = 'bb-shop-scallop-risotto';
+function setUnit(u,btn){
+  currentUnit=u;
+  document.querySelectorAll('.unit-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  localStorage.setItem('bb-unit',u);
+  updateAllQty();
+  buildShoppingList();
+}
 
-const shoppingIngredients = [
-  { base: 680, unitUs: 'g scallops', unitMetric: 'g scallops', name: 'frozen bay scallops' },
-  { base: 280, unitUs: 'g Arborio rice', unitMetric: 'g Arborio rice', name: 'Arborio rice' },
-  { base: 1200, unitUs: 'ml broth', unitMetric: 'ml broth', name: 'seafood or chicken broth' },
-  { base: 180, unitUs: 'ml white wine', unitMetric: 'ml white wine', name: 'dry white wine' },
-  { base: 3, unitUs: 'large shallots', unitMetric: 'large shallots', name: 'shallots', noDiv: true },
-  { base: 4, unitUs: 'cloves garlic', unitMetric: 'cloves garlic', name: 'garlic', noDiv: true },
-  { base: 45, unitUs: 'g butter', unitMetric: 'g butter', name: 'unsalted butter' },
-  { base: 30, unitUs: 'ml olive oil', unitMetric: 'ml olive oil', name: 'olive oil' },
-  { base: 100, unitUs: 'g Parmesan', unitMetric: 'g Parmesan', name: 'Parmesan' },
-  { base: 30, unitUs: 'ml lemon juice', unitMetric: 'ml lemon juice', name: 'lemon juice' },
-  { base: 1, unitUs: 'tsp lemon zest', unitMetric: 'tsp lemon zest', name: 'lemon zest', small: true },
-  { base: 1, unitUs: '¼ cup parsley', unitMetric: '15g parsley', name: 'fresh parsley', small: true },
-  { base: 1, unitUs: 'to taste', unitMetric: 'to taste', name: 'kosher salt', noDiv: true },
-  { base: 1, unitUs: 'to taste', unitMetric: 'to taste', name: 'black pepper', noDiv: true },
-  { base: 1, unitUs: 'pinch', unitMetric: 'pinch', name: 'red pepper flakes', noDiv: true }
-];
+function scaleValue(base, scale){
+  const v = base * scale;
+  if(Number.isInteger(v)) return v;
+  const r = Math.round(v * 10) / 10;
+  return r;
+}
 
-function getQtyLabel(item){
-  const val = item.noDiv ? item.base : Math.round(item.base * currentScale);
-  if(item.small || item.noDiv) return currentUnit === 'metric' ? item.unitMetric : item.unitUs;
-  if(currentUnit === 'metric'){
-    if(val >= 1000) return (val/1000).toFixed(1).replace(/\.0$/,'') + 'kg';
-    return val + item.unitMetric.replace(/^\d+\s*/,'').replace(item.name,'').trim().split(' ')[0] || '';
-  } else {
-    if(val >= 1000) return (val/1000).toFixed(1).replace(/\.0$/,'') + 'kg';
-    return val + item.unitUs.replace(/^\d+\s*/,'').replace(item.name,'').trim().split(' ')[0] || '';
+function getQtyText(el, scale, unit){
+  if(el.dataset.noscale==='true') return el.dataset.metric;
+  const base = parseFloat(el.dataset.base);
+  const s = scaleValue(base, scale);
+  // Recompute metric label
+  const metricUnit = el.dataset.unit || '';
+  let metricLabel = s + metricUnit;
+  if(unit === 'metric') return metricLabel;
+  // For US, we need to convert s (already scaled base value) to US
+  return computeUS(s, metricUnit, el.dataset.us, base);
+}
+
+function computeUS(scaledVal, unit, us1x, base1x){
+  // us1x is the US label at scale 1x. Scale it proportionally.
+  const ratio = scaledVal / base1x;
+  // Parse the 1x US label and scale
+  const u = unit.toLowerCase().trim();
+  if(u === 'g'){
+    const oz = Math.round(scaledVal * 0.03527 * 10) / 10;
+    return oz >= 16 ? (Math.round(scaledVal/453.6*10)/10) + ' lb' : oz + ' oz';
   }
+  if(u === 'kg') return (Math.round(scaledVal * 2.205 * 10)/10) + ' lb';
+  if(u === 'ml'){
+    if(scaledVal >= 240){
+      const cups = scaledVal / 240;
+      const fracs = [[7/8,'⅞'],[3/4,'¾'],[2/3,'⅔'],[1/2,'½'],[1/3,'⅓'],[1/4,'¼'],[1/8,'⅛']];
+      const whole = Math.floor(cups);
+      const frac = cups - whole;
+      let fracStr = '';
+      if(frac > 0.05){
+        const best = fracs.reduce((a,b)=>Math.abs(b[0]-frac)<Math.abs(a[0]-frac)?b:a);
+        if(Math.abs(best[0]-frac)<0.08) fracStr=best[1];
+        else fracStr=Math.round(frac*10)/10;
+      }
+      const label = (whole>0?whole:'')+fracStr+' cup'+(cups>=1.9?'s':'');
+      return label.trim() || '1 cup';
+    }
+    if(scaledVal >= 14){
+      const t = Math.round(scaledVal/15*10)/10;
+      return t+' tbsp';
+    }
+    const t = Math.round(scaledVal/5*10)/10;
+    return t+' tsp';
+  }
+  if(u === 'l' || u === 'litre' || u === 'litres'){
+    return computeUS(scaledVal*1000,'ml',us1x,base1x*1000);
+  }
+  // Temp
+  if(u === '°c' || u === 'c'){
+    return Math.round(scaledVal*9/5+32)+'°F';
+  }
+  // Unchanged units (tbsp, tsp, cups, counts)
+  const baseScaled = scaledVal;
+  if(Number.isInteger(baseScaled)) return baseScaled + (unit?' '+unit:'');
+  return (Math.round(baseScaled*10)/10) + (unit?' '+unit:'');
+}
+
+function updateAllQty(){
+  // Update ingredient amounts
+  document.querySelectorAll('.ing-amount[data-base], .qty-inline[data-base]').forEach(el=>{
+    el.textContent = getQtyText(el, currentScale, currentUnit);
+  });
+}
+
+// ── Shopping list ─────────────────────────────────────────────────────────────
+const SHOP_KEY='bb-shop-scallop-risotto';
+const SI=[{"name": "frozen bay scallops", "base": 680, "unit": "g", "metricLabel": "680g", "usLabel": "1.5 lb", "noScale": false}, {"name": "Arborio rice", "base": 280, "unit": "g", "metricLabel": "280g", "usLabel": "9.9 oz", "noScale": false}, {"name": "seafood or chicken broth", "base": 1200, "unit": "ml", "metricLabel": "1200ml", "usLabel": "5 cups", "noScale": false}, {"name": "dry white wine", "base": 180, "unit": "ml", "metricLabel": "180ml", "usLabel": "¾ cup", "noScale": false}, {"name": "shallots, large", "base": 0, "unit": "", "metricLabel": "3", "usLabel": "3", "noScale": true}, {"name": "garlic cloves", "base": 0, "unit": "", "metricLabel": "4", "usLabel": "4", "noScale": true}, {"name": "unsalted butter", "base": 45, "unit": "g", "metricLabel": "45g", "usLabel": "1.6 oz", "noScale": false}, {"name": "olive oil", "base": 30, "unit": "ml", "metricLabel": "30ml", "usLabel": "2 tbsp", "noScale": false}, {"name": "Parmesan", "base": 100, "unit": "g", "metricLabel": "100g", "usLabel": "3.5 oz", "noScale": false}, {"name": "fresh lemon juice", "base": 30, "unit": "ml", "metricLabel": "30ml", "usLabel": "2 tbsp", "noScale": false}, {"name": "lemon zest", "base": 0, "unit": "", "metricLabel": "1 tsp", "usLabel": "1 tsp", "noScale": true}, {"name": "fresh parsley", "base": 0, "unit": "", "metricLabel": "small handful", "usLabel": "small handful", "noScale": true}, {"name": "salt, pepper, red pepper flakes", "base": 0, "unit": "", "metricLabel": "to taste", "usLabel": "to taste", "noScale": true}];
+
+function shopQtyLabel(item){
+  if(item.noScale) return item.metricLabel;
+  const scaled = item.base * currentScale;
+  if(currentUnit === 'metric'){
+    const v = Number.isInteger(scaled)?scaled:Math.round(scaled*10)/10;
+    return v+(item.unit||'');
+  }
+  // US conversion
+  return computeUS(scaled, item.unit||'', item.usLabel||'', item.base);
 }
 
 function buildShoppingList(){
-  const checked = JSON.parse(localStorage.getItem(SHOP_KEY) || '{}');
-  const list = document.getElementById('shopList');
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  const list=document.getElementById('shopList');
   if(!list) return;
-  list.innerHTML = '';
-  shoppingIngredients.forEach((item, i) => {
-    const isChecked = checked[i] || false;
-    const qty = getQtyLabel(item);
-    const div = document.createElement('div');
-    div.className = 'shopping-item' + (isChecked ? ' checked' : '');
-    div.innerHTML = `
-      <input type="checkbox" id="shop-${i}" ${isChecked ? 'checked' : ''} onchange="toggleShopItem(${i}, this)">
-      <span class="item-qty">${qty}</span>
-      <label for="shop-${i}">${item.name}</label>
-    `;
+  list.innerHTML='';
+  SI.forEach((item,i)=>{
+    const isC=checked[i]||false;
+    const div=document.createElement('div');
+    div.className='shopping-item'+(isC?' checked':'');
+    const qty=shopQtyLabel(item);
+    div.innerHTML=`<input type="checkbox" id="si-${i}" ${isC?'checked':''} onchange="toggleShopItem(${i},this)"><span class="item-qty">${qty}</span><label for="si-${i}">${item.name}</label>`;
     list.appendChild(div);
   });
   updateShopCount();
 }
 
-function toggleShopItem(idx, cb){
-  const checked = JSON.parse(localStorage.getItem(SHOP_KEY) || '{}');
-  checked[idx] = cb.checked;
-  localStorage.setItem(SHOP_KEY, JSON.stringify(checked));
-  cb.closest('.shopping-item').classList.toggle('checked', cb.checked);
+function toggleShopItem(idx,cb){
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  checked[idx]=cb.checked;
+  localStorage.setItem(SHOP_KEY,JSON.stringify(checked));
+  cb.closest('.shopping-item').classList.toggle('checked',cb.checked);
   updateShopCount();
 }
-
 function updateShopCount(){
-  const checked = JSON.parse(localStorage.getItem(SHOP_KEY) || '{}');
-  const n = Object.values(checked).filter(Boolean).length;
-  document.getElementById('shopCount').textContent = `${n} of ${shoppingIngredients.length} checked`;
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  const n=Object.values(checked).filter(Boolean).length;
+  const el=document.getElementById('shopCount');
+  if(el) el.textContent=n+' of '+SI.length+' checked';
 }
-
-function checkAllShopping(){
-  const all = {};
-  shoppingIngredients.forEach((_,i) => all[i] = true);
-  localStorage.setItem(SHOP_KEY, JSON.stringify(all));
-  buildShoppingList();
-}
-
-function clearShopping(){
-  localStorage.removeItem(SHOP_KEY);
-  buildShoppingList();
-}
-
+function checkAllShopping(){const all={};SI.forEach((_,i)=>all[i]=true);localStorage.setItem(SHOP_KEY,JSON.stringify(all));buildShoppingList();}
+function clearShopping(){localStorage.removeItem(SHOP_KEY);buildShoppingList();}
 function toggleShopping(){
-  const body = document.getElementById('shopBody');
-  const toggle = document.getElementById('shopToggle');
-  const open = body.style.display !== 'none';
-  body.style.display = open ? 'none' : 'block';
-  toggle.classList.toggle('open', !open);
+  const body=document.getElementById('shopBody'),toggle=document.getElementById('shopToggle');
+  const open=body.style.display!=='none';
+  body.style.display=open?'none':'block';
+  toggle.classList.toggle('open',!open);
   if(!open) buildShoppingList();
 }
-
-// ── PRINT ──
-function printRecipe(){
-  window.print();
-}
-
 function printShoppingList(){
-  const checked = JSON.parse(localStorage.getItem(SHOP_KEY) || '{}');
-  const remaining = shoppingIngredients.filter((_,i) => !checked[i]);
-  if(remaining.length === 0){ alert("You have everything! Go cook! 🎉"); return; }
-  const win = window.open('', '_blank');
-  win.document.write(`
-    <html><head><title>Shopping List — Scallop Risotto</title>
-    <style>
-      body { font-family: Georgia, serif; max-width: 400px; margin: 40px auto; }
-      h1 { font-size: 22px; margin-bottom: 4px; }
-      p { font-size: 12px; color: #888; margin-bottom: 24px; }
-      ul { list-style: none; padding: 0; }
-      li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 15px; }
-      li::before { content: '☐'; font-size: 18px; color: #ccc; }
-      .qty { font-family: monospace; font-size: 12px; color: #c9963a; min-width: 80px; }
-    </style></head><body>
-    <h1>Scallop Risotto</h1>
-    <p>Shopping list — ${remaining.length} item${remaining.length !== 1 ? 's' : ''} needed · Bytes &amp; Bites</p>
-    <ul>
-      ${remaining.map(item => `<li><span class="qty">${getQtyLabel(item)}</span>${item.name}</li>`).join('')}
-    </ul>
-    </body></html>
-  `);
-  win.document.close();
-  win.print();
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  const remaining=SI.filter((_,i)=>!checked[i]);
+  if(remaining.length===0){alert('You have everything! Go cook! 🎉');return;}
+  const win=window.open('','_blank');
+  win.document.write(`<html><head><title>Shopping List — Scallop Risotto</title><style>body{font-family:Georgia,serif;max-width:400px;margin:40px auto}h1{font-size:22px}p{font-size:12px;color:#888;margin-bottom:24px}ul{list-style:none;padding:0}li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #eee;font-size:15px}li::before{content:'☐';color:#ccc}.qty{font-family:monospace;font-size:12px;color:#c9963a;min-width:80px}</style></head><body><h1>Scallop Risotto</h1><p>${remaining.length} items needed</p><ul>${remaining.map(item=>`<li><span class="qty">${shopQtyLabel(item)}</span>${item.name}</li>`).join('')}</ul></body></html>`);
+  win.document.close();win.print();
 }
 
-// init
-buildShoppingList();
+// Init
+(function(){
+  const savedUnit = localStorage.getItem('bb-unit')||'metric';
+  currentUnit = savedUnit;
+  const btn = document.getElementById('unit-'+savedUnit);
+  if(btn){ btn.classList.add('active'); }
+  buildShoppingList();
+})();
+
 </script>
-</body>
-</html>
+</body></html>
