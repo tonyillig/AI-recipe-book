@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Traeger Smoked Brisket — Bytes & Bites</title>
+<meta name="description" content="Salt. Pepper. 14 hours. Homemade tallow. This is the one that changes you.">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --smoke: #1c1a17;
+    --ash: #2e2b25;
+    --ember: #c0440a;
+    --amber: #e8922a;
+    --honey: #f5c842;
+    --cedar: #6b3e26;
+    --cream: #faf5ec;
+    --warm: #f0e6d0;
+    --parchment: #e8ddc4;
+    --muted: #8a7d65;
+    --text: #3a3020;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999; opacity: 0.7;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ── BACK NAV ── */
+  .back-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 40px;
+    background: rgba(250,245,236,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--parchment);
+  }
+  .back-link {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--muted); transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--ember); }
+  .back-link::before { content: '←'; font-size: 14px; }
+  .nav-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--ember);
+  }
+  .nav-num {
+    font-size: 9px; letter-spacing: 2px; color: var(--muted);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--smoke);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 100px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wisp {
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(to top, rgba(255,255,255,0.06), transparent);
+    bottom: 0;
+    border-radius: 2px;
+    animation: rise var(--dur) ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+  .wisp:nth-child(1) { left: 15%; height: 300px; --dur: 6s; animation-delay: 0s; }
+  .wisp:nth-child(2) { left: 30%; height: 200px; --dur: 8s; animation-delay: 2s; }
+  .wisp:nth-child(3) { left: 50%; height: 350px; --dur: 7s; animation-delay: 1s; }
+  .wisp:nth-child(4) { left: 65%; height: 250px; --dur: 9s; animation-delay: 3s; }
+  .wisp:nth-child(5) { left: 80%; height: 180px; --dur: 6.5s; animation-delay: 0.5s; }
+  @keyframes rise {
+    0%   { opacity: 0; transform: scaleX(1) translateY(0); }
+    20%  { opacity: 1; }
+    80%  { opacity: 0.3; }
+    100% { opacity: 0; transform: scaleX(3) translateY(-400px); }
+  }
+
+  .ember-glow {
+    position: absolute;
+    bottom: -80px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 200px;
+    background: radial-gradient(ellipse, rgba(192,68,10,0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 0 60px;
+    position: relative; z-index: 5;
+  }
+
+  .hero-eyebrow {
+    font-size: 9px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 14px;
+    animation: fadeUp 0.8s 0.1s ease both; opacity: 0;
+  }
+  .hero-eyebrow::before {
+    content: '04'; font-size: 9px; letter-spacing: 2px;
+    color: var(--smoke); background: var(--amber);
+    padding: 3px 8px;
+  }
+
+  .hero-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(52px, 10vw, 140px);
+    text-transform: uppercase;
+    line-height: 0.88;
+    letter-spacing: -3px;
+    color: var(--cream);
+    margin-bottom: 16px;
+    animation: fadeUp 0.8s 0.2s ease both; opacity: 0;
+  }
+  .hero-title .smoked { color: var(--amber); }
+  .hero-title .brisket { color: transparent; -webkit-text-stroke: 2px rgba(250,245,236,0.3); }
+
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-size: 18px; font-style: italic; font-weight: 300;
+    color: rgba(250,245,236,0.45);
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s 0.3s ease both; opacity: 0;
+  }
+
+  .hero-stats {
+    display: flex; gap: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+    animation: fadeUp 0.8s 0.4s ease both; opacity: 0;
+  }
+  .hstat {
+    padding: 16px 28px; border-right: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+  }
+  .hstat:last-child { border-right: none; }
+  .hstat-val {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 22px; color: var(--honey); display: block; line-height: 1;
+  }
+  .hstat-label {
+    font-size: 7px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(250,245,236,0.3); margin-top: 5px; display: block;
+  }
+
+  .hero-band {
+    background: var(--ember);
+    padding: 16px 60px;
+    display: flex; align-items: center; gap: 20px;
+    position: relative; z-index: 5;
+  }
+  .hero-band p {
+    font-family: 'Fraunces', serif;
+    font-size: 15px; font-style: italic; font-weight: 300;
+    color: rgba(250,245,236,0.9); line-height: 1.5;
+  }
+  .hero-band p strong { color: white; font-style: normal; font-weight: 700; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px; }
+
+  /* ── MAIN CONTENT AREA ── */
+  .content-area {
+    max-width: 900px; margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  /* ── PHASE HEADERS ── */
+  .phase {
+    margin-bottom: 64px;
+  }
+  .phase-header {
+    display: flex; align-items: flex-start; gap: 20px;
+    margin-bottom: 32px; padding-bottom: 20px;
+    border-bottom: 2px solid var(--parchment);
+  }
+  .phase-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 48px; color: var(--parchment); line-height: 1;
+    flex-shrink: 0; margin-top: -6px;
+  }
+  .phase-info {}
+  .phase-badge {
+    font-size: 7px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--ember); margin-bottom: 6px; display: block;
+  }
+  .phase-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(20px, 3vw, 32px);
+    text-transform: uppercase; letter-spacing: -0.5px;
+    color: var(--text); line-height: 1;
+  }
+  .phase-timing {
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); margin-top: 6px; display: block;
+  }
+
+  /* ── INGREDIENT BLOCK ── */
+  .ing-block {
+    background: var(--smoke);
+    padding: 36px 40px;
+    margin-bottom: 32px;
+    position: relative; overflow: hidden;
+  }
+  .ing-block::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--amber);
+  }
+  .ing-block-title {
+    font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .ing-block-title::after { content: ''; flex: 1; height: 1px; background: var(--ash); }
+
+  .ing-row {
+    display: flex; align-items: baseline; gap: 16px;
+    padding: 10px 0; border-bottom: 1px solid var(--ash);
+    color: var(--cream);
+  }
+  .ing-row:last-child { border-bottom: none; }
+  .ing-qty {
+    font-size: 11px; color: var(--honey);
+    min-width: 90px; flex-shrink: 0;
+  }
+  .ing-name { font-size: 13px; letter-spacing: 0.5px; }
+  .ing-note {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 12px; color: rgba(250,245,236,0.4);
+    margin-left: auto; text-align: right; max-width: 200px;
+  }
+
+  /* ── STEPS ── */
+  .step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 24px;
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px dashed var(--parchment);
+  }
+  .step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .step-circle {
+    width: 56px; height: 56px; border-radius: 50%;
+    border: 2px solid var(--ember);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 18px; color: var(--ember);
+    margin-top: 2px;
+  }
+
+  .step-body {}
+  .step-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 16px; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--text); margin-bottom: 10px; line-height: 1.2;
+  }
+  .step-text {
+    font-family: 'Fraunces', serif; font-size: 15px;
+    line-height: 1.85; color: #5a4f3e; font-weight: 300;
+  }
+  .step-text strong { color: var(--ember); font-weight: 700; font-family: 'DM Mono', monospace; font-size: 13px; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-radius: 2px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-family: 'Fraunces', serif;
+    font-size: 13.5px; line-height: 1.7;
+    font-style: italic;
+  }
+  .callout-tip {
+    background: #fff8e8;
+    border-left: 3px solid var(--honey);
+    color: #5a4010;
+  }
+  .callout-tip::before { content: '⚡ Pro tip: '; font-family: 'DM Mono', monospace; font-style: normal; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--amber); display: block; margin-bottom: 4px; }
+
+  .callout-genz {
+    background: var(--warm);
+    border-left: 3px solid var(--cedar);
+    color: var(--cedar);
+  }
+  .callout-genz::before { content: '💬 '; }
+
+  .callout-warning {
+    background: #fff0ec;
+    border-left: 3px solid var(--ember);
+    color: #7a2a10;
+  }
+  .callout-warning::before { content: '⚠ Watch out: '; font-family: 'DM Mono', monospace; font-style: normal; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--ember); display: block; margin-bottom: 4px; }
+
+  /* ── TEMP CHART ── */
+  .temp-chart {
+    background: var(--smoke);
+    padding: 32px 40px;
+    margin: 28px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background-color: var(--ash);
+    border-left: 3px solid var(--ember);
+  }
+  .temp-item {
+    background: var(--smoke);
+    padding: 20px 24px;
+    text-align: center;
+  }
+  .temp-val {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 28px; color: var(--honey); display: block; margin-bottom: 4px;
+  }
+  .temp-label {
+    font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(250,245,236,0.35); display: block; margin-bottom: 8px;
+  }
+  .temp-desc {
+    font-family: 'Fraunces', serif; font-size: 11px; font-style: italic;
+    color: rgba(250,245,236,0.5); line-height: 1.4;
+  }
+
+  /* ── TRIM GUIDE ── */
+  .trim-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0;
+  }
+  .trim-card {
+    background: var(--warm);
+    border: 1px solid var(--parchment);
+    padding: 16px 20px;
+    position: relative;
+  }
+  .trim-card.keep::before {
+    content: 'Keep';
+    position: absolute; top: -1px; right: 12px;
+    background: #4a6b52; color: white;
+    font-size: 7px; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 3px 8px;
+  }
+  .trim-card.remove::before {
+    content: 'Remove';
+    position: absolute; top: -1px; right: 12px;
+    background: var(--ember); color: white;
+    font-size: 7px; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 3px 8px;
+  }
+  .trim-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--text); margin-bottom: 4px;
+  }
+  .trim-desc {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 12px; color: var(--muted); line-height: 1.5;
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    display: flex; align-items: center; gap: 16px;
+    margin: 60px 0 48px; color: var(--ember);
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--parchment);
+  }
+  .section-divider span {
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--ember);
+  }
+
+  /* ── SERVING SECTION ── */
+  .serving-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0;
+  }
+  .serving-item {
+    background: var(--smoke); color: var(--cream);
+    padding: 16px 20px;
+    border-left: 2px solid var(--amber);
+  }
+  .serving-title {
+    font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--amber); margin-bottom: 6px;
+  }
+  .serving-text {
+    font-family: 'Fraunces', serif; font-size: 13px; font-style: italic;
+    color: rgba(250,245,236,0.65); line-height: 1.5;
+  }
+
+  /* ── TALLOW HIGHLIGHT BLOCK ── */
+  .tallow-block {
+    background: var(--ember);
+    padding: 32px 40px;
+    margin: 28px 0;
+    position: relative; overflow: hidden;
+  }
+  .tallow-block::before {
+    content: 'TALLOW';
+    position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 100px; color: rgba(0,0,0,0.1);
+    pointer-events: none; line-height: 1; white-space: nowrap;
+  }
+  .tallow-block-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); margin-bottom: 12px;
+  }
+  .tallow-block p {
+    font-family: 'Fraunces', serif; font-size: 15px; font-style: italic; font-weight: 300;
+    color: white; line-height: 1.75;
+  }
+  .tallow-block p strong {
+    font-style: normal; font-family: 'DM Mono', monospace; font-size: 13px; color: var(--honey);
+  }
+
+  /* ── FINAL CARD ── */
+  .final-card {
+    background: var(--ember);
+    padding: 48px;
+    text-align: center;
+    margin-top: 48px;
+    position: relative; overflow: hidden;
+  }
+  .final-card::before {
+    content: '🔥';
+    position: absolute; top: -20px; right: -10px;
+    font-size: 140px; opacity: 0.08; pointer-events: none;
+  }
+  .final-card h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(24px, 4vw, 40px);
+    text-transform: uppercase; letter-spacing: -1px;
+    color: white; margin-bottom: 12px;
+  }
+  .final-card p {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.7;
+    max-width: 500px; margin: 0 auto;
+  }
+
+  /* ── FOOTER NAV ── */
+  .bottom-nav {
+    background: var(--smoke);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 40px;
+    border-top: 1px solid var(--ash);
+  }
+  .bottom-nav a {
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted); transition: color 0.2s;
+  }
+  .bottom-nav a:hover { color: var(--amber); }
+  .bottom-nav .site-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 10px; letter-spacing: 3px; color: var(--amber);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .back-nav { padding: 14px 20px; }
+    .hero-content { padding: 0 24px; }
+    .hero-band { padding: 16px 24px; }
+    .content-area { padding: 48px 20px; }
+    .ing-block { padding: 24px 20px; }
+    .ing-note { display: none; }
+    .step { grid-template-columns: 44px 1fr; gap: 16px; }
+    .step-circle { width: 44px; height: 44px; font-size: 14px; }
+    .temp-chart { grid-template-columns: 1fr; }
+    .trim-grid { grid-template-columns: 1fr; }
+    .serving-grid { grid-template-columns: 1fr; }
+    .final-card { padding: 32px 24px; }
+    .bottom-nav { padding: 20px; flex-direction: column; gap: 12px; text-align: center; }
+    .hero-stats { flex-wrap: wrap; }
+    .hstat { min-width: 50%; }
+    .tallow-block { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="back-nav">
+  <a href="index.html" class="back-link">All Recipes</a>
+  <span class="nav-title">Bytes &amp; Bites</span>
+  <span class="nav-num">Recipe 04</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wisp"></div>
+  <div class="wisp"></div>
+  <div class="wisp"></div>
+  <div class="wisp"></div>
+  <div class="wisp"></div>
+  <div class="ember-glow"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Traeger · Salt &amp; Pepper · Low &amp; Slow · Homemade Tallow</p>
+    <h1 class="hero-title">
+      <span class="smoked">Smoked</span>
+      <span class="brisket">Brisket</span>
+    </h1>
+    <p class="hero-sub">Two ingredients. Fourteen hours. One animal. Absolute cinema.</p>
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-val">14–18h</span><span class="hstat-label">Total Time</span></div>
+      <div class="hstat"><span class="hstat-val">12–16 lbs</span><span class="hstat-label">Packer Brisket</span></div>
+      <div class="hstat"><span class="hstat-val">203°F</span><span class="hstat-label">Finish Temp</span></div>
+      <div class="hstat"><span class="hstat-val">8–12</span><span class="hstat-label">Servings</span></div>
+    </div>
+  </div>
+
+  <div class="hero-band">
+    <p><strong>The vibe:</strong> You wake up before sunrise. You trim a cold brisket. You render its own fat into liquid gold while it takes its first hours of smoke. Then at exactly the right moment — you baste it in itself, wrap it, and let it finish into the kind of bark-and-tender situation that makes people go completely quiet at the dinner table. That silence is the review. It's a 10.</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content-area">
+
+  <!-- PHASE 1: THE GEAR & INGREDIENTS -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">01</div>
+      <div class="phase-info">
+        <span class="phase-badge">The Night Before / Morning Of</span>
+        <div class="phase-title">What You Need</div>
+        <span class="phase-timing">⏱ 20 min shopping · no brine required · this is a purist cook</span>
+      </div>
+    </div>
+
+    <p style="font-family:'Fraunces',serif; font-size:15px; line-height:1.85; color:#5a4f3e; margin-bottom:28px;">
+      The entire philosophy of Central Texas brisket is this: <em>the beef is the star</em>. You don't need a marinade, a mop sauce, or seventeen spices. You need salt, coarse black pepper, smoke, time, and a brisket that was a good brisket to begin with. That's it. The restraint is the technique. The fat cap, the point, the flat — they all have a job to do, and your job is to not get in the way while they do it.
+    </p>
+
+    <div class="ing-block">
+      <div class="ing-block-title">The Entire Ingredient List</div>
+      <div class="ing-row">
+        <span class="ing-qty">12–16 lbs</span>
+        <span class="ing-name">Whole packer brisket, USDA Choice or Prime</span>
+        <span class="ing-note">Packer = untrimmed, point and flat still attached. Do not buy pre-trimmed or flat-only.</span>
+      </div>
+      <div class="ing-row">
+        <span class="ing-qty">½ cup</span>
+        <span class="ing-name">Coarse kosher salt</span>
+        <span class="ing-note">Diamond Crystal or Morton Kosher — not table salt, not fine salt</span>
+      </div>
+      <div class="ing-row">
+        <span class="ing-qty">½ cup</span>
+        <span class="ing-name">Coarse black pepper, freshly ground</span>
+        <span class="ing-note">16-mesh grind if you can find it — chunky, not powder. This forms the bark.</span>
+      </div>
+      <div class="ing-row">
+        <span class="ing-qty">1 tbsp</span>
+        <span class="ing-name">Garlic powder</span>
+        <span class="ing-note">Optional — some purists omit it. We keep it. It whispers, not shouts.</span>
+      </div>
+      <div class="ing-row">
+        <span class="ing-qty">Post oak pellets</span>
+        <span class="ing-name">or a hardwood blend (hickory/oak)</span>
+        <span class="ing-note">Post oak is the traditional Texas choice. Hickory is bolder. Both are correct.</span>
+      </div>
+    </div>
+
+    <div class="callout callout-tip">USDA Prime is worth the upgrade for brisket — more marbling means more fat to render, better moisture retention, and a richer flavor. If Prime is out of budget, Choice is great. Select grade brisket is a gamble we don't recommend taking on a 14-hour cook.</div>
+    <div class="callout callout-genz">Just salt and pepper. Two ingredients. No rub packet from the store. No sixteen-spice situation. Just the classics being themselves. This is the most confident energy in all of BBQ and it absolutely eats.</div>
+  </div>
+
+  <div class="section-divider"><span>The Trim — Your Most Important 20 Minutes</span></div>
+
+  <!-- PHASE 2: TRIMMING -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">02</div>
+      <div class="phase-info">
+        <span class="phase-badge">Cold Brisket = Easier Trim</span>
+        <div class="phase-title">Trimming the Brisket</div>
+        <span class="phase-timing">⏱ 20–30 min · sharp boning knife required · save everything you cut off</span>
+      </div>
+    </div>
+
+    <p style="font-family:'Fraunces',serif; font-size:15px; line-height:1.85; color:#5a4f3e; margin-bottom:28px;">
+      A packer brisket straight from the butcher is a wild-looking slab of beef. One side has a thick, uneven fat cap. The other has a pocket of hard fat between the point and the flat. There's excess fat in the corners, silverskin on parts of the flat, and big chunks of firm, waxy fat that will never render no matter how long you cook it. Your job is to sculpt this thing into something that cooks evenly, develops bark all over, and doesn't have any dead zones of unreachable fat. <strong>Trim it cold — straight from the fridge — fat cuts much more cleanly when it's firm.</strong>
+    </p>
+
+    <div class="trim-grid">
+      <div class="trim-card keep">
+        <div class="trim-name">Fat Cap: ¼ inch</div>
+        <div class="trim-desc">Leave this on. It bastes the flat as it cooks, keeps it from drying out. Target exactly ¼ inch — even and consistent across the whole surface.</div>
+      </div>
+      <div class="trim-card remove">
+        <div class="trim-name">Hard Waxy Fat</div>
+        <div class="trim-desc">The bright white, almost rubbery fat in the seam between point and flat, and any thick deposits on the sides. This fat will NOT render. It just sits there. Remove it.</div>
+      </div>
+      <div class="trim-card keep">
+        <div class="trim-name">The Point (Deckle)</div>
+        <div class="trim-desc">The thick, rounded, heavily marbled muscle on top. Leave it alone. Don't trim the marbling inside — that's your flavor and moisture. That's the whole game.</div>
+      </div>
+      <div class="trim-card remove">
+        <div class="trim-name">Silverskin & Grey Meat</div>
+        <div class="trim-desc">The thin, shiny, tough membrane on the flat side. It won't soften. Slide your knife under it and pull it off. Also remove any grey, oxidized surface meat that looks old.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">1</div>
+      <div class="step-body">
+        <div class="step-title">Flip It Fat Cap Down First</div>
+        <p class="step-text">Place the brisket on your cutting board with the <strong>fat cap facing down</strong>. You're looking at the flat (the lean, thinner muscle). Find the seam where the point and flat meet — there's a thick layer of hard fat running through it like a pocket. <strong>Dig into that seam with your boning knife and start scooping out the large chunks of hard fat.</strong> Don't be shy about it. You're not removing all the fat here — just the big, waxy, white chunks that sit in that pocket. They won't render. They'll just insulate the meat from smoke and heat. Out they go. Put them in a bowl — you'll use them later for tallow.</p>
+        <div class="callout callout-genz">The seam between the point and flat looks intimidating but it's basically just pointing at the hard fat and saying "not today." You're doing surgery with a boning knife and the patient is going to be delicious. Stay focused.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">2</div>
+      <div class="step-body">
+        <div class="step-title">Flip It Over — Now Work the Fat Cap</div>
+        <p class="step-text">Flip the brisket fat cap up. This is the thick, white, uneven fat on top. You're going to trim it down to a <strong>consistent ¼ inch across the entire surface</strong>. This is the move that requires the most patience. Lay your knife nearly flat against the fat and make long, smooth passes — you're shaving it down, not hacking at it. The goal is evenness. Spots where the fat is too thick won't allow smoke penetration. Spots where you went too deep and hit meat will dry out. Aim for a smooth, consistent surface that looks almost like a bowling ball — same depth everywhere, no craters, no mountains. <strong>Every piece of fat you remove goes in the bowl with the rest.</strong></p>
+        <div class="callout callout-tip">Grip the brisket by the corner and pull the fat slightly taut as you trim. It sounds fussy but it gives you better knife control and way cleaner cuts. A sharp boning knife is mandatory — a dull knife will tear instead of slice and make you sad.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">3</div>
+      <div class="step-body">
+        <div class="step-title">Clean Up the Edges and Corners</div>
+        <p class="step-text">The corners and edges of the brisket are often jagged and uneven. Thin flaps of meat and fat that stick out will burn and dry out long before the center is done. <strong>Round the corners slightly and trim off any thin flaps.</strong> You're shaping the brisket into something that will cook evenly — a well-trimmed brisket should look almost like a football: thick in the middle, tapered at the edges, smooth on top. Flip it back over and remove any silverskin you can see on the flat side. Slide the knife under it at a shallow angle and peel it back. Also scrape off any grey meat on the surface — that oxidized layer will taste bitter in the finished product.</p>
+        <div class="callout callout-warning">Don't trim too aggressively on your first brisket. A little extra fat is always safer than too little. You can never add fat back, but you can always render more down. Err on the side of leaving a bit more and you'll thank yourself at hour twelve.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"><span>The Tallow Arc — Your Secret Weapon</span></div>
+
+  <!-- PHASE 3: TALLOW -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">03</div>
+      <div class="phase-info">
+        <span class="phase-badge">While the Brisket Takes Its First Smoke</span>
+        <div class="phase-title">Rendering Brisket Tallow</div>
+        <span class="phase-timing">⏱ 2–3 hours on the stovetop · parallel to the first hours of smoke</span>
+      </div>
+    </div>
+
+    <div class="tallow-block">
+      <div class="tallow-block-title">Why Tallow Changes Everything</div>
+      <p>Brisket tallow is rendered beef fat — the same fat you just trimmed, slowly cooked down into liquid gold. When you wrap your brisket at the stall (around hour 6–8), you pour <strong>warm tallow directly onto the butcher paper before wrapping</strong>. The brisket sits in its own rendered fat for the final hours of the cook, constantly basting itself from the outside in. The result is a bark that stays crispy on the edges but gives way to absurdly moist, tender, almost custard-like meat inside. This is the move that separates a backyard brisket from a competition brisket. And you're making it from scraps you were already going to throw away.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">1</div>
+      <div class="step-body">
+        <div class="step-title">Roughly Chop the Trim</div>
+        <p class="step-text">Take all the fat trimmings from your bowl and <strong>roughly chop them into 1–2 inch pieces</strong>. The smaller you cut them, the faster they'll render. You don't need to be precise — this isn't a fine dining prep, this is a functional process. Hard fat chunks and any fatty pieces of meat all go in together. You should have at least 1–2 cups of trim, possibly more on a big brisket. That will yield roughly ½ to 1 cup of finished tallow, which is exactly what you need.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">2</div>
+      <div class="step-body">
+        <div class="step-title">Low and Slow in a Heavy Pan</div>
+        <p class="step-text">Put the chopped fat into a <strong>heavy-bottomed saucepan or cast iron skillet</strong>. Add <strong>¼ cup of water</strong> to the pan first — this sounds counterintuitive but it prevents the fat from scorching before it starts to release its own liquid. Set it over <strong>low to medium-low heat</strong> and let it go. Don't rush it. Don't crank the heat. High heat burns the fat and turns it bitter instead of clean and beefy. You're looking for a gentle, steady simmer. Stir occasionally. Over the next 1.5–2 hours, the fat pieces will slowly shrink and turn golden-brown as they give up their fat content. The liquid gold in the pan is your tallow.</p>
+        <div class="callout callout-genz">Starting the tallow while your brisket takes its first two hours of smoke is the ultimate parallel processing moment. The Traeger is out there doing the smoking. You're in here doing the rendering. Everything is happening simultaneously and you are absolutely thriving.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">3</div>
+      <div class="step-body">
+        <div class="step-title">Strain, Season, Keep Warm</div>
+        <p class="step-text">Once the fat pieces are golden, crispy, and have given up most of their fat (they'll look like little brown croutons — these are called cracklings and they're a snack, fight anyone who says otherwise), <strong>strain the liquid through a fine mesh strainer or cheesecloth into a glass jar or heat-safe container</strong>. Discard the solids or eat them immediately with salt. Season the finished tallow with a pinch of <strong>kosher salt and a crack of black pepper</strong> so it carries flavor when it hits the brisket. Keep it warm (not hot) so it stays liquid and pourable when you need it during the wrap. It should be a beautiful amber-gold color, slightly translucent, and smell deeply, intensely of beef.</p>
+        <div class="callout callout-tip">Finished tallow keeps in the fridge for months in a sealed jar. If you make it and don't use all of it, you've accidentally stockpiled a secret weapon for future cooks, smash burgers, roasted potatoes, and literally any application that benefits from beef fat (which is most applications). You're welcome.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"><span>Fire It Up — The Main Event</span></div>
+
+  <!-- PHASE 4: THE SMOKE -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">04</div>
+      <div class="phase-info">
+        <span class="phase-badge">The Main Event</span>
+        <div class="phase-title">Smoking on the Traeger</div>
+        <span class="phase-timing">⏱ 12–16 hours total — plan for an early morning start</span>
+      </div>
+    </div>
+
+    <p style="font-family:'Fraunces',serif; font-size:15px; line-height:1.85; color:#5a4f3e; margin-bottom:28px;">
+      The cook has three distinct phases: the smoke phase (where bark develops and the brisket takes on all its smoky character), the stall (where physics happens and patience is mandatory), and the wrap and finish (where the tallow goes in, the collagen breaks down completely, and the brisket becomes what it was always meant to be). Respect all three phases equally. Each one is non-negotiable.
+    </p>
+
+    <div class="temp-chart">
+      <div class="temp-item">
+        <span class="temp-val">225–250°F</span>
+        <span class="temp-label">Smoke Phase</span>
+        <span class="temp-desc">Hours 1 through ~6. Low and slow. Bark develops. Smoke absorbs. Don't open the lid.</span>
+      </div>
+      <div class="temp-item">
+        <span class="temp-val">~160–170°F</span>
+        <span class="temp-label">The Stall</span>
+        <span class="temp-desc">Internal temp plateaus here for 2–4 hours. This is normal. This is the process. Do NOT crank the heat.</span>
+      </div>
+      <div class="temp-item">
+        <span class="temp-val">200–205°F</span>
+        <span class="temp-label">Pull Temp</span>
+        <span class="temp-desc">Probe goes in like butter. Pull, rest, and wait 1–2 hours wrapped in a cooler. Non-negotiable.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">1</div>
+      <div class="step-body">
+        <div class="step-title">Season the Brisket — The SPG Rub</div>
+        <p class="step-text">In a bowl, combine your <strong>½ cup coarse kosher salt, ½ cup coarse black pepper,</strong> and <strong>1 tablespoon garlic powder</strong>. Mix them together — this is your entire rub. Traditional Texas brisket is just 50/50 salt and pepper, no garlic, and if you want to be a purist you can omit it. We keep it because it adds a subtle savory depth without announcing itself. <strong>Season the brisket generously on all sides</strong> — every surface, every edge, every corner. Don't be shy. The crust that forms (called the bark) is literally made from this rub caramelizing into the surface over 12+ hours. Under-seasoning is a crime that cannot be undone. Let the seasoned brisket sit at room temperature for <strong>30–45 minutes</strong> while you fire up the Traeger.</p>
+        <div class="callout callout-genz">Covering a 14-pound brisket in nothing but salt and pepper and then watching it turn into a mahogany-crusted slab of legend over 14 hours is the purest expression of confidence in all of cooking. This rub is not humble. It just knows it doesn't need anything else.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">2</div>
+      <div class="step-body">
+        <div class="step-title">Fire Up the Traeger to 225–250°F</div>
+        <p class="step-text">Set your Traeger to <strong>225–250°F</strong> and let it preheat fully with the lid closed — about 15 minutes. Load it with your pellets. Post oak is the Texas classic: medium smoke, slightly earthy, doesn't fight the beef. Hickory is bolder and more assertive. Either works. <strong>Avoid fruit woods like apple or cherry for brisket</strong> — they're too delicate and sweet for a 14-pound beef cook. You need wood that can hold its own for twelve-plus hours without disappearing or going harsh.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">3</div>
+      <div class="step-body">
+        <div class="step-title">Place the Brisket — Fat Cap Up, Point Toward the Heat</div>
+        <p class="step-text">Place the brisket <strong>fat cap up, directly on the grill grates</strong>. On a Traeger, the heat comes from below — fat cap up means the fat self-bastes the meat as it renders and drips. If your Traeger runs hotter on one side, point the flat (the thinner, leaner muscle) toward the cooler side and the point (the thicker, fattier muscle) toward the hotter side. Insert your <strong>leave-in probe thermometer</strong> into the thickest part of the flat — not the point, not the fat, the flat. That's your target muscle. Close the lid and <strong>don't open it for at least 3 hours.</strong></p>
+        <div class="callout callout-tip">A leave-in wireless thermometer is not optional for a 14-hour cook. You need to know what's happening without opening the lid. Every time you open the lid, you lose 15–20 minutes of cooking progress. A $25 thermometer pays for itself on the first brisket.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">4</div>
+      <div class="step-body">
+        <div class="step-title">Hours 1–6: The Bark Build — Do Absolutely Nothing</div>
+        <p class="step-text">This is the most important and most underestimated phase of the cook. The brisket needs these hours of consistent, undisturbed smoke and heat to build the bark — that dark, almost-crunchy exterior crust that is the hallmark of great brisket. Every time you open the lid you disrupt the smoke adhesion and the moisture balance on the surface. Your job for hours one through six is to <strong>check your thermometer, keep the pellet hopper full, and leave the brisket completely alone.</strong> Watch a movie. Do some laundry. Sit in a lawn chair with a beverage. Come back in six hours.</p>
+        <div class="callout callout-genz">The bark is developing right now without your help. The smoke is doing the thing. The fat is starting to render. You don't have to do anything and somehow the most important part of the whole cook is happening. The brisket is in its main character arc and you are not in this scene.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">5</div>
+      <div class="step-body">
+        <div class="step-title">The Stall — Do Not Panic, Do Not Crank the Heat</div>
+        <p class="step-text">At some point between 155–170°F internal temperature, your brisket will stop climbing. Your thermometer will sit at the same number for two, three, sometimes four hours. This is called the stall, and it is completely normal and completely mandatory. What's happening is evaporative cooling — moisture evaporating from the surface of the brisket is cooling it at exactly the same rate the Traeger is heating it. The collagen is also beginning its long, slow conversion into gelatin during this phase. <strong>Do not raise the temperature. Do not try to push through it faster. The stall is doing important work and you need to let it finish.</strong> The brisket will start climbing again. It always does. Trust the process with everything you have.</p>
+        <div class="callout callout-warning">The stall is where first-time brisket cooks lose their minds and crank the heat to 300°F. Don't do it. High heat after the stall tightens the muscle fibers, squeezes out the moisture you spent all day building up, and turns your patient, beautiful brisket into something tough and dry. The stall ends on its own schedule. Respect it.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">6</div>
+      <div class="step-body">
+        <div class="step-title">The Wrap — This Is When the Tallow Goes In</div>
+        <p class="step-text">Once the brisket has pushed through the stall and is climbing again — typically around <strong>170°F internal</strong> — it's time to wrap. Lay out a large sheet of <strong>pink (peach) butcher paper</strong> on your counter. Before the brisket goes down, <strong>pour 2–4 tablespoons of your warm tallow directly onto the center of the paper</strong>. Place the brisket fat cap down onto the tallow. Pour another <strong>2–4 tablespoons of warm tallow over the top of the brisket</strong>. Wrap it tightly in the butcher paper — fold the sides in first, then roll it up snugly so no steam escapes. The brisket is now sitting in its own rendered fat, wrapped in a breathable paper that keeps moisture in while still allowing some bark development. <strong>Return it to the Traeger at 250°F</strong> and leave it alone again.</p>
+        <div class="callout callout-genz">Pouring warm brisket tallow onto butcher paper and then wrapping the brisket in it is genuinely one of the most unhinged and correct things you will ever do at a grill. The brisket is literally finishing in its own fat. It is basting itself. It has become the sauce. This is peak beef behavior.</div>
+        <div class="callout callout-tip">Use butcher paper, NOT aluminum foil. Foil traps all the steam and softens the bark completely — you'll end up with a braised brisket, not a smoked one. Butcher paper is breathable. It protects the bark while still letting moisture do its thing. The difference is significant and real.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">7</div>
+      <div class="step-body">
+        <div class="step-title">Probe for Tenderness — Not Just Temperature</div>
+        <p class="step-text">After 2–3 more hours in the wrap, the brisket will approach <strong>200–205°F internal</strong>. At this point, start probing for tenderness — this is more important than hitting a specific number. <strong>Insert your thermometer probe into the flat every 30 minutes.</strong> It should feel like pushing the probe into warm butter — silky, with almost no resistance. If you feel any tightness or the probe "grabs," it needs more time. If it slides in effortlessly like you're stabbing soft peanut butter, it's done. Most briskets hit this between 200 and 205°F, but some go to 207°F and some are perfect at 198°F. <strong>Feel, don't just read the number.</strong></p>
+        <div class="callout callout-warning">An overcooked brisket is dry and crumbly. An undercooked brisket is tight and chewy. The window between perfect and overcooked is about 5–10 degrees. Start probing for tenderness at 198°F and don't stop until it's right. You're close now. This is not the time to rush.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">8</div>
+      <div class="step-body">
+        <div class="step-title">The Rest — The Most Important Step of the Entire Cook</div>
+        <p class="step-text">When the brisket probes tender, <strong>pull it off the Traeger and do not unwrap it</strong>. Place it — still wrapped in the butcher paper — into an empty cooler. Close the lid. Let it rest for <strong>a minimum of 1 hour, ideally 2 hours, and you can hold it for up to 4 hours this way without it cooling significantly</strong>. This rest is not optional and it is not casual. During this time, the muscle fibers relax, the collagen that converted to gelatin during the long cook redistributes through the meat, and the juices reabsorb instead of flooding out when you slice. A brisket sliced without resting will bleed onto the cutting board. A brisket that rested properly will hold its moisture, slice cleanly, and taste like the culmination of everything you did all day.</p>
+        <div class="callout callout-genz">You just cooked for 14 hours and now you have to wait two MORE hours. This is the most agonizing moment in all of BBQ and it is also non-negotiable. The brisket is resting. It earned the rest. So did you. Get a drink. You're almost there.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"><span>The Slice — Don't Blow It in the Last 60 Seconds</span></div>
+
+  <!-- PHASE 5: SLICING & SERVING -->
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">05</div>
+      <div class="phase-info">
+        <span class="phase-badge">You Made It This Far</span>
+        <div class="phase-title">Slicing &amp; Serving</div>
+        <span class="phase-timing">⏱ The part where people stop talking mid-bite</span>
+      </div>
+    </div>
+
+    <p style="font-family:'Fraunces',serif; font-size:15px; line-height:1.85; color:#5a4f3e; margin-bottom:24px;">
+      Slicing is a skill. There is a right way to do it and several wrong ways. The right way takes 30 extra seconds of setup and produces perfect slices. The wrong ways produce stringy, chewy slabs that make the whole cook look worse than it was.
+    </p>
+
+    <div class="step">
+      <div class="step-circle">1</div>
+      <div class="step-body">
+        <div class="step-title">Identify the Grain of Each Muscle</div>
+        <p class="step-text">The point and the flat have different grain directions — the muscle fibers run different ways. <strong>Before you slice anything, identify which direction the grain runs on each part.</strong> Lay the unwrapped brisket on your cutting board and look at the surface — you'll see lines running through the meat. Those are the muscle fibers. You want to cut <strong>perpendicular to those lines — across the grain, not with it.</strong> Slicing with the grain gives you long, chewy strings of fiber. Slicing against the grain gives you short, tender bites. This is not a minor detail. This single technique accounts for about 40% of the eating experience.</p>
+        <div class="callout callout-tip">The flat and the point meet at an angle, which means the grain shifts. The easiest approach: slice the flat first (grain runs lengthwise), then rotate the point 90 degrees and slice it separately. You'll get distinct, beautiful slices from each muscle.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-circle">2</div>
+      <div class="step-body">
+        <div class="step-title">Slice to ¼ Inch — No Thicker, No Thinner</div>
+        <p class="step-text">Use a <strong>long slicing knife or sharp chef's knife</strong>. Slice the brisket to about <strong>¼ inch thick</strong> — roughly the thickness of a pencil. This is the Texas standard for a reason: thin enough that the bark-to-meat ratio is good in every bite, thick enough that the slice holds together when you pick it up. Too thin and the slices fall apart and dry out immediately. Too thick and you lose the tenderness — it reads as chewy even when it's perfectly cooked. Arrange the slices on a board or platter alternating point and flat so people can try both.</p>
+        <div class="callout callout-genz">The first slice revealing dark bark on the outside and a perfect smoke ring just below it and then that deep mahogany interior — that reveal is the payoff for everything. Fourteen hours. One perfect slice. You did that. Document it. Tell people you made it. Because you absolutely did.</div>
+      </div>
+    </div>
+
+    <div class="serving-grid">
+      <div class="serving-item">
+        <div class="serving-title">The Texas Way</div>
+        <div class="serving-text">White bread, pickled jalapeños, raw white onion, yellow mustard. Nothing else. This is not a suggestion. This is a lifestyle.</div>
+      </div>
+      <div class="serving-item">
+        <div class="serving-title">The Board Spread</div>
+        <div class="serving-text">Sliced on a wood board with pickles, sliced white onion, and jalapeños on the side. Pass it around. Watch people go quiet. Count the number of seconds before someone asks for more.</div>
+      </div>
+      <div class="serving-item">
+        <div class="serving-title">Next Day: Brisket Tacos</div>
+        <div class="serving-text">Chop leftover brisket, warm in a pan with a splash of leftover tallow, stuff into warm corn tortillas with white onion, cilantro, and salsa verde. The day-after meal is genuinely elite.</div>
+      </div>
+      <div class="serving-item">
+        <div class="serving-title">Storage</div>
+        <div class="serving-text">Refrigerate sliced brisket with its juices for up to 5 days. Reheat gently at 275°F wrapped in foil with a splash of beef broth. Freeze unsliced for up to 3 months. Still great. Still earned.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL CARD -->
+  <div class="final-card">
+    <h3>You Smoked a Whole Brisket. 🔥</h3>
+    <p>You trimmed it cold. You rendered its own fat into tallow. You weathered the stall without panicking. You wrapped it in butcher paper and warm tallow at exactly the right moment, rested it for two hours, and sliced it against the grain. Salt. Pepper. Fire. Time. That's the whole recipe. And somehow that's enough to make something that costs $50 at a BBQ joint and absolutely justifies the price. Except yours is better. Because you made it. And you know exactly what went into it.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER NAV -->
+<div class="bottom-nav">
+  <a href="index.html">← Back to All Recipes</a>
+  <span class="site-name">Bytes &amp; Bites</span>
+  <a href="https://github.com/tonyillig/AI-recipe-book" target="_blank">GitHub ↗</a>
+</div>
+
+</body>
+</html>
