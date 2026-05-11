@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crème Brûlée — Bytes &amp; Bites</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#faf6ef;--warm:#f0e6d3;--gold:#c9963a;--deep:#1a1209;--rust:#b85c2a;--sage:#7a8c6e;--accent:#e8c87a;--surface:#faf6ef;--border:#e0d8c8;--text-main:#1a1209;--text-body:#3a2d1a;--text-muted:#7a6e5a}
+[data-theme="dark"]{--cream:#1a1209;--warm:#221808;--gold:#c9963a;--deep:#f0ead8;--rust:#e07a40;--sage:#9aac8e;--accent:#e8c87a;--surface:#1a1209;--border:#3a2e1a;--text-main:#f0ead8;--text-body:#c8b898;--text-muted:#7a6e5a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text-main);min-height:100vh;transition:background 0.3s,color 0.3s}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.5}
+.page{max-width:780px;margin:0 auto;padding:40px 24px 80px;position:relative;z-index:1}
+.back-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px 40px;background:rgba(250,246,239,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background 0.3s}
+[data-theme="dark"] .back-nav{background:rgba(26,18,9,0.95)}
+.back-link{display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-muted);transition:color 0.2s;text-decoration:none}
+.back-link:hover{color:var(--rust)}.back-link::before{content:'←';font-size:14px}
+.nav-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rust)}
+.nav-right-group{display:flex;align-items:center;gap:8px}
+.nav-icon-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;cursor:pointer;transition:all 0.2s}
+.nav-icon-btn:hover{border-color:var(--gold);color:var(--gold)}
+.header{text-align:center;margin-bottom:48px;margin-top:72px;animation:fadeDown 0.8s ease both}
+.tag-wrap{margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;color:white;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:2px}
+.tag-gold{background:var(--gold)}.tag-rust{background:var(--rust)}.tag-sage{background:var(--sage)}
+.status-badge{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:2px;display:inline-block}
+.status-human{background:rgba(74,107,82,0.15);color:#5a9a6a;border:1px solid rgba(74,107,82,0.3)}
+.status-ai{background:rgba(176,88,42,0.15);color:var(--rust);border:1px solid rgba(176,88,42,0.3)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(34px,7vw,58px);line-height:1.05;color:var(--text-main);margin-bottom:8px}
+h1 em{color:var(--rust);font-style:italic}
+.subtitle{font-size:14px;color:var(--sage);letter-spacing:1px;font-weight:300;margin-bottom:16px}
+.dietary-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+.dietary-badge{font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:2px;font-weight:700}
+.badge-pescatarian{background:rgba(74,107,82,0.15);color:#5a9a6a;border:1px solid rgba(74,107,82,0.3)}
+.badge-vegetarian{background:rgba(74,140,82,0.15);color:#4a9a5a;border:1px solid rgba(74,140,82,0.3)}
+.badge-vegan{background:rgba(60,120,60,0.15);color:#3a8a3a;border:1px solid rgba(60,120,60,0.3)}
+.badge-gf{background:rgba(201,150,58,0.15);color:#c9963a;border:1px solid rgba(201,150,58,0.3)}
+.badge-lf{background:rgba(100,160,200,0.12);color:#5090b0;border:1px solid rgba(100,160,200,0.25)}
+.divider{display:flex;align-items:center;gap:12px;justify-content:center;margin:20px 0;color:var(--gold);font-size:18px}
+.divider::before,.divider::after{content:'';height:1px;width:80px;background:linear-gradient(to right,transparent,var(--gold))}
+.divider::after{transform:scaleX(-1)}
+.stats{display:flex;justify-content:center;border:1px solid var(--accent);border-radius:8px;overflow:hidden;margin-bottom:28px}
+.stat{flex:1;text-align:center;padding:16px 8px;border-right:1px solid var(--accent)}.stat:last-child{border-right:none}
+.stat-val{font-family:'Playfair Display',serif;font-size:22px;color:var(--rust);display:block}
+.stat-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--sage);font-family:'Space Mono',monospace}
+.controls-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:var(--warm);border:1px solid var(--border);padding:14px 18px;border-radius:8px;margin-bottom:28px}
+[data-theme="dark"] .controls-bar{background:#221808;border-color:#3a2e1a}
+.controls-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-right:4px}
+.scale-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;cursor:pointer;transition:all 0.2s;border-radius:2px}
+.scale-btn:hover{border-color:var(--gold);color:var(--gold)}.scale-btn.active{background:var(--gold);border-color:var(--gold);color:white}
+.shopping-section{background:var(--warm);border:1px solid var(--border);border-radius:8px;margin-bottom:40px;overflow:hidden}
+[data-theme="dark"] .shopping-section{background:#221808;border-color:#3a2e1a}
+.shopping-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border);cursor:pointer}
+.shopping-header-left{display:flex;align-items:center;gap:10px}
+.shopping-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust)}
+.shopping-count{font-family:'Space Mono',monospace;font-size:9px;color:var(--text-muted)}
+.shopping-toggle{font-size:12px;color:var(--text-muted);transition:transform 0.2s}.shopping-toggle.open{transform:rotate(180deg)}
+.shopping-body{padding:16px 20px}
+.shopping-item{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px dashed var(--border);cursor:pointer}
+.shopping-item:last-child{border-bottom:none}
+.shopping-item input[type="checkbox"]{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0;cursor:pointer}
+.shopping-item label{font-size:14px;color:var(--text-body);cursor:pointer;transition:all 0.2s;flex:1}
+.shopping-item.checked label{text-decoration:line-through;color:var(--text-muted);opacity:0.6}
+.item-qty{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);min-width:80px;flex-shrink:0}
+.shopping-actions{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap}
+.shop-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:8px 14px;cursor:pointer;transition:all 0.2s;border-radius:2px}
+.shop-btn:hover{border-color:var(--gold);color:var(--gold)}
+.shop-btn.primary{background:var(--rust);border-color:var(--rust);color:white}.shop-btn.primary:hover{background:var(--gold);border-color:var(--gold)}
+.intro-card{background:var(--deep);color:#f0ead8;border-radius:12px;padding:28px 32px;margin-bottom:40px;position:relative;overflow:hidden}
+[data-theme="dark"] .intro-card{background:#2a1a08}
+.intro-card::before{content:'✦';position:absolute;top:-20px;right:-10px;font-size:120px;opacity:0.05;color:var(--gold)}
+.intro-card p{font-size:15px;line-height:1.75;color:#e8dece;font-weight:300}
+.intro-card p strong{color:var(--accent);font-weight:500}
+.section{margin-bottom:40px}
+.section-title{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:20px;display:flex;align-items:center;gap:12px;color:var(--text-main)}
+.section-title .num{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;border:1px solid var(--gold);padding:3px 8px;border-radius:2px}
+.ing-group{margin-bottom:24px}
+.ing-group-title{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--rust);border-bottom:1px solid var(--warm);padding-bottom:8px;margin-bottom:12px}
+[data-theme="dark"] .ing-group-title{border-bottom-color:var(--border)}
+.ingredient-list{list-style:none}
+.ingredient-list li{display:flex;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:15px;line-height:1.4;color:var(--text-body)}
+.ingredient-list li:last-child{border-bottom:none}
+.ing-amount{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);min-width:72px;flex-shrink:0}
+.ing-note{font-size:12px;color:var(--sage);font-style:italic}
+.step{display:grid;grid-template-columns:48px 1fr;gap:20px;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--warm)}
+[data-theme="dark"] .step{border-bottom-color:var(--border)}.step:last-child{border-bottom:none}
+.step-num{width:48px;height:48px;background:var(--deep);color:var(--accent);font-family:'Playfair Display',serif;font-size:20px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;margin-top:2px}
+[data-theme="dark"] .step-num{background:#2a1a08}
+.step-content h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:8px;color:var(--text-main)}
+.step-content p{font-size:14.5px;line-height:1.8;color:var(--text-body);font-weight:300}
+.step-content p strong{color:var(--rust);font-weight:500}
+.genz{background:var(--warm);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 16px;margin:12px 0;font-size:13px;color:var(--rust);font-style:italic}
+[data-theme="dark"] .genz{background:#221808}.genz::before{content:'💬 '}
+.tip{background:#f5f0e8;border:1px solid var(--accent);border-radius:8px;padding:14px 18px;margin:14px 0;font-size:13px;color:#5a4520;line-height:1.65}
+[data-theme="dark"] .tip{background:#2a2010;color:var(--text-body)}.tip::before{content:'⚡ Pro tip: ';font-weight:600;color:var(--gold)}
+.warning{background:#fff0ec;border-left:3px solid var(--rust);border-radius:0 8px 8px 0;padding:10px 16px;margin:12px 0;font-size:13px;color:#7a2a10;line-height:1.65;font-style:italic}
+[data-theme="dark"] .warning{background:#2a1808;color:#e08060}
+.warning::before{content:'⚠ Watch out: ';font-family:'Space Mono',monospace;font-style:normal;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--rust);display:block;margin-bottom:4px}
+.section-divider{display:flex;align-items:center;gap:16px;margin:40px 0 32px}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--warm)}
+[data-theme="dark"] .section-divider::before,[data-theme="dark"] .section-divider::after{background:var(--border)}
+.section-divider span{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--rust)}
+.serve-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.serve-item{background:var(--warm);border:1px solid var(--border);padding:16px 20px;border-radius:6px}
+[data-theme="dark"] .serve-item{background:#221808;border-color:var(--border)}
+.serve-title{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--rust);margin-bottom:6px}
+.serve-text{font-family:'Playfair Display',serif;font-size:13px;font-style:italic;color:var(--text-body);line-height:1.5}
+.final{background:linear-gradient(135deg,var(--deep) 0%,#2d1f08 100%);color:#f0ead8;border-radius:12px;padding:32px;text-align:center;margin-top:48px}
+[data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
+.final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
+.final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,0.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
+[data-theme="dark"] .bottom-nav{background:#0f0a05}
+.bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color 0.2s;text-decoration:none}
+.bottom-nav a:hover{color:var(--accent)}
+.bottom-nav .site-name{font-family:'Playfair Display',serif;font-size:14px;color:var(--accent);font-style:italic}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:480px){.back-nav{padding:14px 16px}.stats{flex-wrap:wrap}.stat{min-width:50%;border-bottom:1px solid var(--accent)}.step{grid-template-columns:36px 1fr;gap:14px}.step-num{width:36px;height:36px;font-size:16px}.serve-grid{grid-template-columns:1fr}.bottom-nav{padding:20px;flex-direction:column;gap:12px;text-align:center;margin-left:-24px;margin-right:-24px}}
+@media print{.back-nav,.noise,.controls-bar,.shopping-section,.bottom-nav{display:none!important}body{background:white;color:black}.page{padding:0}.header{margin-top:0}}</style>
+</head>
+<body>
+<div class="noise"></div>
+<nav class="back-nav">
+  <a href="index.html" class="back-link">All Recipes</a>
+  <span class="nav-title">Bytes &amp; Bites</span>
+  <div class="nav-right-group">
+    <button class="nav-icon-btn" id="darkToggle" onclick="toggleDark()">☀️ Light</button>
+    <button class="nav-icon-btn" onclick="window.print()">🖨️ Print (Boomer Mode)</button>
+  </div>
+</nav>
+<div class="page">
+  <div class="header">
+    <div class="tag-wrap"><span class="tag tag-rust">Dessert</span><span class="status-badge status-ai">✦ AI Built · Awaiting Human Testing</span></div>
+    <h1>Crème Brûlée</h1>
+    <p class="subtitle">Vanilla Bean · Silky Custard · Cold · Properly Torched Sugar</p>
+    <div class="dietary-row"><span class="dietary-badge badge-vegetarian">🥦 Vegetarian</span><span class="dietary-badge badge-gf">🌾 Gluten Free</span></div>
+    <div class="divider">✦</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><span class="stat-val">~1h</span><span class="stat-label">Plus chilling</span></div>
+    <div class="stat"><span class="stat-val" id="servingDisplay">6</span><span class="stat-label">Serves</span></div>
+    <div class="stat"><span class="stat-val">Med</span><span class="stat-label">Difficulty</span></div>
+    <div class="stat"><span class="stat-val">Make Ahead</span><span class="stat-label">Friendly</span></div>
+  </div>
+  <div class="controls-bar">
+    <span class="controls-label">Scale:</span>
+    <button class="scale-btn" onclick="setScale(0.5,this)">½×</button>
+    <button class="scale-btn active" onclick="setScale(1,this)">1×</button>
+    <button class="scale-btn" onclick="setScale(2,this)">2×</button>
+    <button class="scale-btn" onclick="setScale(3,this)">3×</button>
+  </div>
+  <div class="shopping-section">
+    <div class="shopping-header" onclick="toggleShopping()">
+      <div class="shopping-header-left"><span class="shopping-title">🛒 Shopping List</span><span class="shopping-count" id="shopCount">0 of 6 checked</span></div>
+      <span class="shopping-toggle" id="shopToggle">▼</span>
+    </div>
+    <div class="shopping-body" id="shopBody" style="display:none">
+      <div id="shopList"></div>
+      <div class="shopping-actions">
+        <button class="shop-btn" onclick="checkAllShopping()">✓ Check all</button>
+        <button class="shop-btn" onclick="clearShopping()">↺ Reset</button>
+        <button class="shop-btn primary" onclick="printShoppingList()">🖨️ Print remaining list</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro-card"><p>Crème brûlée is the simplest dessert that looks the most impressive. Four ingredients. Cold custard. A hot sugar crack. That contrast between the cold, silky, barely-set custard and the brittle, warm, amber caramel on top is <strong>one of the great textural achievements in all of dessert</strong>. The torch is the move — do not try to brûlée under a grill. The torch gives you control and drama in equal measure, and it takes 45 seconds per ramekin. Buy the torch. It is worth it for this recipe alone.</p></div>
+  <div class="section"><div class="section-title"><span class="num">01</span> Ingredients</div>
+    <ul class="ingredient-list">
+      <li><span class="ing-amount">600ml</span><span>heavy cream <span class="ing-note">full fat, always — the richness is the whole point</span></span></li>
+      <li><span class="ing-amount">2</span><span>vanilla beans, split and scraped <span class="ing-note">or 2 tsp vanilla bean paste — not extract</span></span></li>
+      <li><span class="ing-amount">8</span><span>egg yolks</span></li>
+      <li><span class="ing-amount">100g</span><span>caster sugar, for the custard</span></li>
+      <li><span class="ing-amount">6 tbsp</span><span>caster sugar, for the brûlée — 1 tbsp per ramekin</span></li>
+      <li><span class="ing-amount">pinch</span><span>flaky sea salt — added to the custard, makes it taste more of itself</span></li>
+    </ul>
+  </div>
+  <div class="section"><div class="section-title"><span class="num">02</span> The Method</div>
+    <div class="step"><div class="step-num">1</div><div class="step-content"><h3>Infuse the Cream with Vanilla</h3><p>Split the vanilla beans lengthways and scrape out the seeds. Add both the seeds and the pods to the cream in a saucepan. Heat over medium heat until the cream just barely simmers — small bubbles at the edges. Remove from heat, cover, and let infuse for <strong>20 minutes</strong>. Remove the pods. The cream should smell intensely of vanilla and have a faint golden tint.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Make the Custard Base</h3><p>Whisk the <strong>8 egg yolks, 100g caster sugar, and pinch of salt</strong> together until pale and slightly thickened — about 2 minutes. Slowly pour the warm vanilla cream into the yolk mixture <strong>a little at a time</strong>, whisking constantly. You're tempering the eggs — adding all the hot cream at once will scramble them. Go slowly. Once combined, strain through a fine mesh sieve to remove any vanilla pod pieces and ensure a silky smooth custard.</p><div class="tip">Skim any foam off the surface of the custard before pouring into ramekins. Foam on the surface bakes into an uneven, bubbly top rather than the smooth, glassy surface you want for brûléeing.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Bake in a Water Bath</h3><p>Pour the custard into 6 ramekins. Place them in a deep baking tray. Pour enough boiling water into the tray to reach halfway up the sides of the ramekins. Bake at <strong>150°C / 300°F for 35–40 minutes</strong>. The custards are done when the edges are just set and the centres wobble like jelly — not liquid, not firm. Remove from the water bath and refrigerate for at least 4 hours, preferably overnight.</p><div class="warning">The water bath is non-negotiable. It regulates the temperature so the custard sets gently and evenly without curdling. Without it, you will get scrambled egg custard with hot spots and an uneven texture. Use the water bath.</div></div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-content"><h3>Brûlée at the Last Minute</h3><p>Just before serving, scatter <strong>1 level tablespoon of caster sugar</strong> evenly over each custard. Use a kitchen torch to caramelise the sugar in slow, steady circular passes — keep the flame moving to avoid burning. The sugar should go from white to amber to deep caramel. Tap the surface: it should be hard and glassy. Serve within 5 minutes — after that, the caramel starts to soften from the moisture of the custard beneath it.</p><div class="genz">The crack when a spoon breaks through a properly torched crème brûlée is the most satisfying sound in all of dessert. It is the entire reason this dessert exists. It is worth the torch, the water bath, the four hours of chilling. Every single time.</div></div></div>
+  </div>
+  <div class="final"><h2>Cold Custard. Hot Sugar. A Perfect Crack. 🔥</h2><p>You infused the cream with real vanilla. You tempered the eggs carefully. You baked them gently in a water bath. You torched them to order and heard that crack. This is crème brûlée done correctly — and done correctly, it is one of the most quietly perfect desserts ever conceived.</p></div>
+  <div class="bottom-nav">
+    <a href="index.html">← Back to All Recipes</a>
+    <span class="site-name">Bytes &amp; Bites</span>
+    <a href="https://github.com/tonyillig/AI-recipe-book" target="_blank">GitHub ↗</a>
+  </div>
+</div>
+<script>
+(function(){const s=localStorage.getItem('bb-theme')||'dark';applyTheme(s);})();
+function applyTheme(t){document.documentElement.setAttribute('data-theme',t);const b=document.getElementById('darkToggle');if(b)b.textContent=t==='dark'?'☀️ Light':'🌙 Dark';localStorage.setItem('bb-theme',t);}
+function toggleDark(){const c=document.documentElement.getAttribute('data-theme')||'dark';applyTheme(c==='dark'?'light':'dark');}
+let currentScale=1;
+function setScale(s,btn){currentScale=s;document.querySelectorAll('.scale-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const sd=document.getElementById('servingDisplay');if(sd)sd.textContent=Math.round(6*s);buildShoppingList();}
+const SHOP_KEY='bb-shop-creme-brulee';
+const SI=[{"name": "heavy cream", "label": "600ml", "unit": "ml", "base": 600, "noDiv": false, "small": false}, {"name": "vanilla bean", "label": "2", "unit": "", "base": 1, "noDiv": true, "small": false}, {"name": "egg yolks", "label": "8", "unit": "", "base": 1, "noDiv": true, "small": false}, {"name": "caster sugar (custard)", "label": "100g", "unit": "g", "base": 100, "noDiv": false, "small": false}, {"name": "caster sugar (brûlée)", "label": "6 tbsp", "unit": "", "base": 1, "noDiv": false, "small": true}, {"name": "pinch salt", "label": "pinch", "unit": "", "base": 1, "noDiv": true, "small": false}];
+function getQtyLabel(item){if(item.noDiv||item.small)return item.label;const val=item.base*currentScale;const r=Math.round(val*10)/10;return r+(item.unit||'');}
+function buildShoppingList(){const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');const list=document.getElementById('shopList');if(!list)return;list.innerHTML='';SI.forEach((item,i)=>{const isC=checked[i]||false;const div=document.createElement('div');div.className='shopping-item'+(isC?' checked':'');div.innerHTML=`<input type="checkbox" id="si-${i}" ${isC?'checked':''} onchange="toggleShopItem(${i},this)"><span class="item-qty">${getQtyLabel(item)}</span><label for="si-${i}">${item.name}</label>`;list.appendChild(div);});updateShopCount();}
+function toggleShopItem(idx,cb){const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');checked[idx]=cb.checked;localStorage.setItem(SHOP_KEY,JSON.stringify(checked));cb.closest('.shopping-item').classList.toggle('checked',cb.checked);updateShopCount();}
+function updateShopCount(){const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');const n=Object.values(checked).filter(Boolean).length;const el=document.getElementById('shopCount');if(el)el.textContent=n+' of '+SI.length+' checked';}
+function checkAllShopping(){const all={};SI.forEach((_,i)=>all[i]=true);localStorage.setItem(SHOP_KEY,JSON.stringify(all));buildShoppingList();}
+function clearShopping(){localStorage.removeItem(SHOP_KEY);buildShoppingList();}
+function toggleShopping(){const body=document.getElementById('shopBody'),toggle=document.getElementById('shopToggle');const open=body.style.display!=='none';body.style.display=open?'none':'block';toggle.classList.toggle('open',!open);if(!open)buildShoppingList();}
+function printShoppingList(){const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');const remaining=SI.filter((_,i)=>!checked[i]);if(remaining.length===0){alert('You have everything! Get the torch! 🔥');return;}const win=window.open('','_blank');win.document.write(`<html><head><title>Shopping List — Crème Brûlée</title><style>body{font-family:Georgia,serif;max-width:400px;margin:40px auto}h1{font-size:22px;margin-bottom:4px}p{font-size:12px;color:#888;margin-bottom:24px}ul{list-style:none;padding:0}li{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #eee;font-size:15px}li::before{content:'☐';font-size:18px;color:#ccc}.qty{font-family:monospace;font-size:12px;color:#c9963a;min-width:80px}</style></head><body><h1>Crème Brûlée</h1><p>Shopping list — ${remaining.length} item${remaining.length!==1?'s':''} needed</p><ul>${remaining.map(item=>`<li><span class="qty">${getQtyLabel(item)}</span>${item.name}</li>`).join('')}</ul></body></html>`);win.document.close();win.print();}
+buildShoppingList();
+</script>
+</body>
+</html>
