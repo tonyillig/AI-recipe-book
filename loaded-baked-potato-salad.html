@@ -115,7 +115,7 @@ h1 em{color:var(--rust);font-style:italic}
 .bottom-nav a:hover{color:var(--accent)}
 .bottom-nav .site-name{font-family:'Playfair Display',serif;font-size:14px;color:var(--accent);font-style:italic}
 @keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:480px){.back-nav{padding:12px 14px}.nav-icon-btn{padding:5px 8px;font-size:8px}.stats{flex-wrap:wrap}.stat{min-width:50%;border-bottom:1px solid var(--accent)}.step{grid-template-columns:36px 1fr;gap:14px}.step-num{width:36px;height:36px;font-size:16px}.bottom-nav{padding:20px;flex-direction:column;gap:12px;text-align:center;margin-left:-24px;margin-right:-24px}}
+@media(max-width:480px){.back-nav{padding:10px 12px}.nav-title{display:none}.nav-right-group{gap:4px}.nav-icon-btn{padding:5px 8px;font-size:8px}.btn-icon{font-size:0;padding:6px 9px;letter-spacing:0}.btn-icon .btn-emoji{font-size:15px;line-height:1}.stats{flex-wrap:wrap}.stat{min-width:50%;border-bottom:1px solid var(--accent)}.step{grid-template-columns:36px 1fr;gap:14px}.step-num{width:36px;height:36px;font-size:16px}.bottom-nav{padding:20px;flex-direction:column;gap:12px;text-align:center;margin-left:-24px;margin-right:-24px}}
 @media print{.back-nav,.noise,.controls-bar,.shopping-section,.bottom-nav{display:none!important}body{background:white;color:black}.page{padding:0}.header{margin-top:0}}</style></head><body>
 <div class="noise"></div>
 <nav class="back-nav">
@@ -125,8 +125,8 @@ h1 em{color:var(--rust);font-style:italic}
     <button class="nav-icon-btn" id="unit-metric" onclick="setUnit('metric',this)">Metric</button>
     <button class="nav-icon-btn unit-btn" id="unit-us" onclick="setUnit('us',this)">US</button>
     <button class="nav-icon-btn" id="darkToggle" onclick="toggleDark()">☀️ Light</button>
-    <button class="nav-icon-btn" onclick="window.print()">🖨️ Print</button>
-    <button class="nav-icon-btn" onclick="shareRecipe()">↗ Share</button>
+    <button class="nav-icon-btn btn-icon" onclick="window.print()"><span class="btn-emoji">🖨️</span> Print</button>
+    <button class="nav-icon-btn btn-icon" onclick="shareRecipe()"><span class="btn-emoji">↗</span> Share</button>
   </div>
 </nav>
 <div class="page">
