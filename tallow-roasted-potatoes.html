@@ -122,6 +122,7 @@ h1 em{color:var(--rust);font-style:italic}
     <button class="nav-icon-btn unit-btn" id="unit-us" onclick="setUnit('us',this)">US</button>
     <button class="nav-icon-btn" id="darkToggle" onclick="toggleDark()">☀️ Light</button>
     <button class="nav-icon-btn" onclick="window.print()">🖨️ Print</button>
+    <button class="nav-icon-btn" onclick="shareRecipe()">↗ Share</button>
   </div>
 </nav>
 <div class="page">
@@ -379,6 +380,22 @@ function printShoppingList(){
   const win=window.open('','_blank');
   win.document.write(`<html><head><title>Shopping List — Beef Tallow Roasted Potatoes</title><style>body{font-family:Georgia,serif;max-width:400px;margin:40px auto}h1{font-size:22px}p{font-size:12px;color:#888;margin-bottom:24px}ul{list-style:none;padding:0}li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #eee;font-size:15px}li::before{content:'☐';color:#ccc}.qty{font-family:monospace;font-size:12px;color:#c9963a;min-width:80px}</style></head><body><h1>Beef Tallow Roasted Potatoes</h1><p>${remaining.length} items needed</p><ul>${remaining.map(item=>`<li><span class="qty">${shopQtyLabel(item)}</span>${item.name}</li>`).join('')}</ul></body></html>`);
   win.document.close();win.print();
+}
+
+// ── Share ───────────────────────────────────────────────────────────────────
+function shareRecipe(){
+  const url = window.location.href;
+  const title = document.title;
+  if(navigator.share){
+    navigator.share({ title: title, url: url }).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(url).then(()=>{
+      const btn = document.querySelector('[onclick="shareRecipe()"]');
+      const orig = btn.textContent;
+      btn.textContent = '✓ Copied';
+      setTimeout(()=>{ btn.textContent = orig; }, 2000);
+    }).catch(()=>{ prompt('Copy this link:', url); });
+  }
 }
 
 // Init

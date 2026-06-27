@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Scallop Risotto — Bytes &amp; Bites</title>
+<title>Loaded Baked Potato Salad — Bytes &amp; Bites</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
 <style>:root{--cream:#faf6ef;--warm:#f0e6d3;--gold:#c9963a;--deep:#1a1209;--rust:#b85c2a;--sage:#7a8c6e;--accent:#e8c87a;--surface:#faf6ef;--border:#e0d8c8;--text-main:#1a1209;--text-body:#3a2d1a;--text-muted:#7a6e5a}
 [data-theme="dark"]{--cream:#1a1209;--warm:#221808;--gold:#c9963a;--deep:#f0ead8;--rust:#e07a40;--sage:#9aac8e;--accent:#e8c87a;--surface:#1a1209;--border:#3a2e1a;--text-main:#f0ead8;--text-body:#c8b898;--text-muted:#7a6e5a}
@@ -43,7 +43,6 @@ h1 em{color:var(--rust);font-style:italic}
 .controls-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--warm);border:1px solid var(--border);padding:12px 16px;border-radius:8px;margin-bottom:28px}
 [data-theme="dark"] .controls-bar{background:#221808;border-color:var(--border)}
 .controls-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-right:2px}
-.controls-divider{width:1px;height:20px;background:var(--border);margin:0 4px}
 .scale-btn,.unit-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;cursor:pointer;transition:all .2s;border-radius:2px}
 .scale-btn:hover,.unit-btn:hover{border-color:var(--gold);color:var(--gold)}
 .scale-btn.active{background:var(--gold);border-color:var(--gold);color:white}
@@ -101,6 +100,11 @@ h1 em{color:var(--rust);font-style:italic}
 .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--warm)}
 [data-theme="dark"] .section-divider::before,[data-theme="dark"] .section-divider::after{background:var(--border)}
 .section-divider span{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--rust)}
+.serve-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+.serve-item{background:var(--warm);border:1px solid var(--border);border-radius:8px;padding:16px 18px}
+[data-theme="dark"] .serve-item{background:#221808}
+.serve-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust);margin-bottom:8px}
+.serve-text{font-size:13.5px;line-height:1.65;color:var(--text-body);font-weight:300}
 .final{background:linear-gradient(135deg,var(--deep) 0%,#2d1f08 100%);color:#f0ead8;border-radius:12px;padding:32px;text-align:center;margin-top:48px}
 [data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
 .final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
@@ -128,19 +132,19 @@ h1 em{color:var(--rust);font-style:italic}
 <div class="page">
   <div class="header">
     <div class="tag-wrap">
-      <span class="tag tag-gold">Main Dish</span>
-      <span class="status-badge status-human">✓ Human Approved</span>
+      <span class="tag tag-sage">Side Dish</span>
+      <span class="status-badge status-ai">✦ AI Built</span>
     </div>
-    <h1>Scallop Risotto</h1>
-    <p class="subtitle">Bay Scallops · Parmesan · White Wine · Fresh Herbs</p>
-    <div class="dietary-row"><span class="dietary-badge badge-pescatarian">🐟 Pescatarian</span></div>
+    <h1>Loaded Baked <em>Potato Salad</em></h1>
+    <p class="subtitle">Russet · Pickle brine · Sharp cheddar · Bacon · No shame</p>
+    <div class="dietary-row"><span class="dietary-badge badge-gf">🌾 Gluten Free</span></div>
     <div class="divider">✦</div>
   </div>
   <div class="stats">
-    <div class="stat"><span class="stat-val">~45 min</span><span class="stat-label">Total</span></div>
-    <div class="stat"><span class="stat-val" id="servingDisplay">4</span><span class="stat-label">Servings</span></div>
-    <div class="stat"><span class="stat-val">Med</span><span class="stat-label">Difficulty</span></div>
-    <div class="stat"><span class="stat-val">Scallops</span><span class="stat-label">680g</span></div>
+    <div class="stat"><span class="stat-val">2h 20m</span><span class="stat-label">Total Time</span></div>
+    <div class="stat"><span class="stat-val" id="servingDisplay">8–10</span><span class="stat-label">Servings</span></div>
+    <div class="stat"><span class="stat-val">Easy</span><span class="stat-label">Difficulty</span></div>
+    <div class="stat"><span class="stat-val">Pickle</span><span class="stat-label">Secret Weapon</span></div>
   </div>
   <div class="controls-bar">
     <span class="controls-label">Scale:</span>
@@ -153,7 +157,7 @@ h1 em{color:var(--rust);font-style:italic}
     <div class="shopping-header" onclick="toggleShopping()">
       <div class="shopping-header-left">
         <span class="shopping-title">🛒 Shopping List</span>
-        <span class="shopping-count" id="shopCount">0 of 13 checked</span>
+        <span class="shopping-count" id="shopCount">0 of 11 checked</span>
       </div>
       <span class="shopping-toggle" id="shopToggle">▼</span>
     </div>
@@ -167,95 +171,82 @@ h1 em{color:var(--rust);font-style:italic}
     </div>
   </div>
 
-  <div class="intro-card"><p>Okay bestie, no cap — this is <strong>the most bougie thing you will ever cook</strong>, and it's actually not that hard. Risotto is just rice that needs your attention. Think of it like a Tamagotchi: ignore it and it dies. Stay with it, keep stirring, and you'll have something that absolutely <strong>slaps</strong>. Your family will think you went to culinary school. We keep that between us.</p></div>
+  <div class="intro-card"><p><strong>The vibe:</strong> Imagine a loaded baked potato — the full situation, sour cream and bacon and cheddar and chives — decided it didn't want to be hot anymore. It wanted to be cold. It wanted to be a salad. It wanted to show up to the cookout and cause a scene. That's this. <strong>Baked russets, pickle brine soaked into every cell while they cool, a tangy ranch-spiked dressing, crispy bacon folded through, sharp cheddar everywhere.</strong> It's the side dish that makes people ask for the recipe before they've finished their first serving.</p></div>
 
-  <div class="section"><div class="section-title"><span class="num">01</span> Ingredients</div>
-    <div class="ing-group"><div class="ing-group-title">The Main Characters</div><ul class="ingredient-list">
-      <li><span class="ing-amount" data-base="680" data-unit="g" data-metric="680g" data-us="1.5 lb" data-noscale="false">680g</span><span>frozen bay scallops (40–60 per lb) <span class="ing-note">— thaw in fridge overnight or in cold water for 30 min</span></span></li>
-      <li><span class="ing-amount" data-base="280" data-unit="g" data-metric="280g" data-us="9.9 oz" data-noscale="false">280g</span><span>Arborio rice <span class="ing-note">— must be Arborio, regular rice won't slay the same</span></span></li>
-      <li><span class="ing-amount" data-base="1200" data-unit="ml" data-metric="1200ml" data-us="5 cups" data-noscale="false">1200ml</span><span>seafood or chicken broth, warmed <span class="ing-note">— low sodium preferred</span></span></li>
-      <li><span class="ing-amount" data-base="180" data-unit="ml" data-metric="180ml" data-us="¾ cup" data-noscale="false">180ml</span><span>dry white wine <span class="ing-note">— Pinot Grigio or Sauvignon Blanc; sub extra broth if needed</span></span></li>
+  <div class="section"><div class="section-title"><span class="num">01</span> The Doctrine</div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;line-height:1.8;color:var(--text-body);margin-bottom:16px;">Most potato salads are fine. This one is different because of two decisions: first, <em>baking</em> the potatoes instead of boiling them, which keeps the flesh fluffy and dry rather than waterlogged and dense. Second, hitting the warm chopped potatoes with pickle brine immediately, while they're still steaming, so the brine absorbs deep into the potato and seasons it from the inside out. Not on the surface. <em>Through</em> it. That's the move that separates this from every other potato salad on the table.</p>
+    <div class="tip">Make this at least 1–2 hours ahead, or better yet the night before. The flavours genuinely improve as the salad sits refrigerated. The dressing soaks in, the brine mellows, and the bacon softens just slightly into the potatoes rather than sitting on top of them. Same recipe. Notably better result.</div>
+  </div>
+
+  <div class="section"><div class="section-title"><span class="num">02</span> The Ingredients</div>
+    <div class="ing-group"><div class="ing-group-title">The Potatoes</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="1.8" data-unit="kg" data-metric="1.8kg" data-us="4 lb" data-noscale="false">1.8kg</span><span>Russet potatoes <span class="ing-note">— large ones; their fluffy, starchy flesh is the whole point. Waxy potatoes belong in a different salad.</span></span></li>
+      <li><span class="ing-amount" data-base="60" data-unit="ml" data-metric="60ml" data-us="¼ cup" data-noscale="false">60ml</span><span>dill pickle brine <span class="ing-note">— straight from the jar; this is the secret and it costs nothing</span></span></li>
     </ul></div>
-    <div class="ing-group"><div class="ing-group-title">The Supporting Cast (still iconic)</div><ul class="ingredient-list">
-      <li><span class="ing-amount" data-base="3" data-unit="large" data-metric="3 large" data-us="3 large" data-noscale="false">3 large</span><span>shallots, finely diced <span class="ing-note">— shallots are milder and sweeter than onion, perfect for delicate seafood</span></span></li>
-      <li><span class="ing-amount" data-base="4" data-unit="cloves" data-metric="4 cloves" data-us="4 cloves" data-noscale="false">4 cloves</span><span>garlic, minced <span class="ing-note">— fresh is the vibe; jarred is a last resort</span></span></li>
-      <li><span class="ing-amount" data-base="45" data-unit="g" data-metric="45g" data-us="1.6 oz" data-noscale="false">45g</span><span>unsalted butter, divided</span></li>
-      <li><span class="ing-amount" data-base="30" data-unit="ml" data-metric="30ml" data-us="2 tbsp" data-noscale="false">30ml</span><span>olive oil, divided</span></li>
-      <li><span class="ing-amount" data-base="100" data-unit="g" data-metric="100g" data-us="3.5 oz" data-noscale="false">100g</span><span>freshly grated Parmesan <span class="ing-note">— grate it yourself, pre-shredded is lowkey mid</span></span></li>
-      <li><span class="ing-amount" data-base="30" data-unit="ml" data-metric="30ml" data-us="2 tbsp" data-noscale="false">30ml</span><span>fresh lemon juice <span class="ing-note">— about 1 lemon; bottled is not it</span></span></li>
-      <li><span class="ing-amount" data-base="1" data-unit="tsp" data-metric="1 tsp" data-us="1 tsp" data-noscale="false">1 tsp</span><span>lemon zest</span></li>
-      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="handful" data-us="handful" data-noscale="true">handful</span><span>fresh parsley, chopped</span></li>
-      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="to taste" data-us="to taste" data-noscale="true">to taste</span><span>kosher salt and black pepper</span></li>
-      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="pinch" data-us="pinch" data-noscale="true">pinch</span><span>red pepper flakes <span class="ing-note">— optional but it adds rizz</span></span></li>
+    <div class="ing-group"><div class="ing-group-title">The Dressing</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="300" data-unit="ml" data-metric="300ml" data-us="1¼ cups" data-noscale="false">300ml</span><span>sour cream <span class="ing-note">— full fat; this is not the moment for the light stuff</span></span></li>
+      <li><span class="ing-amount" data-base="120" data-unit="ml" data-metric="120ml" data-us="½ cup" data-noscale="false">120ml</span><span>mayonnaise <span class="ing-note">— real mayo, not Miracle Whip; the difference is not subtle</span></span></li>
+      <li><span class="ing-amount" data-base="2" data-unit="tbsp" data-metric="2 tbsp" data-us="2 tbsp" data-noscale="false">2 tbsp</span><span>dill pickles, finely chopped <span class="ing-note">— adds texture and pops of brine through the dressing</span></span></li>
+      <li><span class="ing-amount" data-base="1" data-unit="tbsp" data-metric="1 tbsp" data-us="1 tbsp" data-noscale="false">1 tbsp</span><span>ranch seasoning <span class="ing-note">— one tablespoon of the dry packet; it carries garlic, onion, and herb in one move</span></span></li>
+      <li><span class="ing-amount" data-base="2" data-unit="tsp" data-metric="2 tsp" data-us="2 tsp" data-noscale="false">2 tsp</span><span>yellow mustard <span class="ing-note">— classic yellow, not Dijon; the flavour profile is different and intentional here</span></span></li>
+      <li><span class="ing-amount" data-base="1" data-unit="tsp" data-metric="1 tsp" data-us="1 tsp" data-noscale="false">1 tsp</span><span>kosher salt</span></li>
+      <li><span class="ing-amount" data-base="1" data-unit="tsp" data-metric="1 tsp" data-us="1 tsp" data-noscale="false">1 tsp</span><span>black pepper, freshly ground</span></li>
     </ul></div>
-    <div class="ing-group"><div class="ing-group-title">Equipment You'll Need</div><ul class="ingredient-list">
-      <li><span class="ing-amount" data-base="1" data-unit="large" data-metric="1 large" data-us="1 large" data-noscale="false">1 large</span><span>wide, heavy-bottomed pot or Dutch oven <span class="ing-note">— risotto headquarters</span></span></li>
-      <li><span class="ing-amount" data-base="1" data-unit="medium" data-metric="1 medium" data-us="1 medium" data-noscale="false">1 medium</span><span>saucepan <span class="ing-note">— for keeping broth warm</span></span></li>
-      <li><span class="ing-amount" data-base="1" data-unit="large" data-metric="1 large" data-us="1 large" data-noscale="false">1 large</span><span>skillet or frying pan <span class="ing-note">— for the scallops</span></span></li>
-      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="—" data-us="—" data-noscale="true">—</span><span>ladle, wooden spoon, paper towels, box grater or microplane</span></li>
+    <div class="ing-group"><div class="ing-group-title">The Toppings (The Actual Point)</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="8" data-unit="slices" data-metric="8 slices" data-us="8 slices" data-noscale="false">8 slices</span><span>bacon, cooked until crispy and roughly chopped <span class="ing-note">— cook it yourself, let it drain on paper towels; pre-cooked bacon is fine in a pinch</span></span></li>
+      <li><span class="ing-amount" data-base="150" data-unit="g" data-metric="150g" data-us="1½ cups" data-noscale="false">150g</span><span>sharp cheddar, freshly shredded <span class="ing-note">— sharp or extra-sharp; pre-shredded works but has less melt and flavour than block</span></span></li>
+      <li><span class="ing-amount" data-base="4" data-unit="" data-metric="4" data-us="4" data-noscale="false">4</span><span>green onions, thinly sliced <span class="ing-note">— both the white and green parts; more reserved for finishing</span></span></li>
     </ul></div>
   </div>
 
-  <div class="section"><div class="section-title"><span class="num">02</span> Let's Cook (No Skipping Steps, frl)</div>
+  <div class="section"><div class="section-title"><span class="num">03</span> Bake &amp; Break Down the Potatoes</div>
     <div class="step"><div class="step-num">1</div><div class="step-content">
-      <h3>Thaw &amp; Prep the Scallops</h3>
-      <p>If you didn't thaw the scallops overnight in the fridge, place them in a zip-lock bag and run <strong>cold water</strong> over them for 20–30 minutes. Never use warm water — that's cooked fish before you even start. Once thawed, dump them onto a plate lined with <strong>two layers of paper towels</strong>, press gently, and let sit for <strong>10–15 minutes</strong>. The drier they are, the better they'll cook. Pat them again right before they hit the pan.</p>
-      <div class="genz">Wet scallops = sad, gray, steamed scallops. Dry scallops = golden, caramelized, absolutely sending. We want sending.</div>
+      <h3>Bake at 200°C / 400°F — 1 Hour</h3>
+      <p>Preheat the oven to <strong>200°C / 400°F</strong>. Place the whole, unpeeled Russets directly on a baking sheet. Using a fork, prick each potato all over — about 8–10 times per potato, all sides. This lets steam escape so the skin crisps instead of bursting. <strong>Do not wrap them in foil.</strong> Foil traps steam and steams the potato rather than baking it — the flesh comes out wet and dense. You want dry and fluffy. Bake for <strong>1 hour</strong>, until a fork pierces through to the centre with no resistance.</p>
+      <div class="tip">Rubbing the outside of each potato with a thin layer of neutral oil and a pinch of coarse salt before baking gives you cracklier, more flavourful skin. The skin gets discarded anyway, but the salted crust helps season the outermost layer of flesh.</div>
     </div></div>
 
     <div class="step"><div class="step-num">2</div><div class="step-content">
-      <h3>Warm the Broth</h3>
-      <p>Pour <span class="qty-inline" data-base="1200" data-unit="ml" data-metric="1200ml" data-us="5 cups" data-noscale="false">1200ml</span> broth into the medium saucepan and set it over <strong>low heat</strong>. You want it warm — not boiling, not cold, just quietly steaming. Keep it on the back burner the entire time you're making the risotto. Adding cold broth to risotto shocks the rice, messes with the starch release, and makes the whole texture go off. Warm broth = smooth, creamy risotto. This is not a drill.</p>
-      <div class="tip">Keep a ladle right in the broth pot so you're not fumbling for it every 2 minutes. Future you says thanks.</div>
+      <h3>Cool Slightly — Then Peel and Chop</h3>
+      <p>Remove from the oven and let the potatoes cool for <strong>15–20 minutes</strong> — until you can handle them without burning yourself, but still quite warm. Don't wait for them to go fully cold. <strong>Peel the skin off while they're warm</strong> — it comes away in large pieces easily. Chop the peeled potatoes into rough 2.5cm / 1-inch chunks and transfer to a large bowl. It's fine — expected, even — if some pieces crumble. Add every piece to the bowl. The irregular edges give the salad better texture than uniform cubes.</p>
+      <div class="genz">Warm baked potato peeling is a deeply satisfying task. The skin practically asks to leave. You do not need a peeler. Your hands are the tool. This is correct and ancient and you are doing great.</div>
     </div></div>
 
     <div class="step"><div class="step-num">3</div><div class="step-content">
-      <h3>Build the Flavour Base (The Soffritto Era)</h3>
-      <p>In your large, heavy pot, heat <strong><span class="qty-inline" data-base="15" data-unit="g" data-metric="15g" data-us="0.5 oz" data-noscale="false">15g</span> butter and <span class="qty-inline" data-base="15" data-unit="ml" data-metric="15ml" data-us="1 tbsp" data-noscale="false">15ml</span> olive oil</strong> over <strong>medium heat</strong>. Once the butter melts and stops foaming, add your finely diced shallots. Cook for <strong>4–5 minutes</strong> until soft, translucent, and fragrant — you're not browning them, you're softening them. Low and slow is the main character energy here.</p>
-      <p style="margin-top:10px;">Once the shallots are soft, add the <strong>minced garlic</strong> and red pepper flakes if using. Stir constantly for about <strong>60 seconds</strong>. Garlic burns fast — literally in under a minute on high heat — and burnt garlic tastes bitter and will ghost your entire dish's flavour.</p>
-      <div class="genz">The smell at this point? Absolutely bussin. Your whole house is about to smell incredible. That's the flex.</div>
-    </div></div>
-
-    <div class="step"><div class="step-num">4</div><div class="step-content">
-      <h3>Toast the Rice (Yes, You Toast It)</h3>
-      <p>Add <span class="qty-inline" data-base="280" data-unit="g" data-metric="280g" data-us="9.9 oz" data-noscale="false">280g</span> Arborio rice directly into the pot. Stir around so every grain gets coated in the butter and oil. Keep stirring over <strong>medium heat</strong> for <strong>2 minutes</strong>. The rice will go from chalky white to slightly translucent at the edges — that's the toast. Toasting the rice builds a little armour around each grain so it cooks evenly and stays al dente instead of turning to mush. This step is non-negotiable.</p>
-    </div></div>
-
-    <div class="step"><div class="step-num">5</div><div class="step-content">
-      <h3>Deglaze with Wine (The Fancy Part)</h3>
-      <p>Pour in <span class="qty-inline" data-base="180" data-unit="ml" data-metric="180ml" data-us="¾ cup" data-noscale="false">180ml</span> white wine all at once. It will sizzle loudly — that's normal and also extremely dramatic, just how we like it. Stir constantly until the wine is almost completely absorbed by the rice, about <strong>2–3 minutes</strong>. The wine adds acidity and depth that makes the finished dish taste complex and restaurant-worthy.</p>
-      <div class="genz">That sizzle sound is the rice saying "I'm that girl." Respect it.</div>
-    </div></div>
-
-    <div class="step"><div class="step-num">6</div><div class="step-content">
-      <h3>The Stirring Arc (This Is the Main Quest)</h3>
-      <p>Now begins the most important part: adding broth, one ladle at a time. Add <strong>one ladle of warm broth</strong> (about 120ml) to the rice and stir. Keep stirring — not frantic, just consistent — until the broth is almost completely absorbed. Then add <strong>another ladle</strong> and repeat. This process takes <strong>20–25 minutes total</strong>.</p>
-      <p style="margin-top:10px;">You don't have to stir like a maniac every second, but stir often — every 20–30 seconds at minimum. This friction releases the starch from the Arborio rice, which is what makes risotto creamy without any actual cream. <strong>Science is undefeated.</strong></p>
-      <div class="tip">Taste the rice around the 18-minute mark. It should be just barely firm in the very centre — called al dente. If it's crunchy, keep going. If it's mushy, you went too far.</div>
-      <div class="genz">Risotto is literally a relationship. It needs your time, your presence, and consistent effort. You can't just dump it and dip. Stay in your lane and stir.</div>
-    </div></div>
-
-    <div class="step"><div class="step-num">7</div><div class="step-content">
-      <h3>The Mantecatura (The Big Finish)</h3>
-      <p>When the rice is al dente and the mixture looks creamy and thick, <strong>remove the pot from the heat</strong>. Immediately add the remaining <strong><span class="qty-inline" data-base="30" data-unit="g" data-metric="30g" data-us="1.1 oz" data-noscale="false">30g</span> cold butter</strong>, all <span class="qty-inline" data-base="100" data-unit="g" data-metric="100g" data-us="3.5 oz" data-noscale="false">100g</span> Parmesan, <span class="qty-inline" data-base="30" data-unit="ml" data-metric="30ml" data-us="2 tbsp" data-noscale="false">30ml</span> lemon juice, and the lemon zest. Stir vigorously for <strong>1–2 minutes</strong>. The cold butter emulsifies into the rice and creates that glossy, silky, luxurious texture. Season generously with salt and pepper.</p>
-      <div class="genz">This moment? It's the character development. Everything before this was the origin story. Now we're in the glow-up era.</div>
-    </div></div>
-
-    <div class="step"><div class="step-num">8</div><div class="step-content">
-      <h3>Sear the Scallops (The Grand Finale)</h3>
-      <p>Heat your large skillet over <strong>medium-high heat</strong> until very hot — give it 2 full minutes to preheat. Add <span class="qty-inline" data-base="15" data-unit="ml" data-metric="15ml" data-us="1 tbsp" data-noscale="false">15ml</span> olive oil. Right before the oil starts to smoke, add the pat-dry scallops in a single layer. Do NOT crowd them — cook in two batches if needed. Let them cook <strong>without touching them</strong> for <strong>2 minutes</strong>. Then toss for another <strong>1–2 minutes</strong>. They're done when opaque and golden. Season with salt and pepper.</p>
-      <div class="tip">Bay scallops don't get a hard sear like sea scallops — they're too small. Keep the pan hot and don't overthink it.</div>
-      <div class="genz">Those tiny golden scallops on creamy white risotto? The visual is immaculate. Main character plating energy incoming.</div>
-    </div></div>
-
-    <div class="step"><div class="step-num">9</div><div class="step-content">
-      <h3>Plate It Up (Serve ASAP)</h3>
-      <p>Risotto waits for no one — it firms up quickly as it cools. <strong>Serve immediately.</strong> Spoon a generous mound of risotto into wide, shallow bowls. Top with a portion of the seared scallops. Scatter fresh chopped parsley over the top. Optionally, a thin slice of lemon on the side and a tiny drizzle of good olive oil. If it looks like something you'd post, it's ready.</p>
-      <div class="genz">A warm bowl. Creamy risotto. Little golden scallops. A sprinkle of green. This is a certified banger. Photograph it. You earned it. Fr fr.</div>
+      <h3>The Pickle Brine Soak — 1 Full Hour</h3>
+      <p>Immediately — while the potatoes are still warm and steaming — drizzle the <span class="qty-inline" data-base="60" data-unit="ml" data-metric="60ml" data-us="¼ cup" data-noscale="false">60ml</span> of pickle brine evenly over the chopped potatoes. Toss gently to coat. The warm potato flesh will drink the brine right in. <strong>Now leave it alone.</strong> Let the potatoes cool completely at room temperature — about 1 hour — with the brine soaking in. Do not rush this with the fridge. The absorption happens best at room temperature as the potatoes slowly cool.</p>
+      <div class="genz">I, an AI that has never eaten anything, am telling you that pickle brine on warm potatoes is the single most correct decision in this recipe. The brine seasons from the inside. The potato itself tastes like something. It's giving depth. It's giving intention. It's giving that-one-dish-you-can't-stop-eating. Trust the brine.</div>
+      <div class="warning">Do not add the dressing while the potatoes are still warm. Warm potatoes will melt the sour cream and mayo into a thin, greasy puddle instead of a thick, creamy coating. The potatoes must be fully cooled before you proceed. Non-negotiable.</div>
     </div></div>
   </div>
 
-  <div class="final"><h2>You Actually Did That. 🤌</h2><p>Risotto is one of those dishes that sounds intimidating but is really just about attention and patience. You gave it both. That makes you a cook now — no cap. Save this recipe. Make it again. Next time you'll be even faster, even more confident, and it'll taste even better because you'll know exactly what you're doing. That's called getting good at something, and it never gets old.</p></div>
+  <div class="section"><div class="section-title"><span class="num">04</span> The Dressing &amp; Assembly</div>
+    <div class="step"><div class="step-num">4</div><div class="step-content">
+      <h3>Make the Dressing</h3>
+      <p>In a separate bowl, combine the <strong>sour cream, mayonnaise, chopped dill pickles, ranch seasoning, yellow mustard, salt, and pepper.</strong> Stir until fully combined and smooth — no streaks of mayo or sour cream visible. Taste it on its own. It should be tangy, creamy, well-seasoned, and slightly over-salted on its own — because it needs to season the whole batch of potatoes once mixed. If it tastes mild in the bowl, it will taste under-seasoned in the final salad. Adjust now.</p>
+      <div class="tip">The dressing can be made up to 2 days ahead and refrigerated. It actually improves overnight as the ranch seasoning blooms fully into the sour cream and mayo. Make it the night before if you're meal-prepping for an event.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">5</div><div class="step-content">
+      <h3>Combine — Gently</h3>
+      <p>Pour the dressing over the fully cooled, brine-soaked potatoes. Add <strong>three-quarters of the chopped bacon</strong> (reserve the rest for the top), all the shredded cheddar, and most of the sliced green onions. Using a large spatula or two big spoons, <strong>fold everything together gently</strong> — you want the potato pieces to stay mostly intact, not mashed into the dressing. Some crumbling is fine and gives body to the salad. Aim for fully coated chunks, not a smooth paste.</p>
+      <div class="genz">The moment the dressing hits the potatoes and turns everything this glossy, creamy, loaded situation is genuinely a serotonin event. You can see it coming together. You understand what this is about to become. The cookout does not know what's coming.</div>
+    </div></div>
+
+    <div class="step"><div class="step-num">6</div><div class="step-content">
+      <h3>Chill — Then Finish</h3>
+      <p>Cover the bowl and refrigerate for at least <strong>1 hour</strong> before serving — longer is better. Right before serving, give the salad one more gentle fold (the dressing settles as it chills), then scatter the <strong>reserved bacon</strong> and remaining green onions across the top. The surface bacon stays crispy since it hasn't been folded through; the bacon inside has softened slightly into the salad. Both textures are correct. Both textures are the point.</p>
+    </div></div>
+
+    <div class="serve-grid">
+      <div class="serve-item"><div class="serve-title">The Cookout Move</div><div class="serve-text">This is the side dish for brisket, ribs, grilled chicken, or burgers. It holds up in the heat because there's no mayo-only dressing situation — the sour cream keeps it stable longer than a traditional potato salad.</div></div>
+      <div class="serve-item"><div class="serve-title">Load It Further</div><div class="serve-text">A dollop of sour cream and an extra pinch of cheddar on top right before serving makes this look like a restaurant plating. Optional chive oil drizzle if you're feeling extra. You're allowed to be extra about potato salad.</div></div>
+      <div class="serve-item"><div class="serve-title">Make It Ahead</div><div class="serve-text">This is genuinely better the next day. Make it the night before any event and refrigerate overnight. Hold the surface bacon and fresh green onions — add those right before serving so they stay crispy and bright.</div></div>
+      <div class="serve-item"><div class="serve-title">Storage</div><div class="serve-text">Keeps refrigerated for 4 days. Do not freeze — the sour cream separates and the potato texture deteriorates. Stir before serving from the fridge; the dressing settles to the bottom as it sits.</div></div>
+    </div>
+  </div>
+
+  <div class="final"><h2>The Side Dish That Steals the Show. 🥔</h2><p>You baked instead of boiled, and now your potatoes are fluffy instead of waterlogged. You hit them with pickle brine while they were still warm, and now they taste seasoned all the way through instead of just on the surface. You made a tangy ranch dressing, folded in crispy bacon and sharp cheddar, and let the whole thing get cold and cozy in the fridge. You brought this to the cookout. You made the thing that everyone asked about. Someone is going to take a picture of this bowl. It might be you. <strong>No cap, this potato salad is built different. Fr fr.</strong></p></div>
   <div class="bottom-nav">
     <a href="index.html">← Back to All Recipes</a>
     <span class="site-name">Bytes &amp; Bites</span>
@@ -275,7 +266,10 @@ function setScale(s,btn){
   document.querySelectorAll('.scale-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   const sd=document.getElementById('servingDisplay');
-  if(sd) sd.textContent=Math.round(4*s);
+  if(sd){
+    const lo=Math.round(8*s), hi=Math.round(10*s);
+    sd.textContent=lo===hi?lo:lo+'–'+hi;
+  }
   updateAllQty();
   buildShoppingList();
 }
@@ -289,124 +283,94 @@ function setUnit(u,btn){
   buildShoppingList();
 }
 
-function scaleValue(base, scale){
-  const v = base * scale;
+function scaleValue(base,scale){
+  const v=base*scale;
   if(Number.isInteger(v)) return v;
-  const r = Math.round(v * 10) / 10;
-  return r;
+  return Math.round(v*10)/10;
 }
 
 function fmtCount(v){
-  // Format a scaled count value with nice fractions
   const fracs={0.25:'¼',0.33:'⅓',0.5:'½',0.67:'⅔',0.75:'¾',0.125:'⅛'};
-  const whole=Math.floor(v), frac=Math.round((v-whole)*12)/12;
+  const whole=Math.floor(v),frac=Math.round((v-whole)*12)/12;
   if(frac===0) return whole===0?'0':String(whole);
   const fkey=Object.keys(fracs).find(k=>Math.abs(parseFloat(k)-frac)<0.04);
   const fs=fkey?fracs[fkey]:Math.round(frac*10)/10;
   return whole>0?whole+fs:String(fs);
 }
 
-function getQtyText(el, scale, unit){
+function getQtyText(el,scale,unit){
   if(el.dataset.noscale==='true') return el.dataset.metric;
-  const base = parseFloat(el.dataset.base);
-  const s = scaleValue(base, scale);
-  const metricUnit = el.dataset.unit || '';
-  
-  // Handle ranges (e.g. 4-6 chillies -> 8-12 at 2x)
-  if(el.dataset.rangeHi){
-    const hi = parseFloat(el.dataset.rangeHi);
-    const sLo = Math.round(s), sHi = Math.round(hi * scale);
-    const unitStr = metricUnit ? ' '+metricUnit : '';
-    return sLo+'\u2013'+sHi+unitStr;
-  }
-  
-  // For count/label units (not g/ml/kg/l) - format as fractions, no unit conversion
-  const u = metricUnit.toLowerCase().trim();
-  const isMeasuredUnit = ['g','kg','ml','l','litre','litres','liter','liters','°c','c','celsius'].includes(u);
-  
+  const base=parseFloat(el.dataset.base);
+  const s=scaleValue(base,scale);
+  const metricUnit=el.dataset.unit||'';
+  const u=metricUnit.toLowerCase().trim();
+  const isMeasuredUnit=['g','kg','ml','l','litre','litres','liter','liters','°c','c','celsius'].includes(u);
   if(!isMeasuredUnit){
-    // Count or label unit - same in metric and US, use fraction formatting
-    const unitStr = metricUnit ? ' '+metricUnit : '';
+    const unitStr=metricUnit?' '+metricUnit:'';
     return fmtCount(s)+unitStr;
   }
-  
-  // Measured unit
-  const metricLabel = fmtCount(s)+metricUnit;
-  if(unit === 'metric') return metricLabel;
-  return computeUS(s, metricUnit, el.dataset.us, base);
+  const metricLabel=fmtCount(s)+metricUnit;
+  if(unit==='metric') return metricLabel;
+  return computeUS(s,metricUnit,el.dataset.us,base);
 }
 
-function computeUS(scaledVal, unit, us1x, base1x){
-  // us1x is the US label at scale 1x. Scale it proportionally.
-  const ratio = scaledVal / base1x;
-  // Parse the 1x US label and scale
-  const u = unit.toLowerCase().trim();
-  if(u === 'g'){
-    const oz = Math.round(scaledVal * 0.03527 * 10) / 10;
-    return oz >= 16 ? (Math.round(scaledVal/453.6*10)/10) + ' lb' : oz + ' oz';
+function computeUS(scaledVal,unit,us1x,base1x){
+  const u=unit.toLowerCase().trim();
+  if(u==='g'){
+    const oz=Math.round(scaledVal*0.03527*10)/10;
+    return oz>=16?(Math.round(scaledVal/453.6*10)/10)+' lb':oz+' oz';
   }
-  if(u === 'kg') return (Math.round(scaledVal * 2.205 * 10)/10) + ' lb';
-  if(u === 'ml'){
-    if(scaledVal >= 240){
-      const cups = scaledVal / 240;
-      const fracs = [[7/8,'⅞'],[3/4,'¾'],[2/3,'⅔'],[1/2,'½'],[1/3,'⅓'],[1/4,'¼'],[1/8,'⅛']];
-      const whole = Math.floor(cups);
-      const frac = cups - whole;
-      let fracStr = '';
-      if(frac > 0.05){
-        const best = fracs.reduce((a,b)=>Math.abs(b[0]-frac)<Math.abs(a[0]-frac)?b:a);
-        if(Math.abs(best[0]-frac)<0.08) fracStr=best[1];
-        else fracStr=Math.round(frac*10)/10;
-      }
-      const label = (whole>0?whole:'')+fracStr+' cup'+(cups>=1.9?'s':'');
-      return label.trim() || '1 cup';
+  if(u==='kg') return (Math.round(scaledVal*2.205*10)/10)+' lb';
+  if(u==='ml'){
+    if(scaledVal>=240){
+      const cups=scaledVal/240;
+      const fracs=[[7/8,'⅞'],[3/4,'¾'],[2/3,'⅔'],[1/2,'½'],[1/3,'⅓'],[1/4,'¼'],[1/8,'⅛']];
+      const whole=Math.floor(cups),frac=cups-whole;
+      let fracStr='';
+      if(frac>0.05){const best=fracs.reduce((a,b)=>Math.abs(b[0]-frac)<Math.abs(a[0]-frac)?b:a);if(Math.abs(best[0]-frac)<0.08)fracStr=best[1];else fracStr=Math.round(frac*10)/10;}
+      const label=(whole>0?whole:'')+fracStr+' cup'+(cups>=1.9?'s':'');
+      return label.trim()||'1 cup';
     }
-    if(scaledVal >= 14){
-      const t = Math.round(scaledVal/15*10)/10;
-      return t+' tbsp';
-    }
-    const t = Math.round(scaledVal/5*10)/10;
-    return t+' tsp';
+    if(scaledVal>=14){return Math.round(scaledVal/15*10)/10+' tbsp';}
+    return Math.round(scaledVal/5*10)/10+' tsp';
   }
-  if(u === 'l' || u === 'litre' || u === 'litres'){
-    return computeUS(scaledVal*1000,'ml',us1x,base1x*1000);
-  }
-  // Temp
-  if(u === '°c' || u === 'c'){
-    return Math.round(scaledVal*9/5+32)+'°F';
-  }
-  // Unchanged units (tbsp, tsp, cups, counts)
-  const baseScaled = scaledVal;
-  if(Number.isInteger(baseScaled)) return baseScaled + (unit?' '+unit:'');
-  return (Math.round(baseScaled*10)/10) + (unit?' '+unit:'');
+  if(u==='l'||u==='litre'||u==='litres') return computeUS(scaledVal*1000,'ml',us1x,base1x*1000);
+  if(u==='°c'||u==='c') return Math.round(scaledVal*9/5+32)+'°F';
+  if(Number.isInteger(scaledVal)) return scaledVal+(unit?' '+unit:'');
+  return (Math.round(scaledVal*10)/10)+(unit?' '+unit:'');
 }
 
 function updateAllQty(){
-  // Update ingredient amounts
   document.querySelectorAll('.ing-amount[data-base], .qty-inline[data-base]').forEach(el=>{
-    el.textContent = getQtyText(el, currentScale, currentUnit);
+    el.textContent=getQtyText(el,currentScale,currentUnit);
   });
 }
 
 // ── Shopping list ─────────────────────────────────────────────────────────────
-const SHOP_KEY='bb-shop-scallop-risotto';
-const SI=[{"name": "frozen bay scallops", "base": 680, "unit": "g", "metricLabel": "680g", "usLabel": "1.5 lb", "noScale": false}, {"name": "Arborio rice", "base": 280, "unit": "g", "metricLabel": "280g", "usLabel": "9.9 oz", "noScale": false}, {"name": "seafood or chicken broth", "base": 1200, "unit": "ml", "metricLabel": "1200ml", "usLabel": "5 cups", "noScale": false}, {"name": "dry white wine", "base": 180, "unit": "ml", "metricLabel": "180ml", "usLabel": "¾ cup", "noScale": false}, {"name": "shallots, large", "base": 0, "unit": "", "metricLabel": "3", "usLabel": "3", "noScale": true}, {"name": "garlic cloves", "base": 0, "unit": "", "metricLabel": "4", "usLabel": "4", "noScale": true}, {"name": "unsalted butter", "base": 45, "unit": "g", "metricLabel": "45g", "usLabel": "1.6 oz", "noScale": false}, {"name": "olive oil", "base": 30, "unit": "ml", "metricLabel": "30ml", "usLabel": "2 tbsp", "noScale": false}, {"name": "Parmesan", "base": 100, "unit": "g", "metricLabel": "100g", "usLabel": "3.5 oz", "noScale": false}, {"name": "fresh lemon juice", "base": 30, "unit": "ml", "metricLabel": "30ml", "usLabel": "2 tbsp", "noScale": false}, {"name": "lemon zest", "base": 0, "unit": "", "metricLabel": "1 tsp", "usLabel": "1 tsp", "noScale": true}, {"name": "fresh parsley", "base": 0, "unit": "", "metricLabel": "small handful", "usLabel": "small handful", "noScale": true}, {"name": "salt, pepper, red pepper flakes", "base": 0, "unit": "", "metricLabel": "to taste", "usLabel": "to taste", "noScale": true}];
+const SHOP_KEY='bb-shop-loaded-baked-potato-salad';
+const SI=[
+  {"name":"Russet potatoes","base":1.8,"unit":"kg","metricLabel":"1.8kg","usLabel":"4 lb","noScale":false},
+  {"name":"dill pickle brine","base":60,"unit":"ml","metricLabel":"60ml","usLabel":"¼ cup","noScale":false},
+  {"name":"sour cream","base":300,"unit":"ml","metricLabel":"300ml","usLabel":"1¼ cups","noScale":false},
+  {"name":"mayonnaise","base":120,"unit":"ml","metricLabel":"120ml","usLabel":"½ cup","noScale":false},
+  {"name":"dill pickles, finely chopped","base":0,"unit":"","metricLabel":"2 tbsp","usLabel":"2 tbsp","noScale":true},
+  {"name":"ranch seasoning (dry)","base":0,"unit":"","metricLabel":"1 tbsp","usLabel":"1 tbsp","noScale":true},
+  {"name":"yellow mustard","base":0,"unit":"","metricLabel":"2 tsp","usLabel":"2 tsp","noScale":true},
+  {"name":"kosher salt","base":0,"unit":"","metricLabel":"1 tsp","usLabel":"1 tsp","noScale":true},
+  {"name":"black pepper","base":0,"unit":"","metricLabel":"1 tsp","usLabel":"1 tsp","noScale":true},
+  {"name":"bacon (8 slices)","base":0,"unit":"","metricLabel":"8 slices","usLabel":"8 slices","noScale":true},
+  {"name":"sharp cheddar, block","base":150,"unit":"g","metricLabel":"150g","usLabel":"1½ cups shredded","noScale":false},
+  {"name":"green onions","base":0,"unit":"","metricLabel":"4","usLabel":"4","noScale":true}
+];
 
 function shopQtyLabel(item){
   if(item.noScale) return item.metricLabel;
-  const scaled = item.base * currentScale;
-  const u = (item.unit||'').toLowerCase().trim();
-  const isMeasured = ['g','kg','ml','l','litre','litres','liter','liters'].includes(u);
-  if(!isMeasured){
-    // Count/label - fraction-format, same in both systems
-    const unitStr = item.unit ? ' '+item.unit : '';
-    return fmtCount(scaled)+unitStr;
-  }
-  if(currentUnit === 'metric'){
-    const v = Number.isInteger(scaled)?scaled:Math.round(scaled*10)/10;
-    return v+(item.unit||'');
-  }
-  return computeUS(scaled, item.unit||'', item.usLabel||'', item.base);
+  const scaled=item.base*currentScale;
+  const u=(item.unit||'').toLowerCase().trim();
+  const isMeasured=['g','kg','ml','l','litre','litres','liter','liters'].includes(u);
+  if(!isMeasured){const unitStr=item.unit?' '+item.unit:'';return fmtCount(scaled)+unitStr;}
+  if(currentUnit==='metric'){const v=Number.isInteger(scaled)?scaled:Math.round(scaled*10)/10;return v+(item.unit||'');}
+  return computeUS(scaled,item.unit||'',item.usLabel||'',item.base);
 }
 
 function buildShoppingList(){
@@ -450,13 +414,13 @@ function toggleShopping(){
 function printShoppingList(){
   const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
   const remaining=SI.filter((_,i)=>!checked[i]);
-  if(remaining.length===0){alert('You have everything! Go cook! 🎉');return;}
+  if(remaining.length===0){alert('You have everything! The cookout is about to be different. 🥔');return;}
   const win=window.open('','_blank');
-  win.document.write(`<html><head><title>Shopping List — Scallop Risotto</title><style>body{font-family:Georgia,serif;max-width:400px;margin:40px auto}h1{font-size:22px}p{font-size:12px;color:#888;margin-bottom:24px}ul{list-style:none;padding:0}li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #eee;font-size:15px}li::before{content:'☐';color:#ccc}.qty{font-family:monospace;font-size:12px;color:#c9963a;min-width:80px}</style></head><body><h1>Scallop Risotto</h1><p>${remaining.length} items needed</p><ul>${remaining.map(item=>`<li><span class="qty">${shopQtyLabel(item)}</span>${item.name}</li>`).join('')}</ul></body></html>`);
+  win.document.write(`<html><head><title>Shopping List — Loaded Baked Potato Salad</title><style>body{font-family:Georgia,serif;max-width:400px;margin:40px auto}h1{font-size:22px}p{font-size:12px;color:#888;margin-bottom:24px}ul{list-style:none;padding:0}li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #eee;font-size:15px}li::before{content:'☐';color:#ccc}.qty{font-family:monospace;font-size:12px;color:#c9963a;min-width:80px}</style></head><body><h1>Loaded Baked Potato Salad</h1><p>${remaining.length} items needed</p><ul>${remaining.map(item=>`<li><span class="qty">${shopQtyLabel(item)}</span>${item.name}</li>`).join('')}</ul></body></html>`);
   win.document.close();win.print();
 }
 
-// ── Share ───────────────────────────────────────────────────────────────────
+// ── Share ─────────────────────────────────────────────────────────────────────
 function shareRecipe(){
   const url = window.location.href;
   const title = document.title;
@@ -472,12 +436,11 @@ function shareRecipe(){
   }
 }
 
-// Init
 (function(){
-  const savedUnit = localStorage.getItem('bb-unit')||'metric';
-  currentUnit = savedUnit;
-  const btn = document.getElementById('unit-'+savedUnit);
-  if(btn){ btn.classList.add('active'); }
+  const savedUnit=localStorage.getItem('bb-unit')||'metric';
+  currentUnit=savedUnit;
+  const btn=document.getElementById('unit-'+savedUnit);
+  if(btn) btn.classList.add('active');
   buildShoppingList();
 })();
 
