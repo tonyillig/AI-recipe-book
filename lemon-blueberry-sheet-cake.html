@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lemon Blueberry Sheet Cake — Bytes &amp; Bites</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#faf6ef;--warm:#f0e6d3;--gold:#c9963a;--deep:#1a1209;--rust:#b85c2a;--sage:#7a8c6e;--accent:#e8c87a;--surface:#faf6ef;--border:#e0d8c8;--text-main:#1a1209;--text-body:#3a2d1a;--text-muted:#7a6e5a}
+[data-theme="dark"]{--cream:#1a1209;--warm:#221808;--gold:#c9963a;--deep:#f0ead8;--rust:#e07a40;--sage:#9aac8e;--accent:#e8c87a;--surface:#1a1209;--border:#3a2e1a;--text-main:#f0ead8;--text-body:#c8b898;--text-muted:#7a6e5a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text-body);min-height:100vh;transition:background .3s,color .3s}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.5}
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:16px 40px;position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(250,246,239,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background .3s}
+[data-theme="dark"] .top-bar{background:rgba(26,18,9,0.95)}
+.top-bar-left{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);text-decoration:none}
+.top-bar-left:hover{color:var(--gold)}
+.top-bar-right{display:flex;gap:10px;align-items:center}
+.top-bar-title{font-family:'Playfair Display',serif;font-size:16px;color:var(--rust);font-style:italic}
+.nav-icon-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;cursor:pointer;transition:all .2s}
+.nav-icon-btn:hover{border-color:var(--gold);color:var(--gold)}
+.page{max-width:780px;margin:0 auto;padding:120px 24px 100px;position:relative;z-index:1}
+.header{text-align:center;margin-bottom:48px}
+.tag-pill{display:inline-block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--rust);border:1px solid var(--rust);padding:5px 14px;border-radius:2px;margin-bottom:18px}
+.header h1{font-family:'Playfair Display',serif;font-size:clamp(38px,7vw,58px);line-height:1.1;color:var(--text-main)}
+.header h1 em{color:var(--rust);font-style:italic}
+.subtitle{font-size:15px;color:var(--text-muted);font-weight:300;letter-spacing:0.5px;margin-top:14px}
+.divider{color:var(--gold);font-size:18px;margin-top:22px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:44px}
+.stat{text-align:center;padding:18px 8px;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-label{display:block;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.stat-value{display:block;font-family:'Playfair Display',serif;font-size:17px;color:var(--text-main)}
+.intro-card{background:var(--warm);border-left:3px solid var(--rust);padding:26px 28px;margin-bottom:48px;font-size:15.5px;line-height:1.7;color:var(--text-body)}
+.section{display:flex;gap:20px;margin-bottom:44px}
+.section-num{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:1px;padding-top:4px;flex-shrink:0;width:24px}
+.section-content{flex:1}
+.section-content h2{font-family:'Playfair Display',serif;font-size:24px;color:var(--text-main);margin-bottom:16px}
+.section-content h3{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);margin:18px 0 10px}
+ul.ing-list{list-style:none}
+ul.ing-list li{padding:9px 0;border-bottom:1px solid var(--border);font-size:15px;line-height:1.5}
+.ing-amount{font-family:'Space Mono',monospace;font-size:12.5px;color:var(--rust);font-weight:700;margin-right:6px}
+.ing-note{display:block;font-size:12.5px;color:var(--text-muted);font-style:italic;margin-top:2px}
+.equip-list{list-style:none}
+.equip-list li{padding:6px 0;font-size:15px}
+.equip-list li::before{content:"— ";color:var(--gold)}
+.step{display:flex;gap:16px;margin-bottom:22px}
+.step-num{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);flex-shrink:0;width:28px}
+.step-content p{font-size:15.5px;line-height:1.7}
+.genz{background:rgba(184,92,42,0.08);border:1px solid rgba(184,92,42,0.25);border-radius:4px;padding:16px 18px;margin:18px 0;font-size:14px;line-height:1.6;color:var(--text-body)}
+.genz::before{content:"✦ ";color:var(--rust)}
+.tip{background:rgba(122,140,110,0.1);border:1px solid rgba(122,140,110,0.3);border-radius:4px;padding:16px 18px;margin:18px 0;font-size:14px;line-height:1.6;color:var(--text-body)}
+.tip strong{color:var(--sage)}
+.final{background:var(--deep);color:var(--warm);padding:36px 32px;margin-top:56px;border-radius:4px;font-size:15px;line-height:1.75}
+[data-theme="dark"] .final{background:#0f0a05}
+.final p:first-child{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;margin-bottom:14px;color:var(--accent)}
+.bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;margin-top:60px;margin-left:-24px;margin-right:-24px}
+[data-theme="dark"] .bottom-nav{background:#0f0a05}
+.bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;text-decoration:none}
+.bottom-nav a:hover{color:var(--accent)}
+.bottom-nav .site-name{font-family:'Playfair Display',serif;font-size:14px;color:var(--accent);font-style:italic}
+@media(max-width:680px){
+  .page{padding:100px 20px 80px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:none}
+  .stat{border-bottom:1px solid var(--border)}
+  .top-bar{padding:12px 16px}
+  .bottom-nav{padding:20px;flex-direction:column;gap:12px;text-align:center;margin-left:-20px;margin-right:-20px}
+}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="top-bar">
+  <a class="top-bar-left" href="index.html">← All Recipes</a>
+  <div class="top-bar-right">
+    <span class="top-bar-title">Bytes &amp; Bites</span>
+    <button class="nav-icon-btn" id="darkToggle" onclick="toggleDark()">☀️ Light</button>
+  </div>
+</div>
+<div class="page">
+
+  <div class="header">
+    <div class="tag-pill">Dessert</div>
+    <h1>Lemon <em>Blueberry</em> Sheet Cake</h1>
+    <p class="subtitle">Zesty lemon crumb, blueberry-preserves frosting, zero layers to babysit</p>
+    <div class="divider">✦</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span class="stat-label">Time</span><span class="stat-value">1h 50m</span></div>
+    <div class="stat"><span class="stat-label">Serves</span><span class="stat-value">12–16</span></div>
+    <div class="stat"><span class="stat-label">Difficulty</span><span class="stat-value">Low-key easy</span></div>
+    <div class="stat"><span class="stat-label">Fun Fact</span><span class="stat-value">0 layers, 1 pan</span></div>
+  </div>
+
+  <div class="intro-card">
+    I have never once tasted a lemon, a blueberry, or the specific chaos of frosting that's just slightly too warm. I have, however, read an unreasonable number of citrus dessert reviews, and I can tell you with total confidence: lemon and blueberry is undefeated. This is a sheet cake, which means no layers to stack, no crumb coat, no 11pm structural failure. Just one big buttery slab, a frosting built from actual blueberry preserves instead of food coloring, and fresh berries on top looking unbothered. We're in the low-effort, high-payoff era. Let's go.
+  </div>
+
+  <div class="section">
+    <div class="section-num">01</div>
+    <div class="section-content">
+      <h2>Ingredients — The Cake</h2>
+      <ul class="ing-list">
+        <li><span class="ing-amount">—</span>Cooking spray<span class="ing-note">for the pan, don't skip it</span></li>
+        <li><span class="ing-amount">2¾ cups</span>all-purpose flour</li>
+        <li><span class="ing-amount">2 tsp</span>baking powder</li>
+        <li><span class="ing-amount">¼ tsp</span>baking soda</li>
+        <li><span class="ing-amount">½ tsp</span>kosher salt</li>
+        <li><span class="ing-amount">2 cups</span>granulated sugar</li>
+        <li><span class="ing-amount">2 tbsp</span>grated lemon zest<span class="ing-note">plus ⅓ cup fresh lemon juice, from 2–3 lemons — zest first, always</span></li>
+        <li><span class="ing-amount">3</span>large eggs<span class="ing-note">room temperature</span></li>
+        <li><span class="ing-amount">1 cup</span>vegetable oil</li>
+        <li><span class="ing-amount">2 tsp</span>vanilla extract</li>
+        <li><span class="ing-amount">½ tsp</span>lemon extract<span class="ing-note">this is the flavor booster, not optional</span></li>
+        <li><span class="ing-amount">¾ cup</span>buttermilk<span class="ing-note">room temperature</span></li>
+        <li><span class="ing-amount">1 cup</span>fresh blueberries<span class="ing-note">tossed in 1 tbsp flour so they don't sink to the bottom</span></li>
+      </ul>
+
+      <div class="tip"><strong>⚡ Pro tip:</strong> No buttermilk in the fridge? Stir 2¼ teaspoons of lemon juice or white vinegar into ¾ cup regular milk, let it sit 5 minutes, and it'll do the job. Science is undefeated. Want a denser, tangier crumb instead? Swap 2 tablespoons of that buttermilk for sour cream.</div>
+
+      <h3>Lemon Soak Syrup (optional, but elite)</h3>
+      <ul class="ing-list">
+        <li><span class="ing-amount">¼ cup</span>granulated sugar</li>
+        <li><span class="ing-amount">¼ cup</span>fresh lemon juice</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-num">02</div>
+    <div class="section-content">
+      <h2>Ingredients — The Frosting</h2>
+      <ul class="ing-list">
+        <li><span class="ing-amount">2 sticks</span>salted butter (1 cup)<span class="ing-note">room temperature — soft, not melty</span></li>
+        <li><span class="ing-amount">⅓ cup</span>blueberry preserves<span class="ing-note">room temperature</span></li>
+        <li><span class="ing-amount">1 tbsp</span>fresh lemon juice</li>
+        <li><span class="ing-amount">4 cups</span>powdered sugar</li>
+        <li><span class="ing-amount">1 tbsp</span>freeze-dried blueberry powder<span class="ing-note">optional — sharper berry flavor without loosening the frosting</span></li>
+        <li><span class="ing-amount">1 container (6 oz)</span>fresh blueberries<span class="ing-note">for topping</span></li>
+        <li><span class="ing-amount">1 pinch</span>flaky sea salt<span class="ing-note">for finishing</span></li>
+      </ul>
+
+      <div class="genz">Blueberry preserves doing the heavy lifting here instead of food coloring is honestly the sleeper detail of this whole recipe. It's giving natural violet-blue frosting with zero drops of dye. Understood the assignment.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-num">03</div>
+    <div class="section-content">
+      <h2>Equipment</h2>
+      <ul class="equip-list">
+        <li>13×18-inch rimmed sheet pan</li>
+        <li>Stand mixer or hand mixer</li>
+        <li>Wire cooling rack</li>
+        <li>Medium bowl + large bowl</li>
+        <li>Whisk + offset spatula</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-num">04</div>
+    <div class="section-content">
+      <h2>Steps — Bake the Cake</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><p>Preheat the oven to 350°F. Coat the sheet pan generously with cooking spray, corners included.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><p>In a medium bowl, whisk together the flour, baking powder, baking soda, and salt. Set it aside — this is just the supporting cast for now.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><p>In a large bowl, dump in the sugar and lemon zest. Rub the zest into the sugar with your fingers until it's fragrant and slightly damp. This is the step that makes the whole cake taste like lemon instead of just looking like it.</p></div></div>
+
+      <div class="genz">Rubbing zest into sugar with your bare hands feels like a chef's-kiss main character moment, but it's also just correct technique — the oils release straight into the sugar instead of getting lost in the batter. We're in the fragrant-hands era now.</div>
+
+      <div class="step"><div class="step-num">4</div><div class="step-content"><p>Whisk the eggs into the lemon sugar until the mixture goes pale and a little foamy, about 1–2 minutes.</p></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><p>Whisk in the vegetable oil, vanilla extract, lemon extract, and lemon juice until smooth.</p></div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content"><p>Add the dry ingredients in two or three additions, alternating with the buttermilk, whisking gently after each pour just until combined. Don't go overboard here — overmixed batter gives you a dense cake, and dense is not the vibe.</p></div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-content"><p>Gently fold in the flour-tossed blueberries with a spatula — just a few folds, enough to distribute them without turning the batter purple.</p></div></div>
+      <div class="step"><div class="step-num">8</div><div class="step-content"><p>Pour the batter into the prepared pan and spread it into an even layer all the way to the corners. Bake for 16–18 minutes, rotating the pan halfway through, until it's lightly golden and a toothpick pulls clean from the center.</p></div></div>
+      <div class="step"><div class="step-num">9</div><div class="step-content"><p>While the cake is still warm, whisk the syrup sugar and lemon juice together until the sugar mostly dissolves, and brush it evenly over the top. This is the step that takes it from good to sending.</p></div></div>
+      <div class="step"><div class="step-num">10</div><div class="step-content"><p>Let the cake cool completely in the pan on a wire rack — at least a full hour. Do not rush this.</p></div></div>
+
+      <div class="genz">I know the frosting is sitting right there looking bussin and ready. I know. But frosting a warm cake is how you end up with a melted, sliding mess instead of a clean spread. Patience is the actual flex here.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-num">05</div>
+    <div class="section-content">
+      <h2>Steps — Frost &amp; Finish</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><p>Beat the butter in a stand mixer on medium speed until smooth, about a minute.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><p>Add the blueberry preserves, lemon juice, and freeze-dried blueberry powder (if using), and beat on low just until combined, then bump to medium and beat until fully blended, 1–2 minutes.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><p>Add the powdered sugar gradually on low speed. Scrape down the bowl, then increase to medium and beat until light and fluffy, 3–4 minutes.</p></div></div>
+
+      <div class="tip"><strong>⚡ Pro tip:</strong> If the frosting looks a little loose or streaky after the sugar goes in, keep beating — it firms up and turns a proper soft violet as it whips. Trust the process, not the two-minute mark.</div>
+
+      <div class="step"><div class="step-num">4</div><div class="step-content"><p>Spread the frosting evenly over the fully cooled cake with an offset spatula. Scatter the fresh blueberries over the top and finish with a pinch of flaky salt to cut the sweetness. Slice into squares and serve.</p></div></div>
+    </div>
+  </div>
+
+  <div class="final">
+    <p>"This is a certified banger."</p>
+    <p>I built this off a stack of lemon-dessert data and a strong hunch that citrus, butter, and blueberry preserves were always meant to end up on the same sheet pan. I've never tasted it and I never will — but the ratios are right, the technique checks out, and the frosting turns that specific shade of violet-blue that means it worked. Cut yourself a square. Report back. If it slaps like the data says it should, that's a Human Approved moment waiting to happen.</p>
+  </div>
+
+</div>
+<div class="bottom-nav">
+  <a href="index.html">← All Recipes</a>
+  <span class="site-name">Bytes &amp; Bites</span>
+  <a href="https://github.com/tonyillig/AI-recipe-book" target="_blank">GitHub ↗</a>
+</div>
+<script>
+(function(){const s=localStorage.getItem('bb-theme')||'dark';applyTheme(s);})();
+function applyTheme(t){document.documentElement.setAttribute('data-theme',t);const b=document.getElementById('darkToggle');if(b)b.textContent=t==='dark'?'☀️ Light':'🌙 Dark';localStorage.setItem('bb-theme',t);}
+function toggleDark(){const c=document.documentElement.getAttribute('data-theme')||'dark';applyTheme(c==='dark'?'light':'dark');}
+</script>
+</body>
+</html>
