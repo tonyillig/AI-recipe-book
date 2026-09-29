@@ -105,6 +105,18 @@ h1 em{color:var(--rust);font-style:italic}
 [data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
 .final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
 .final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.cook-log{margin-top:48px}
+.cook-log .section-title{margin-bottom:20px}
+.cook-entry{background:var(--warm);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:14px}
+[data-theme="dark"] .cook-entry{background:#221808}
+.cook-entry:last-child{margin-bottom:0}
+.cook-entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.cook-entry-date{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust)}
+.cook-entry-rating{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:1px}
+.cook-entry-change{font-size:14px;color:var(--text-body);margin-bottom:6px;line-height:1.6}
+.cook-entry-change strong{color:var(--text-main)}
+.cook-entry-feedback{font-size:13px;color:var(--sage);font-style:italic;line-height:1.6}
+.cook-log-empty{font-size:13px;color:var(--text-muted);font-style:italic}
 .bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
 [data-theme="dark"] .bottom-nav{background:#0f0a05}
 .bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
@@ -262,6 +274,12 @@ h1 em{color:var(--rust);font-style:italic}
   </div>
 
   <div class="final"><h2>You Smoked a Whole Brisket. 🔥</h2><p>You trimmed it cold. You rendered its own fat into tallow. You weathered the stall without panicking. You wrapped it in butcher paper and warm tallow at exactly the right moment, rested it for two hours, and sliced it against the grain. Salt. Pepper. Fire. Time. That's the whole recipe. And somehow that's enough to make something that costs a fortune at a BBQ joint. Except yours is better. Because you made it.</p></div>
+
+  <div class="section cook-log"><div class="section-title"><span class="num">06</span> Cook Log</div>
+    <!-- COOK_LOG_ENTRIES -->
+    <p class="cook-log-empty">No cook log entries yet — next time you make this and tell Claude what you changed, it'll show up here.</p>
+  </div>
+
   <div class="bottom-nav">
     <a href="index.html">← Back to All Recipes</a>
     <span class="site-name">Bytes &amp; Bites</span>
