@@ -105,6 +105,18 @@ h1 em{color:var(--rust);font-style:italic}
 [data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
 .final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
 .final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.cook-log{margin-top:48px}
+.cook-log .section-title{margin-bottom:20px}
+.cook-entry{background:var(--warm);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:14px}
+[data-theme="dark"] .cook-entry{background:#221808}
+.cook-entry:last-child{margin-bottom:0}
+.cook-entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.cook-entry-date{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust)}
+.cook-entry-rating{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:1px}
+.cook-entry-change{font-size:14px;color:var(--text-body);margin-bottom:6px;line-height:1.6}
+.cook-entry-change strong{color:var(--text-main)}
+.cook-entry-feedback{font-size:13px;color:var(--sage);font-style:italic;line-height:1.6}
+.cook-log-empty{font-size:13px;color:var(--text-muted);font-style:italic}
 .bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
 [data-theme="dark"] .bottom-nav{background:#0f0a05}
 .bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
@@ -189,6 +201,11 @@ h1 em{color:var(--rust);font-style:italic}
     <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Brown Butter, Toast Seeds, Finish</h3><p>In a small pan, cook <span class="qty-inline" data-base="60" data-unit="g" data-metric="60g" data-us="2.1 oz" data-noscale="false">60g</span> butter over medium heat until golden brown and nutty-smelling — about 4 minutes. Watch constantly; it goes from brown to burnt quickly. In a separate dry pan, toast <span class="qty-inline" data-base="60" data-unit="g" data-metric="60g" data-us="2.1 oz" data-noscale="false">60g</span> pumpkin seeds with a pinch of salt until they start to pop. Ladle the soup into bowls, swirl in brown butter, add a spoon of crème fraîche, scatter pumpkin seeds, and finish with flaky salt.</p><div class="genz">Brown butter on butternut squash soup makes people ask "what is in this" because they can't identify it but know it's correct. It smells like hazelnuts and tastes like everything is more itself. It takes 4 minutes. Always do it.</div></div></div>
   </div>
   <div class="final"><h2>Savoury. Silky. Roasted All the Way Through. 🎃</h2><p>You roasted the squash cut-side down until it caramelised. You built a properly cooked onion base. You browned the butter. This is the soup that converts people who thought they didn't like butternut squash soup.</p></div>
+  <div class="section cook-log"><div class="section-title"><span class="num">03</span> Cook Log</div>
+    <!-- COOK_LOG_ENTRIES -->
+    <p class="cook-log-empty">No cook log entries yet — next time you make this and tell Claude what you changed, it'll show up here.</p>
+  </div>
+
   <div class="bottom-nav">
     <a href="index.html">← Back to All Recipes</a>
     <span class="site-name">Bytes &amp; Bites</span>

@@ -105,6 +105,18 @@ h1 em{color:var(--rust);font-style:italic}
 [data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
 .final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
 .final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.cook-log{margin-top:48px}
+.cook-log .section-title{margin-bottom:20px}
+.cook-entry{background:var(--warm);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:14px}
+[data-theme="dark"] .cook-entry{background:#221808}
+.cook-entry:last-child{margin-bottom:0}
+.cook-entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.cook-entry-date{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust)}
+.cook-entry-rating{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:1px}
+.cook-entry-change{font-size:14px;color:var(--text-body);margin-bottom:6px;line-height:1.6}
+.cook-entry-change strong{color:var(--text-main)}
+.cook-entry-feedback{font-size:13px;color:var(--sage);font-style:italic;line-height:1.6}
+.cook-log-empty{font-size:13px;color:var(--text-muted);font-style:italic}
 .bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
 [data-theme="dark"] .bottom-nav{background:#0f0a05}
 .bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
@@ -183,6 +195,11 @@ h1 em{color:var(--rust);font-style:italic}
     <div class="step"><div class="step-num">B</div><div class="step-content"><h3>Oven Method (Hands-Off)</h3><p>Toss <span class="qty-inline" data-base="400" data-unit="g" data-metric="400g" data-us="14.1 oz" data-noscale="false">400g</span> broccolini with olive oil, garlic, chilli, and salt. Spread in a single layer on a baking tray. Roast at <strong>230°C / 450°F for 10–12 minutes</strong> until the tips are crispy and the stems have some char. Finish with lemon juice and flaky salt.</p><div class="genz">Charred broccolini is the side dish that converts people who think they don't like vegetables. The char transforms the flavour — it goes from vaguely bitter to sweet, nutty, complex. This is the dish that makes people ask for the recipe for a side dish.</div></div></div>
   </div>
   <div class="final"><h2>15 Minutes. Completely Worth It. 🥦</h2><p>High heat. Real char. Garlic and chilli going golden. A heavy squeeze of lemon. Flaky salt. This is the side dish that goes with the brisket, the chicken, the short rib ragù, and the miso cod equally.</p></div>
+  <div class="section cook-log"><div class="section-title"><span class="num">03</span> Cook Log</div>
+    <!-- COOK_LOG_ENTRIES -->
+    <p class="cook-log-empty">No cook log entries yet — next time you make this and tell Claude what you changed, it'll show up here.</p>
+  </div>
+
   <div class="bottom-nav">
     <a href="index.html">← Back to All Recipes</a>
     <span class="site-name">Bytes &amp; Bites</span>

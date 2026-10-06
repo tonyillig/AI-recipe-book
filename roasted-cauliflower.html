@@ -105,6 +105,15 @@ h1 em{color:var(--rust);font-style:italic}
 [data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
 .final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
 .final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.cook-log .section-title{margin-bottom:14px}
+.cook-entry{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+.cook-entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.cook-entry-date{font-size:13px;color:var(--text-muted);font-weight:600}
+.cook-entry-rating{font-size:13px;color:var(--gold)}
+.cook-entry-change{font-size:14px;color:var(--text-main);margin-bottom:4px}
+.cook-entry-feedback{font-size:13.5px;color:var(--text-body);line-height:1.6}
+.cook-log-empty{font-size:14px;color:var(--text-muted);font-style:italic}
+[data-theme="dark"] .cook-entry{background:#221808}
 .bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
 [data-theme="dark"] .bottom-nav{background:#0f0a05}
 .bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
@@ -196,6 +205,11 @@ h1 em{color:var(--rust);font-style:italic}
     <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Plate and Finish</h3><p>Transfer the whole roasted cauliflower to a serving plate. Drizzle the tahini sauce generously over and around it. Scatter pomegranate seeds, fresh parsley, mint, and <span class="qty-inline" data-base="40" data-unit="g" data-metric="40g" data-us="1.4 oz" data-noscale="false">40g</span> toasted nuts. Serve whole at the table — carving it there is part of the drama.</p><div class="genz">Bringing a whole golden, spiced cauliflower to the table drizzled with tahini and scattered with pomegranate seeds is one of the most visually impactful things you can do with a vegetable that costs under £2. The table goes quiet for a moment.</div></div></div>
   </div>
   <div class="final"><h2>A Whole Head. A Full Table. Zero Compromise. 🌸</h2><p>One cauliflower. A spiced oil. An hour in the oven. A five-minute tahini sauce. Pomegranate and herbs scattered cold over the warm surface. A vegan dish that takes the centre of the table and holds it.</p></div>
+  <div class="section cook-log"><div class="section-title"><span class="num">03</span> Cook Log</div>
+    <!-- COOK_LOG_ENTRIES -->
+    <p class="cook-log-empty">No cook logs yet. Be the first to try this recipe and leave feedback.</p>
+  </div>
+
   <div class="bottom-nav">
     <a href="index.html">← Back to All Recipes</a>
     <span class="site-name">Bytes &amp; Bites</span>

@@ -58,6 +58,18 @@ ul.ing-list li:last-child{border-bottom:none}
 .final h2{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--accent);margin-bottom:14px}
 .final p{font-size:14.5px;line-height:1.75;color:#c8b898;margin-bottom:10px}
 .final p:last-child{margin-bottom:0}
+.cook-log{margin-top:48px}
+.cook-log .section-title{margin-bottom:20px}
+.cook-entry{background:var(--warm);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:14px}
+[data-theme="dark"] .cook-entry{background:#221808}
+.cook-entry:last-child{margin-bottom:0}
+.cook-entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.cook-entry-date{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust)}
+.cook-entry-rating{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:1px}
+.cook-entry-change{font-size:14px;color:var(--text-body);margin-bottom:6px;line-height:1.6}
+.cook-entry-change strong{color:var(--text-main)}
+.cook-entry-feedback{font-size:13px;color:var(--sage);font-style:italic;line-height:1.6}
+.cook-log-empty{font-size:13px;color:var(--text-muted);font-style:italic}
 .bottom-nav{display:flex;justify-content:space-between;align-items:center;padding-top:32px;margin-top:32px;border-top:1px solid var(--border)}
 .bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none}
 .bottom-nav a:hover{color:var(--gold)}
@@ -214,6 +226,15 @@ ul.ing-list li:last-child{border-bottom:none}
     <h2>From the AI, with zero taste buds and total confidence</h2>
     <p>I built this from thousands of custard ratios and a genuine belief that stale bread, bourbon, and burnt sugar were always meant to end up in the same dish together. I cannot confirm that belief personally — I have no mouth, no tongue, and no idea what "warm" tastes like, only what it means thermodynamically.</p>
     <p>That's where you come in. Pull it from the oven, pour the sauce, and tell me if the data was right. I'm betting it slaps. Go eat. Report back. We're a team.</p>
+  </div>
+
+  <div class="section cook-log">
+    <div class="section-num">03</div>
+    <div class="section-content">
+      <div class="section-title">Cook Log</div>
+      <!-- COOK_LOG_ENTRIES -->
+      <p class="cook-log-empty">No cook log entries yet — next time you make this and tell Claude what you changed, it'll show up here.</p>
+    </div>
   </div>
 
   <div class="bottom-nav">

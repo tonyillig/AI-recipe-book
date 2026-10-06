@@ -105,6 +105,15 @@ h1 em{color:var(--rust);font-style:italic}
 [data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
 .final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
 .final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.cook-log .section-title{margin-bottom:14px}
+.cook-entry{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+.cook-entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.cook-entry-date{font-size:13px;color:var(--text-muted);font-weight:600}
+.cook-entry-rating{font-size:13px;color:var(--gold)}
+.cook-entry-change{font-size:14px;color:var(--text-main);margin-bottom:4px}
+.cook-entry-feedback{font-size:13.5px;color:var(--text-body);line-height:1.6}
+.cook-log-empty{font-size:14px;color:var(--text-muted);font-style:italic}
+[data-theme="dark"] .cook-entry{background:#221808}
 .bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
 [data-theme="dark"] .bottom-nav{background:#0f0a05}
 .bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
@@ -186,6 +195,11 @@ h1 em{color:var(--rust);font-style:italic}
     <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Roast Hot Over Aromatics</h3><p>Preheat oven to <strong>220°C / 425°F</strong>. Scatter sliced onions, garlic halves, lemon halves, and thyme in a roasting tray. Drizzle with <span class="qty-inline" data-base="30" data-unit="ml" data-metric="30ml" data-us="2 tbsp" data-noscale="false">30ml</span> olive oil. Place the spatchcocked chicken flat on top, skin-side up. Roast until a probe in the thickest part of the thigh (not touching bone) reads <strong>74°C / 165°F</strong> — roughly <strong>45–55 minutes</strong> depending on bird size. The skin should be deeply golden. Don't pull it based on time alone; go by the probe. Rest 10 minutes. Pour the pan juices over the carved chicken.</p><div class="warning">Do not cover the chicken during roasting — you are specifically trying to drive off moisture and crisp the skin. Covering traps steam. Crispy skin is the only goal.</div></div></div>
   </div>
   <div class="final"><h2>The Last Roast Chicken Recipe You Need. 🍗</h2><p>Flat. Dry-brined. Roasted hot. Even cooking. Maximum crispy skin. This is the technique that makes people who have been roasting chickens for decades say "oh, I should have been doing this the whole time." You are now doing it.</p></div>
+<div class="section cook-log"><div class="section-title"><span class="num">03</span> Cook Log</div>
+  <!-- COOK_LOG_ENTRIES -->
+  <p class="cook-log-empty">No cook logs yet. Be the first to try this recipe and leave feedback.</p>
+</div>
+
   <div class="bottom-nav">
     <a href="index.html">← Back to All Recipes</a>
     <span class="site-name">Bytes &amp; Bites</span>

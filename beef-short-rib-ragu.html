@@ -105,6 +105,18 @@ h1 em{color:var(--rust);font-style:italic}
 [data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
 .final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
 .final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.cook-log{margin-top:48px}
+.cook-log .section-title{margin-bottom:20px}
+.cook-entry{background:var(--warm);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:14px}
+[data-theme="dark"] .cook-entry{background:#221808}
+.cook-entry:last-child{margin-bottom:0}
+.cook-entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.cook-entry-date{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust)}
+.cook-entry-rating{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:1px}
+.cook-entry-change{font-size:14px;color:var(--text-body);margin-bottom:6px;line-height:1.6}
+.cook-entry-change strong{color:var(--text-main)}
+.cook-entry-feedback{font-size:13px;color:var(--sage);font-style:italic;line-height:1.6}
+.cook-log-empty{font-size:13px;color:var(--text-muted);font-style:italic}
 .bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
 [data-theme="dark"] .bottom-nav{background:#0f0a05}
 .bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
@@ -171,7 +183,7 @@ h1 em{color:var(--rust);font-style:italic}
   <div class="section"><div class="section-title"><span class="num">01</span> Ingredients</div>
     <div class="ing-group"><div class="ing-group-title">The Ribs</div><ul class="ingredient-list">
       <li><span class="ing-amount" data-base="2.5" data-unit="kg" data-metric="2.5kg" data-us="5.5 lb" data-noscale="false">2.5kg</span><span>bone-in beef short ribs <span class="ing-note">English cut — thick, meaty pieces</span></span></li>
-      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="to taste" data-us="to taste" data-noscale="true">to taste</span><span>kosher salt and black pepper</span></li>
+      <li><span class="ing-amount" data-base="2" data-unit="tbsp" data-metric="2 tbsp" data-us="2 tbsp" data-noscale="false">2 tbsp</span><span>Diamond Crystal kosher salt <span class="ing-note">about 1 tsp per pound of meat — if using Morton's kosher salt, use half this amount, it's much saltier by volume</span>, plus black pepper to taste</span></li>
       <li><span class="ing-amount" data-base="2" data-unit="tbsp" data-metric="2 tbsp" data-us="2 tbsp" data-noscale="false">2 tbsp</span><span>neutral oil</span></li>
     </ul></div>
     <div class="ing-group"><div class="ing-group-title">The Sauce</div><ul class="ingredient-list">
@@ -192,13 +204,24 @@ h1 em{color:var(--rust);font-style:italic}
     </ul></div>
   </div>
   <div class="section"><div class="section-title"><span class="num">02</span> The Cook</div>
-    <div class="step"><div class="step-num">1</div><div class="step-content"><h3>Season and Sear the Ribs Hard</h3><p>Pat the short ribs completely dry and season aggressively with salt and pepper. Heat a large Dutch oven over high heat with 2 tbsp oil. Sear the ribs in batches — <strong>3–4 minutes per side</strong> — until deeply browned on all meaty surfaces. Don't crowd the pot. Transfer each batch to a plate and proceed.</p><div class="genz">The sear on short ribs is the most satisfying thing you will do in a kitchen this week. That sound. That colour. That smell. You are building flavour in real time.</div></div></div>
+    <div class="step"><div class="step-num">1</div><div class="step-content"><h3>Season and Sear the Ribs Hard</h3><p>Pat the short ribs completely dry and season all over with the measured 2 tbsp kosher salt and pepper, pressing it into every surface — use the full amount rather than eyeballing it, it sounds like a lot for bone-in ribs but it's correct. Heat a large Dutch oven over high heat with 2 tbsp oil. Sear the ribs in batches — <strong>3–4 minutes per side</strong> — until deeply browned on all meaty surfaces. Don't crowd the pot. Transfer each batch to a plate and proceed.</p><div class="genz">The sear on short ribs is the most satisfying thing you will do in a kitchen this week. That sound. That colour. That smell. You are building flavour in real time.</div></div></div>
     <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Build the Soffritto</h3><p>Reduce heat to medium. Add the onions, carrots, and celery to the same pot and cook for <strong>10 minutes</strong>, scraping up all the fond as you go. Add the garlic and cook another 2 minutes. Add the tomato paste and stir into the vegetables — cook for 3 minutes until it darkens and smells deeply savoury.</p></div></div>
     <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Deglaze with Wine</h3><p>Pour in all <strong><span class="qty-inline" data-base="750" data-unit="ml" data-metric="750ml" data-us="3⅛ cups" data-noscale="false">750ml</span></strong> of red wine. Boil and reduce by half — about 8 minutes, scraping constantly. Add the crushed San Marzano tomatoes, <strong><span class="qty-inline" data-base="500" data-unit="ml" data-metric="500ml" data-us="2⅛ cups" data-noscale="false">500ml</span></strong> beef stock, thyme, and bay leaves. Return the short ribs to the pot. Liquid should come about two-thirds up the ribs.</p><div class="tip">Bring to a simmer on the stovetop first before covering. Starting the braise hot cuts 20–30 minutes off your cook time.</div></div></div>
     <div class="step"><div class="step-num">4</div><div class="step-content"><h3>Braise Low and Slow — 3.5 to 4 Hours</h3><p>Cover and transfer to a <strong>160°C / 325°F oven</strong>. Braise until the meat pulls off the bone with zero resistance and a probe slides into the thickest rib with no tension — internal temp will be around <strong>93–96°C / 200–205°F</strong>. This takes roughly <strong>3.5–4 hours</strong> but probe for tenderness rather than watching the clock. Check from the 3-hour mark every 30 minutes.</p><div class="genz">The oven is doing 4 hours of work right now and you are free to do literally anything else. The pot just needs to be left alone to become magnificent.</div></div></div>
-    <div class="step"><div class="step-num">5</div><div class="step-content"><h3>Pull, Shred, and Reduce</h3><p>Remove ribs and shred the meat into large pieces. Skim fat from the braising liquid. If thin, reduce on the stovetop for 10–15 minutes. Return beef to the sauce. Taste and season. Cook pappardelle in well-salted water to al dente, reserve a cup of pasta water, and toss the drained pasta in the ragù over medium heat, adding pasta water to bring everything together.</p><div class="tip">The ragù is genuinely better made the day before. Refrigerate overnight — the fat solidifies and lifts off cleanly, and the flavours deepen considerably.</div></div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-content"><h3>Pull, Shred, and Reduce</h3><p>Remove ribs and shred the meat into large pieces. Skim fat from the braising liquid. If thin, reduce on the stovetop for 10–15 minutes. Return beef to the sauce. Taste before adding any extra salt — the ribs were already seasoned going in, so the sauce rarely needs more. Cook pappardelle in well-salted water to al dente, reserve a cup of pasta water, and toss the drained pasta in the ragù over medium heat, adding pasta water to bring everything together.</p><div class="tip">The ragù is genuinely better made the day before. Refrigerate overnight — the fat solidifies and lifts off cleanly, and the flavours deepen considerably.</div></div></div>
   </div>
   <div class="final"><h2>Sunday Made Edible. 🍝</h2><p>Short rib ragù is the dish that made slow cooking make sense to everyone who tried it. You gave it time. You gave it wine. You gave it a proper sear. Over pappardelle with Parmesan. Nothing else needed.</p></div>
+  <div class="section cook-log"><div class="section-title"><span class="num">03</span> Cook Log</div>
+    <!-- COOK_LOG_ENTRIES -->
+    <div class="cook-entry">
+      <div class="cook-entry-head">
+        <span class="cook-entry-date">OCT 06, 2026</span>
+      </div>
+      <div class="cook-entry-change"><strong>What changed:</strong> Eyeballed the salt instead of measuring it</div>
+      <div class="cook-entry-feedback">Came out too salty. Updated the recipe to call for a measured 2 tbsp Diamond Crystal kosher salt instead of "to taste," plus a note on cutting it in half if using Morton's.</div>
+    </div>
+  </div>
+
   <div class="bottom-nav">
     <a href="index.html">← Back to All Recipes</a>
     <span class="site-name">Bytes &amp; Bites</span>

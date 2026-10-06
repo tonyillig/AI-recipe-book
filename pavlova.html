@@ -105,6 +105,15 @@ h1 em{color:var(--rust);font-style:italic}
 [data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
 .final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
 .final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.cook-log .section-title{margin-bottom:14px}
+.cook-entry{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+.cook-entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.cook-entry-date{font-size:13px;color:var(--text-muted);font-weight:600}
+.cook-entry-rating{font-size:13px;color:var(--gold)}
+.cook-entry-change{font-size:14px;color:var(--text-main);margin-bottom:4px}
+.cook-entry-feedback{font-size:13.5px;color:var(--text-body);line-height:1.6}
+.cook-log-empty{font-size:14px;color:var(--text-muted);font-style:italic}
+[data-theme="dark"] .cook-entry{background:#221808}
 .bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
 [data-theme="dark"] .bottom-nav{background:#0f0a05}
 .bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
@@ -189,6 +198,11 @@ h1 em{color:var(--rust);font-style:italic}
     <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Whip the Cream and Top</h3><p>Whip <span class="qty-inline" data-base="400" data-unit="ml" data-metric="400ml" data-us="1⅔ cups" data-noscale="false">400ml</span> cold cream with icing sugar to soft peaks. Pile generously into the centre. Top with <span class="qty-inline" data-base="400" data-unit="g" data-metric="400g" data-us="14.1 oz" data-noscale="false">400g</span> fresh berries and passion fruit pulp. Serve immediately once topped.</p><div class="genz">A fully loaded pavlova on a table is one of the most visually correct things that can exist at a dinner party. It is made of egg whites and sugar and costs almost nothing. The impact-to-cost ratio is genuinely unhinged.</div></div></div>
   </div>
   <div class="final"><h2>Cloud. Cream. Fruit. The Holy Trinity. 🍓</h2><p>Crisp outside, marshmallow inside, billows of cold cream, fresh fruit piled on top. This is one of the most beloved desserts in the world for reasons that become completely obvious the first time you eat a good one. You made a good one.</p></div>
+  <div class="section cook-log"><div class="section-title"><span class="num">03</span> Cook Log</div>
+    <!-- COOK_LOG_ENTRIES -->
+    <p class="cook-log-empty">No cook logs yet. Be the first to try this recipe and leave feedback.</p>
+  </div>
+
   <div class="bottom-nav">
     <a href="index.html">← Back to All Recipes</a>
     <span class="site-name">Bytes &amp; Bites</span>

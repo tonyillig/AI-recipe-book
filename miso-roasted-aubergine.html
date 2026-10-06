@@ -105,6 +105,15 @@ h1 em{color:var(--rust);font-style:italic}
 [data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
 .final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
 .final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.cook-log .section-title{margin-bottom:14px}
+.cook-entry{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+.cook-entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.cook-entry-date{font-size:13px;color:var(--text-muted);font-weight:600}
+.cook-entry-rating{font-size:13px;color:var(--gold)}
+.cook-entry-change{font-size:14px;color:var(--text-main);margin-bottom:4px}
+.cook-entry-feedback{font-size:13.5px;color:var(--text-body);line-height:1.6}
+.cook-log-empty{font-size:14px;color:var(--text-muted);font-style:italic}
+[data-theme="dark"] .cook-entry{background:#221808}
 .bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
 [data-theme="dark"] .bottom-nav{background:#0f0a05}
 .bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
@@ -185,6 +194,11 @@ h1 em{color:var(--rust);font-style:italic}
     <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Glaze and Broil</h3><p>Spread the miso glaze generously over the cut faces of the roasted aubergine. Return to the oven under the <strong>broiler on maximum heat</strong> for <strong>5–8 minutes</strong>, watching closely. The glaze should bubble and caramelise into a deep amber. Scatter with spring onions, sesame seeds, and chilli. Serve immediately over rice.</p><div class="genz">Miso-roasted aubergine under the broiler smells like the miso black cod, which means it smells like one of the greatest dishes of the last 30 years. In 30 minutes. Completely unreasonable ratio of smell-to-effort in your favour.</div></div></div>
   </div>
   <div class="final"><h2>Five-Ingredient Glaze. Thirty Minutes. 🍆</h2><p>The same miso-mirin technique that made black cod famous, applied to aubergine. Thirty minutes total. The sweet-savoury caramelised surface is identical. This will make people ask if you trained somewhere.</p></div>
+  <div class="section cook-log"><div class="section-title"><span class="num">03</span> Cook Log</div>
+    <!-- COOK_LOG_ENTRIES -->
+    <p class="cook-log-empty">No cook log entries yet — next time you make this and tell Claude what you changed, it'll show up here.</p>
+  </div>
+
   <div class="bottom-nav">
     <a href="index.html">← Back to All Recipes</a>
     <span class="site-name">Bytes &amp; Bites</span>

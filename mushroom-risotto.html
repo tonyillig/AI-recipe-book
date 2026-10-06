@@ -105,6 +105,15 @@ h1 em{color:var(--rust);font-style:italic}
 [data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
 .final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
 .final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.cook-log .section-title{margin-bottom:14px}
+.cook-entry{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+.cook-entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.cook-entry-date{font-size:13px;color:var(--text-muted);font-weight:600}
+.cook-entry-rating{font-size:13px;color:var(--gold)}
+.cook-entry-change{font-size:14px;color:var(--text-main);margin-bottom:4px}
+.cook-entry-feedback{font-size:13.5px;color:var(--text-body);line-height:1.6}
+.cook-log-empty{font-size:14px;color:var(--text-muted);font-style:italic}
+[data-theme="dark"] .cook-entry{background:#221808}
 .bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
 [data-theme="dark"] .bottom-nav{background:#0f0a05}
 .bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
@@ -189,6 +198,11 @@ h1 em{color:var(--rust);font-style:italic}
     <div class="step"><div class="step-num">4</div><div class="step-content"><h3>Add Stock Gradually — 18 to 20 Minutes</h3><p>Add the warm stock one ladle at a time, stirring gently between each addition and waiting until each ladle is absorbed before adding the next. This takes <strong>18–20 minutes total</strong>. The rice should be al dente. Remove from heat. Stir in the remaining <span class="qty-inline" data-base="40" data-unit="g" data-metric="40g" data-us="1.4 oz" data-noscale="false">40g</span> cold butter and <span class="qty-inline" data-base="80" data-unit="g" data-metric="80g" data-us="2.8 oz" data-noscale="false">80g</span> Parmesan vigorously off the heat — this is the mantecatura and it creates the creamy texture. Fold in three-quarters of the sautéed mushrooms. Season. Top with reserved mushrooms and a drizzle of truffle oil if using.</p><div class="warning">The mantecatura happens off the heat. If you do it on the heat, the butter splits and you get a greasy dish. Off the heat, cold butter, vigorous stirring. That sequence.</div></div></div>
   </div>
   <div class="final"><h2>Deeply Mushroom. Properly Creamy. 🍄</h2><p>You soaked the porcini and used the liquid. You sautéed the fresh mushrooms at high heat. You kept the stock warm and added it gradually. You finished off the heat with cold butter and Parmesan. This is mushroom risotto done correctly.</p></div>
+  <div class="section cook-log"><div class="section-title"><span class="num">03</span> Cook Log</div>
+    <!-- COOK_LOG_ENTRIES -->
+    <p class="cook-log-empty">No cook log entries yet — next time you make this and tell Claude what you changed, it'll show up here.</p>
+  </div>
+
   <div class="bottom-nav">
     <a href="index.html">← Back to All Recipes</a>
     <span class="site-name">Bytes &amp; Bites</span>
