@@ -85,7 +85,7 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
     <p class="hero-eyebrow">A Recipe Book Built with AI</p>
     <h1>Bytes &amp; <em>Bites</em></h1>
     <p class="hero-sub">Recipes worth cooking · Techniques worth learning · Results worth eating</p>
-    <span class="hero-count" id="visibleCount">28 recipes</span>
+    <span class="hero-count" id="visibleCount">30 recipes</span>
   </div>
   <div class="filter-bar">
     <span class="filter-label">Filter:</span>
@@ -447,6 +447,30 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
         <td class="col-diet"><div class="ib-row"><span class="ib ib-vegetarian">🥦 Veg</span></div></td>
         <td class="col-arrow">↗</td>
       </tr>
+      <tr class="recipe-row" data-cat="main" data-time="long" data-diet="gf lf" onclick="window.location='pozole-rojo.html'">
+        <td class="col-name">
+          <span class="row-name">Pozole Rojo</span>
+          <span class="row-sub">Pork &amp; hominy · guajillo-ancho chile · garnish everything</span>
+          <span class="row-status status-ai">✦ AI Built</span>
+        </td>
+        <td class="col-cat"><span class="row-cat tag-gold">Main Dish</span></td>
+        <td class="col-time">4–5h</td>
+        <td class="col-serves">8</td>
+        <td class="col-diet"><div class="ib-row"><span class="ib ib-gf">🌾 GF</span><span class="ib ib-lf">🥛 LF</span></div></td>
+        <td class="col-arrow">↗</td>
+      </tr>
+      <tr class="recipe-row" data-cat="main" data-time="long" data-diet="lf" onclick="window.location='three-chile-beef-chorizo-chili.html'">
+        <td class="col-name">
+          <span class="row-name">Three-Chile Beef &amp; Chorizo Chili</span>
+          <span class="row-sub">Beans · ancho, guajillo &amp; pasilla · beer &amp; espresso</span>
+          <span class="row-status status-ai">✦ AI Built</span>
+        </td>
+        <td class="col-cat"><span class="row-cat tag-gold">Main Dish</span></td>
+        <td class="col-time">~4h</td>
+        <td class="col-serves">6–8</td>
+        <td class="col-diet"><div class="ib-row"><span class="ib ib-lf">🥛 LF</span></div></td>
+        <td class="col-arrow">↗</td>
+      </tr>
     </tbody>
   </table>
   <div class="no-results" id="noResults" style="display:none">No recipes match — try a different filter</div>
@@ -456,7 +480,7 @@ body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text
     <span class="legend-item"><span class="row-status status-ai">✦ AI Built</span> — awaiting human testing</span>
   </div>
   <div class="bottom-nav">
-    <span>28 recipes</span>
+    <span>30 recipes</span>
     <span class="site-name">Bytes &amp; Bites</span>
     <a href="https://github.com/tonyillig/AI-recipe-book" target="_blank">GitHub ↗</a>
   </div>
