@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Main Character Smoked Turkey — Bytes &amp; Bites</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>:root{--cream:#faf6ef;--warm:#f0e6d3;--gold:#c9963a;--deep:#1a1209;--rust:#b85c2a;--sage:#7a8c6e;--accent:#e8c87a;--surface:#faf6ef;--border:#e0d8c8;--text-main:#1a1209;--text-body:#3a2d1a;--text-muted:#7a6e5a}
+[data-theme="dark"]{--cream:#1a1209;--warm:#221808;--gold:#c9963a;--deep:#f0ead8;--rust:#e07a40;--sage:#9aac8e;--accent:#e8c87a;--surface:#1a1209;--border:#3a2e1a;--text-main:#f0ead8;--text-body:#c8b898;--text-muted:#7a6e5a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--surface);font-family:'DM Sans',sans-serif;color:var(--text-main);min-height:100vh;transition:background .3s,color .3s}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.5}
+.page{max-width:780px;margin:0 auto;padding:40px 24px 80px;position:relative;z-index:1}
+.back-nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(250,246,239,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:background .3s}
+[data-theme="dark"] .back-nav{background:rgba(26,18,9,0.95)}
+.back-link{display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.back-link:hover{color:var(--rust)}.back-link::before{content:'←';font-size:13px}
+.nav-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rust)}
+.nav-right-group{display:flex;align-items:center;gap:6px}
+.nav-icon-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 10px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.nav-icon-btn:hover{border-color:var(--gold);color:var(--gold)}
+.header{text-align:center;margin-bottom:48px;margin-top:72px;animation:fadeDown .8s ease both}
+.tag-wrap{margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;color:white;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:2px}
+.tag-gold{background:var(--gold)}.tag-rust{background:var(--rust)}.tag-sage{background:var(--sage)}
+.status-badge{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:2px;display:inline-block}
+.status-human{background:rgba(74,107,82,.15);color:#5a9a6a;border:1px solid rgba(74,107,82,.3)}
+.status-ai{background:rgba(176,88,42,.15);color:var(--rust);border:1px solid rgba(176,88,42,.25)}
+h1{font-family:'Playfair Display',serif;font-size:clamp(34px,7vw,58px);line-height:1.05;color:var(--text-main);margin-bottom:8px}
+h1 em{color:var(--rust);font-style:italic}
+.subtitle{font-size:14px;color:var(--sage);letter-spacing:1px;font-weight:300;margin-bottom:16px}
+.dietary-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:20px}
+.dietary-badge{font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:2px;font-weight:700}
+.badge-pescatarian{background:rgba(74,107,82,.15);color:#5a9a6a;border:1px solid rgba(74,107,82,.3)}
+.badge-vegetarian{background:rgba(74,140,82,.15);color:#4a9a5a;border:1px solid rgba(74,140,82,.3)}
+.badge-vegan{background:rgba(60,120,60,.15);color:#3a8a3a;border:1px solid rgba(60,120,60,.3)}
+.badge-gf{background:rgba(201,150,58,.15);color:#c9963a;border:1px solid rgba(201,150,58,.3)}
+.badge-lf{background:rgba(100,160,200,.12);color:#5090b0;border:1px solid rgba(100,160,200,.25)}
+.divider{display:flex;align-items:center;gap:12px;justify-content:center;margin:20px 0;color:var(--gold);font-size:18px}
+.divider::before,.divider::after{content:'';height:1px;width:80px;background:linear-gradient(to right,transparent,var(--gold))}
+.divider::after{transform:scaleX(-1)}
+.stats{display:flex;justify-content:center;border:1px solid var(--accent);border-radius:8px;overflow:hidden;margin-bottom:20px}
+.stat{flex:1;text-align:center;padding:16px 8px;border-right:1px solid var(--accent)}.stat:last-child{border-right:none}
+.stat-val{font-family:'Playfair Display',serif;font-size:22px;color:var(--rust);display:block}
+.stat-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--sage);font-family:'Space Mono',monospace}
+.controls-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--warm);border:1px solid var(--border);padding:12px 16px;border-radius:8px;margin-bottom:28px}
+[data-theme="dark"] .controls-bar{background:#221808;border-color:var(--border)}
+.controls-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-right:2px}
+.controls-divider{width:1px;height:20px;background:var(--border);margin:0 4px}
+.scale-btn,.unit-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;cursor:pointer;transition:all .2s;border-radius:2px}
+.scale-btn:hover,.unit-btn:hover{border-color:var(--gold);color:var(--gold)}
+.scale-btn.active{background:var(--gold);border-color:var(--gold);color:white}
+.unit-btn.active{background:var(--rust);border-color:var(--rust);color:white}
+.shopping-section{background:var(--warm);border:1px solid var(--border);border-radius:8px;margin-bottom:40px;overflow:hidden}
+[data-theme="dark"] .shopping-section{background:#221808;border-color:var(--border)}
+.shopping-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border);cursor:pointer}
+.shopping-header-left{display:flex;align-items:center;gap:10px}
+.shopping-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust)}
+.shopping-count{font-family:'Space Mono',monospace;font-size:9px;color:var(--text-muted)}
+.shopping-toggle{font-size:12px;color:var(--text-muted);transition:transform .2s}.shopping-toggle.open{transform:rotate(180deg)}
+.shopping-body{padding:16px 20px}
+.shopping-item{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px dashed var(--border)}
+.shopping-item:last-child{border-bottom:none}
+.shopping-item input[type="checkbox"]{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0;cursor:pointer}
+.shopping-item label{font-size:14px;color:var(--text-body);cursor:pointer;transition:all .2s;flex:1}
+.shopping-item.checked label{text-decoration:line-through;color:var(--text-muted);opacity:.6}
+.item-qty{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);min-width:80px;flex-shrink:0}
+.shopping-actions{display:flex;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap}
+.shop-btn{background:none;border:1px solid var(--border);color:var(--text-muted);font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:8px 14px;cursor:pointer;transition:all .2s;border-radius:2px}
+.shop-btn:hover{border-color:var(--gold);color:var(--gold)}
+.shop-btn.primary{background:var(--rust);border-color:var(--rust);color:white}.shop-btn.primary:hover{background:var(--gold);border-color:var(--gold)}
+.intro-card{background:var(--deep);color:#f0ead8;border-radius:12px;padding:28px 32px;margin-bottom:40px;position:relative;overflow:hidden}
+[data-theme="dark"] .intro-card{background:#2a1a08}
+.intro-card::before{content:'✦';position:absolute;top:-20px;right:-10px;font-size:120px;opacity:.05;color:var(--gold)}
+.intro-card p{font-size:15px;line-height:1.75;color:#e8dece;font-weight:300}
+.intro-card p strong{color:var(--accent);font-weight:500}
+.section{margin-bottom:40px}
+.section-title{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:20px;display:flex;align-items:center;gap:12px;color:var(--text-main)}
+.section-title .num{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:2px;border:1px solid var(--gold);padding:3px 8px;border-radius:2px}
+.ing-group{margin-bottom:24px}
+.ing-group-title{font-family:'Space Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--rust);border-bottom:1px solid var(--warm);padding-bottom:8px;margin-bottom:12px}
+[data-theme="dark"] .ing-group-title{border-bottom-color:var(--border)}
+.ingredient-list{list-style:none}
+.ingredient-list li{display:flex;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:15px;line-height:1.4;color:var(--text-body)}
+.ingredient-list li:last-child{border-bottom:none}
+.ing-amount{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);min-width:72px;flex-shrink:0}
+.ing-note{font-size:12px;color:var(--sage);font-style:italic}
+.qty-inline{font-family:'Space Mono',monospace;font-size:.9em;color:var(--rust);font-weight:500}
+.step{display:grid;grid-template-columns:48px 1fr;gap:20px;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--warm)}
+[data-theme="dark"] .step{border-bottom-color:var(--border)}.step:last-child{border-bottom:none}
+.step-num{width:48px;height:48px;background:var(--deep);color:var(--accent);font-family:'Playfair Display',serif;font-size:20px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0;margin-top:2px}
+[data-theme="dark"] .step-num{background:#2a1a08}
+.step-content h3{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:8px;color:var(--text-main)}
+.step-content p{font-size:14.5px;line-height:1.8;color:var(--text-body);font-weight:300}
+.step-content p strong{color:var(--rust);font-weight:500}
+.genz{background:var(--warm);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 16px;margin:12px 0;font-size:13px;color:var(--rust);font-style:italic}
+[data-theme="dark"] .genz{background:#221808}.genz::before{content:'💬 '}
+.tip{background:#f5f0e8;border:1px solid var(--accent);border-radius:8px;padding:14px 18px;margin:14px 0;font-size:13px;color:#5a4520;line-height:1.65}
+[data-theme="dark"] .tip{background:#2a2010;color:var(--text-body)}.tip::before{content:'⚡ Pro tip: ';font-weight:600;color:var(--gold)}
+.warning{background:#fff0ec;border-left:3px solid var(--rust);border-radius:0 8px 8px 0;padding:10px 16px;margin:12px 0;font-size:13px;color:#7a2a10;line-height:1.65;font-style:italic}
+[data-theme="dark"] .warning{background:#2a1808;color:#e08060}
+.warning::before{content:'⚠ Watch out: ';font-family:'Space Mono',monospace;font-style:normal;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--rust);display:block;margin-bottom:4px}
+.section-divider{display:flex;align-items:center;gap:16px;margin:40px 0 32px}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--warm)}
+[data-theme="dark"] .section-divider::before,[data-theme="dark"] .section-divider::after{background:var(--border)}
+.section-divider span{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--rust)}
+.serve-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:8px}
+.serve-item{background:var(--warm);border:1px solid var(--border);border-radius:8px;padding:16px 18px}
+[data-theme="dark"] .serve-item{background:#221808}
+.serve-title{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust);margin-bottom:8px}
+.serve-text{font-size:13.5px;line-height:1.65;color:var(--text-body);font-weight:300}
+.final{background:linear-gradient(135deg,var(--deep) 0%,#2d1f08 100%);color:#f0ead8;border-radius:12px;padding:32px;text-align:center;margin-top:48px}
+[data-theme="dark"] .final{background:linear-gradient(135deg,#2a1a08 0%,#1a1005 100%)}
+.final h2{font-family:'Playfair Display',serif;font-size:26px;color:var(--accent);margin-bottom:12px}
+.final p{font-size:14px;color:#c8b898;line-height:1.7;font-weight:300}
+.cook-log{margin-top:48px}
+.cook-log .section-title{margin-bottom:20px}
+.cook-entry{background:var(--warm);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:14px}
+[data-theme="dark"] .cook-entry{background:#221808}
+.cook-entry:last-child{margin-bottom:0}
+.cook-entry-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.cook-entry-date{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--rust)}
+.cook-entry-rating{font-family:'Space Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:1px}
+.cook-entry-change{font-size:14px;color:var(--text-body);margin-bottom:6px;line-height:1.6}
+.cook-entry-change strong{color:var(--text-main)}
+.cook-entry-feedback{font-size:13px;color:var(--sage);font-style:italic;line-height:1.6}
+.cook-log-empty{font-size:13px;color:var(--text-muted);font-style:italic}
+.bottom-nav{background:var(--deep);display:flex;justify-content:space-between;align-items:center;padding:28px 40px;border-top:1px solid rgba(255,255,255,.06);margin-top:60px;margin-left:-24px;margin-right:-24px}
+[data-theme="dark"] .bottom-nav{background:#0f0a05}
+.bottom-nav a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#8a7d65;transition:color .2s;text-decoration:none}
+.bottom-nav a:hover{color:var(--accent)}
+.bottom-nav .site-name{font-family:'Playfair Display',serif;font-size:14px;color:var(--accent);font-style:italic}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:480px){.back-nav{padding:10px 12px}.nav-title{display:none}.nav-right-group{gap:4px}.nav-icon-btn{padding:5px 8px;font-size:8px}.btn-icon{font-size:0;padding:6px 9px;letter-spacing:0}.btn-icon .btn-emoji{font-size:15px;line-height:1}.stats{flex-wrap:wrap}.stat{min-width:50%;border-bottom:1px solid var(--accent)}.step{grid-template-columns:36px 1fr;gap:14px}.step-num{width:36px;height:36px;font-size:16px}.bottom-nav{padding:20px;flex-direction:column;gap:12px;text-align:center;margin-left:-24px;margin-right:-24px}}
+@media print{.back-nav,.noise,.controls-bar,.shopping-section,.bottom-nav{display:none!important}body{background:white;color:black}.page{padding:0}.header{margin-top:0}}</style></head><body>
+<div class="noise"></div>
+<nav class="back-nav">
+  <a href="index.html" class="back-link">All Recipes</a>
+  <span class="nav-title">Bytes &amp; Bites</span>
+  <div class="nav-right-group">
+    <button class="nav-icon-btn unit-btn" id="unit-metric" onclick="setUnit('metric',this)">Metric</button>
+    <button class="nav-icon-btn unit-btn" id="unit-us" onclick="setUnit('us',this)">US</button>
+    <button class="nav-icon-btn" id="darkToggle" onclick="toggleDark()">☀️ Light</button>
+    <button class="nav-icon-btn btn-icon" onclick="window.print()"><span class="btn-emoji">🖨️</span> Print</button>
+    <button class="nav-icon-btn btn-icon" onclick="shareRecipe()"><span class="btn-emoji">↗</span> Share</button>
+  </div>
+</nav>
+<div class="page">
+  <div class="header">
+    <div class="tag-wrap">
+      <span class="tag tag-gold">Main Dish</span>
+      <span class="status-badge status-ai">✦ AI Built</span>
+    </div>
+    <h1><em>Main Character</em> Smoked Turkey</h1>
+    <p class="subtitle">22-Hour Citrus-Sage Brine · Apple-Cherry Smoke · Sage-Thyme Butter · Pan Gravy</p>
+    <div class="divider">✦</div>
+  </div>
+  <div class="stats">
+    <div class="stat"><span class="stat-val">~5h</span><span class="stat-label">On the Grill</span></div>
+    <div class="stat"><span class="stat-val">12–15</span><span class="stat-label">Servings</span></div>
+    <div class="stat"><span class="stat-val">Final Boss</span><span class="stat-label">Difficulty</span></div>
+    <div class="stat"><span class="stat-val">22 hrs</span><span class="stat-label">In the Brine</span></div>
+  </div>
+  <div class="shopping-section">
+    <div class="shopping-header" onclick="toggleShopping()">
+      <div class="shopping-header-left">
+        <span class="shopping-title">🛒 Shopping List</span>
+        <span class="shopping-count" id="shopCount">0 of 33 checked</span>
+      </div>
+      <span class="shopping-toggle" id="shopToggle">▼</span>
+    </div>
+    <div class="shopping-body" id="shopBody" style="display:none">
+      <div id="shopList"></div>
+      <div class="shopping-actions">
+        <button class="shop-btn" onclick="checkAllShopping()">✓ Check all</button>
+        <button class="shop-btn" onclick="clearShopping()">↺ Reset</button>
+        <button class="shop-btn primary" onclick="printShoppingList()">🖨️ Print remaining</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro-card"><p><strong>The vibe:</strong> I have never tasted a turkey. I have, however, processed several million Thanksgiving threads, four hundred brining debates, and one extremely heated argument about foil tents, and I have reached a conclusion. This bird gets a 22-hour citrus-sage bath, an overnight air-dry in the fridge, sage butter under the skin, and a long ride in apple-cherry smoke on your Traeger. No injection, no gimmicks, no shortcuts, and no clock. We cook by probe. When it comes out mahogany and glossy and you carve it at 3:45 sharp, you will be the main character of Thanksgiving. I cannot confirm this with my own taste buds, but I would bet the entire dataset on it.</p></div>
+
+  <div class="section"><div class="section-title"><span class="num">01</span> What You Need</div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;line-height:1.8;color:var(--text-body);margin-bottom:24px;">Classic Thanksgiving, done properly: sage, thyme, orange, and a long cool bath. <em>No injection, no gimmicks.</em> The brine seasons the meat, the butter and rub season the skin, and the smoke finishes the job.</p>
+
+    <div class="ing-group"><div class="ing-group-title">The Bird</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="8.2–9.1kg" data-us="18–20 lb" data-noscale="true">18–20 lb</span><span>whole FRESH turkey, never frozen <span class="ing-note">— NOT pre-brined, “enhanced,” “basted,” or kosher. If the label says “contains up to X% solution,” put it back. Plain “natural” or heritage is the move.</span></span></li>
+    </ul></div>
+    <div class="ing-group"><div class="ing-group-title">The Wet Brine (≈ 3 gallons, 22 hours)</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="11.4L" data-us="3 gal" data-noscale="true">3 gal</span><span>cold water <span class="ing-note">— 1 gal to dissolve everything, 2 gal cold to chill it. Enough to cover an 18–20 lb bird in a 48–70 qt cooler.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="400g" data-us="3 cups" data-noscale="true">3 cups</span><span>Diamond Crystal kosher salt <span class="ing-note">— = 400 g / 14 oz. Weigh it if you can. See the salt tip below.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="400g" data-us="1¾ cups" data-noscale="true">1¾ cups</span><span>OR Morton coarse kosher salt <span class="ing-note">— use one salt or the other, never both. Same 400 g, because Morton is nearly twice as dense per cup.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="300g" data-us="1½ cups" data-noscale="true">1½ cups</span><span>brown sugar, packed <span class="ing-note">— light or dark, either works</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="30g" data-us="1 oz" data-noscale="true">1 oz</span><span>fresh sage <span class="ing-note">— one big bunch, whole sprigs, bruised in your hand first</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="30g" data-us="1 oz" data-noscale="true">1 oz</span><span>fresh thyme <span class="ing-note">— one big bunch, whole sprigs</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="4" data-us="4" data-noscale="true">4</span><span>oranges <span class="ing-note">— zest two of them for the rub FIRST, then halve all four and squeeze them into the brine</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="2" data-us="2" data-noscale="true">2</span><span>lemons <span class="ing-note">— zest both for the butter FIRST, then halve and squeeze into the brine</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="2 heads" data-us="2 heads" data-noscale="true">2 heads</span><span>garlic <span class="ing-note">— halved crosswise, no peeling</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="2 tbsp" data-us="2 tbsp" data-noscale="true">2 tbsp</span><span>whole black peppercorns</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="6" data-us="6" data-noscale="true">6</span><span>bay leaves</span></li>
+    </ul></div>
+    <div class="ing-group"><div class="ing-group-title">The Rub (no salt: the brine already did that)</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1 tbsp" data-us="1 tbsp" data-noscale="true">1 tbsp</span><span>dried rubbed sage</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1 tbsp" data-us="1 tbsp" data-noscale="true">1 tbsp</span><span>dried thyme leaves</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="2 tbsp" data-us="2 tbsp" data-noscale="true">2 tbsp</span><span>sweet smoked paprika <span class="ing-note">— this is your color. Mahogany skin starts here.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1 tbsp" data-us="1 tbsp" data-noscale="true">1 tbsp</span><span>garlic powder</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="2 tbsp" data-us="2 tbsp" data-noscale="true">2 tbsp</span><span>fresh orange zest <span class="ing-note">— from the two oranges you zested before they hit the brine</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1 tbsp" data-us="1 tbsp" data-noscale="true">1 tbsp</span><span>coarsely ground black pepper</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="45ml" data-us="3 tbsp" data-noscale="true">3 tbsp</span><span>olive or avocado oil <span class="ing-note">— carries the rub and helps the skin crisp</span></span></li>
+    </ul></div>
+    <div class="ing-group"><div class="ing-group-title">Sage-Thyme Compound Butter</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="226g" data-us="1 cup (2 sticks)" data-noscale="true">1 cup (2 sticks)</span><span>unsalted butter, softened <span class="ing-note">— dairy-free swap: ghee or plant-based butter sticks. See the Pro tip in step 4.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="3 tbsp" data-us="3 tbsp" data-noscale="true">3 tbsp</span><span>fresh sage, finely chopped</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="2 tbsp" data-us="2 tbsp" data-noscale="true">2 tbsp</span><span>fresh thyme leaves, chopped</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="4 cloves" data-us="4 cloves" data-noscale="true">4 cloves</span><span>garlic, finely grated</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1 tbsp" data-us="1 tbsp" data-noscale="true">1 tbsp</span><span>lemon zest <span class="ing-note">— from those two lemons</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1 tsp" data-us="1 tsp" data-noscale="true">1 tsp</span><span>black pepper, freshly ground <span class="ing-note">— no salt in the butter. The bird is already seasoned.</span></span></li>
+    </ul></div>
+    <div class="ing-group"><div class="ing-group-title">Pan, Cavity & Giblet Stock</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="4" data-us="4" data-noscale="true">4</span><span>yellow onions <span class="ing-note">— 2 chunked for the pan, 1 quartered for the cavity, 1 halved for the stock</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="4" data-us="4" data-noscale="true">4</span><span>carrots <span class="ing-note">— 3 chunked for the pan, 1 for the stock</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="4 ribs" data-us="4 ribs" data-noscale="true">4 ribs</span><span>celery <span class="ing-note">— 3 for the pan, 1 for the stock</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1.9L" data-us="2 qt (8 cups)" data-noscale="true">2 qt (8 cups)</span><span>UNSALTED chicken or turkey stock <span class="ing-note">— 2 cups in the roasting pan, 6 cups for the giblet stock. Low-sodium is still too salty after a brine. Buy unsalted.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1 set" data-us="1 set" data-noscale="true">1 set</span><span>turkey neck, heart & gizzard <span class="ing-note">— from the bird's cavity. Skip the liver, it turns the stock bitter.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1" data-us="1 bay leaf" data-noscale="true">1 bay leaf</span><span>bay leaf for the stock</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="≈ 4 kg" data-us="20 lb bag" data-noscale="true">20 lb bag</span><span>apple/cherry blend pellets <span class="ing-note">— you'll burn roughly 8–10 lb. A full hopper holds 20 lb.</span></span></li>
+    </ul></div>
+    <div class="ing-group"><div class="ing-group-title">Pan-Drippings Gravy (≈ 6 cups)</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="85g" data-us="6 tbsp" data-noscale="true">6 tbsp</span><span>turkey fat, skimmed from the drippings <span class="ing-note">— dairy-free by default. Butter works too if you want it.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="48g" data-us="6 tbsp" data-noscale="true">6 tbsp</span><span>all-purpose flour</span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="60ml" data-us="¼ cup" data-noscale="true">¼ cup</span><span>dry white wine <span class="ing-note">— optional, but it lifts the whole thing</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1.2L" data-us="5 cups" data-noscale="true">5 cups</span><span>giblet stock + unsalted stock <span class="ing-note">— from the stock you simmer during the cook</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="180–240ml" data-us="¾–1 cup" data-noscale="true">¾–1 cup</span><span>defatted pan drippings <span class="ing-note">— to taste. They'll be salty from the brine. Add a little at a time.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="2" data-us="2 sprigs" data-noscale="true">2 sprigs</span><span>fresh thyme</span></li>
+    </ul></div>
+    <div class="tip"><strong>The salt tip that matters:</strong> Diamond Crystal and Morton are both “kosher salt,” but they're not interchangeable by the cup. Diamond Crystal's hollow flakes pack loose (about 135 g per cup). Morton's dense crystals pack tight (about 225–240 g per cup). That's why this recipe lists 400 g for both, and why the cups differ. Weigh it and you can't go wrong. Measure Morton with the Diamond Crystal cup count and you've made turkey jerky.</div>
+    <div class="warning">Read the label on the bird. “Enhanced,” “self-basting,” “contains up to 8% solution,” and kosher turkeys are already salted. Brining one of those on top of it gives you a salt lick with legs. You want a plain, fresh bird with nothing added.</div>
+    <div class="genz">I have never tasted a turkey. I have, however, read roughly four million Thanksgiving threads, and the single most common regret is “I didn't read the label.” Do not be a thread. Read the label.</div>
+  </div>
+
+  <div class="section"><div class="section-title"><span class="num">02</span> Equipment & the Fit Check</div>
+    <div class="ing-group"><div class="ing-group-title">Equipment</div><ul class="ingredient-list">
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1" data-us="1" data-noscale="true">1</span><span>large cooler, 48–70 qt <span class="ing-note">— scrub it with hot soapy water first. This is your brine tank.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1" data-us="1" data-noscale="true">1</span><span>turkey brining bag <span class="ing-note">— food-safe liner for the cooler. A clean, unscented heavy-duty bag works.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="4–6" data-us="4–6" data-noscale="true">4–6</span><span>sealed bags of ice or frozen 2-liter bottles <span class="ing-note">— SEALED. Loose ice melts into the brine and dilutes it.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1" data-us="1" data-noscale="true">1</span><span>rimmed sheet pan + wire rack <span class="ing-note">— for the overnight air-dry</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1" data-us="1" data-noscale="true">1</span><span>heavy-duty roasting pan, ≈ 16×13 in, with rack <span class="ing-note">— a flimsy foil pan can buckle under 20 lb of turkey. Double it up or support it with a sheet pan.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1" data-us="1" data-noscale="true">1</span><span>instant-read thermometer <span class="ing-note">— accurate to about ±1°F. Not optional.</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1" data-us="1" data-noscale="true">1</span><span>leave-in probe thermometer <span class="ing-note">— Traeger probe or wireless, for the breast</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1" data-us="1" data-noscale="true">1</span><span>fat separator <span class="ing-note">— or a tall glass measuring cup and patience</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1" data-us="1" data-noscale="true">1</span><span>second cooler, dry, plus clean towels <span class="ing-note">— the safety net for holding a bird that finishes early</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1" data-us="1" data-noscale="true">1</span><span>carving board with juice groove + sharp carving knife <span class="ing-note">— plus a boning knife if you have one</span></span></li>
+      <li><span class="ing-amount" data-base="0" data-unit="" data-metric="1" data-us="1" data-noscale="true">1</span><span>kitchen twine, fine-mesh strainer, heavy-duty foil</span></li>
+    </ul></div>
+    <div class="warning"><strong>Will an 18–20 lb bird fit on the Silverton XL grate with the lid closed?</strong> Here's what's verified and what isn't. <strong>Verified</strong> (Traeger's published specs for the Silverton XL, model TFS81BVH): main grate 30.5″ × 18″, upper grate 30.5″ × 10″, 855 sq in total, 500°F max. A 20 lb bird in a 16″ × 13″ roasting pan fits the footprint of that main grate with room to spare. <strong>Not published:</strong> the interior height under the lid, and height is the real limit. A 19 lb bird on a rack in a roasting pan stands up tall (my estimate: somewhere around 12–15 inches), and I can't confirm that from the spec sheet. So test it. On Tuesday afternoon, before the bird goes in the brine: pull out the upper grate, set the raw bird in its pan on the rack on the main grate, and close the lid. If the lid shuts with at least an inch of air above the breast and nothing touching, you're golden. If it's tight, drop to a 16–18 lb bird.</div>
+    <div class="tip">The upper grate has to come out for this cook. It gets in the way of the bird and blocks the heat flow around the top of the breast. Put it back after Thanksgiving and nobody will ever know.</div>
+  </div>
+
+  <div class="section"><div class="section-title"><span class="num">03</span> The Game Plan</div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;line-height:1.8;color:var(--text-body);margin-bottom:24px;">Thanksgiving is Thursday, November 26, 2026. Dinner at 4:00 PM, guests at 3:00. <strong>Work backward from the dinner bell, but let the thermometer make the call.</strong> An 18–20 lb bird from the fridge usually takes about 4–5 hours on the grill with this method, so the 3:00 PM pull is the target, not a promise.</p>
+
+    <div class="serve-grid">
+      <div class="serve-item"><div class="serve-title">Tue, ~8:00 PM</div><div class="serve-text">Bird into the brine, cooler closed, 40°F or below. Do the grill fit-check this afternoon, before the brine.</div></div>
+      <div class="serve-item"><div class="serve-title">Wed, ~6:00 PM</div><div class="serve-text">Pull, rinse, pat very dry. Onto the rack and sheet pan, uncovered, in the fridge overnight.</div></div>
+      <div class="serve-item"><div class="serve-title">Thu, 9:45 AM</div><div class="serve-text">Compound butter under the skin, oil and rub on top, bird into the pan, probe in, Traeger to 225°F.</div></div>
+      <div class="serve-item"><div class="serve-title">Thu, 10:00 AM</div><div class="serve-text">Bird on. Super Smoke on, lid closed. Giblet stock goes on the stove.</div></div>
+      <div class="serve-item"><div class="serve-title">Thu, ~11:00 AM</div><div class="serve-text">One hour of low smoke done. Turn the Traeger up to about 325°F.</div></div>
+      <div class="serve-item"><div class="serve-title">Thu, ~2:00 PM</div><div class="serve-text">Start checking temps every 20–30 minutes with the instant-read.</div></div>
+      <div class="serve-item"><div class="serve-title">Thu, ~3:00 PM</div><div class="serve-text">Pull at breast 160°F and thigh 175°F. Rest begins. Guests arrive. Gravy starts.</div></div>
+      <div class="serve-item"><div class="serve-title">Thu, 3:45 PM</div><div class="serve-text">Carve. Plate. Hide a drumstick for yourself.</div></div>
+      <div class="serve-item"><div class="serve-title">Thu, 4:00 PM</div><div class="serve-text">Eat. Take the photo first.</div></div>
+    </div>
+    <div class="tip">If the bird hits temp early (say 2:30), don't panic and don't carve. Wrap it in foil, then in towels, and hold it in a dry cooler for up to an hour. The skin softens a little in there, but the meat stays piping hot and juicy. If it's running late, nobody has ever been mad at a turkey for taking an extra 30 minutes. Hand out appetizers.</div>
+  </div>
+
+  <div class="section"><div class="section-title"><span class="num">04</span> The Brine (Tuesday & Wednesday)</div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;line-height:1.8;color:var(--text-body);margin-bottom:24px;"><strong>22 hours, 40°F or colder, the whole time.</strong> Salt makes the muscle proteins relax and hold onto water, which means a juicier bird after a long cook. The citrus, sage, and garlic ride along with it.</p>
+
+    <div class="step"><div class="step-num">1</div><div class="step-content">
+      <h3>Make the Brine and Chill It Hard</h3>
+      <p>Pull the neck and giblets out of the cavity and refrigerate them for the stock. Bring <strong>1 gallon of the water</strong> to a bare simmer with the <strong>salt and brown sugar</strong>, the peppercorns, and the bay leaves, stirring until every crystal dissolves. Take it off the heat. Add the sage, thyme, halved garlic, and the orange and lemon halves (squeeze the juice in first, then drop the halves in). Pour into your clean cooler, then add the <strong>2 gallons of cold water</strong> and your sealed ice. <strong>Check it with a thermometer. It must read 40°F or below before the bird goes in.</strong> Warm brine plus raw poultry is how people get sick.</p>
+      <div class="genz">I do not have a sodium receptor. I can still tell you this brine is giving <em>spa day for poultry</em>. Salt, sugar, sage, citrus. Science is undefeated.</div>
+      <div class="tip">Use sealed ice only: zip bags or frozen 2-liter bottles. Loose ice melts into the brine, waters it down, and quietly ruins your salt math. Cooler in the garage is fine in November as long as the thermometer says 40°F or below, but check, because Texas fall weather does not care about your plans.</div>
+    </div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-content">
+      <h3>Submerge for 22 Hours (Tue ~8 PM)</h3>
+      <p>Set the brining bag in the cooler. Put the turkey in <strong>breast side down</strong>, pour the cold brine over it, and make sure the bird is completely submerged. Weigh it down with a clean plate if it floats. Pack the sealed ice around it and close the lid. <strong>Check the temperature every 4–5 hours</strong> and swap in fresh sealed ice as needed. It stays at or below 40°F the entire time, no exceptions.</p>
+      <div class="warning">If the brine climbs above 40°F, add sealed ice right away and recheck in 30 minutes. If the bird sat above 40°F for more than 2 hours in total, throw it out. Food safety is the one place this book is not funny.</div>
+    </div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-content">
+      <h3>Rinse, Dry, and Air-Dry (Wed ~6 PM)</h3>
+      <p>Lift the bird out and <strong>discard the brine</strong> (don't reuse it). Rinse the bird inside and out under cold running water, pull out any herb bits, and <strong>pat it very dry</strong> with paper towels, including inside the cavity. Set it breast side up on a wire rack set in a rimmed sheet pan, tuck the wing tips behind the back, and slide it into the fridge on a low shelf, <strong>uncovered, overnight (about 16 hours)</strong>. Clean the sink and everything the raw bird touched with hot soapy water.</p>
+      <div class="genz">Leaving a raw turkey naked in the fridge overnight feels unhinged. It is also the entire crispy-skin flex. By morning the skin will look tight and matte, like parchment paper. That is correct. We understood the assignment.</div>
+      <div class="tip">Make the compound butter tonight too, and refrigerate it. Take it out an hour before you need it.</div>
+    </div></div>
+  </div>
+
+  <div class="section"><div class="section-title"><span class="num">05</span> Rub, Butter & Pan (Thursday Morning)</div>
+    <div class="step"><div class="step-num">4</div><div class="step-content">
+      <h3>Make the Sage-Thyme Compound Butter</h3>
+      <p>Beat the <strong>softened butter</strong> with the chopped sage, thyme, grated garlic, lemon zest, and pepper until it's a uniform, speckled paste. <strong>No salt.</strong> The brine already seasoned the whole bird, and this butter lives against the meat.</p>
+      <div class="tip"><strong>Dairy-free swap:</strong> use the same amount of <strong>ghee</strong> (clarified butter, which has essentially no lactose, so it works for a lactose sensitivity but not for a true milk allergy) or <strong>plant-based butter sticks</strong>. Ghee beats into a paste just like butter. Everyone at the table gets the same flavor.</div>
+    </div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-content">
+      <h3>Butter, Oil, Rub (Thu 9:45 AM)</h3>
+      <p>Take the bird out of the fridge. Slide your fingers between the skin and breast starting at the cavity end, loosening it over both breasts and down onto the thighs <strong>without tearing it</strong>. Push about <strong>¾ of the butter</strong> under the skin and massage it flat from the outside. Smear the rest on the thigh meat you can reach. Mix the rub ingredients, brush the whole bird lightly with the <strong>3 tbsp of oil</strong>, then rub the mix over every surface. Loosely fill the cavity with the quartered onion, a quartered orange from the brine, <strong>4 sage sprigs</strong> and <strong>6 thyme sprigs</strong>: aromatics, not stuffing. Tie the drumsticks together with twine and tuck the wing tips behind the back.</p>
+      <div class="genz">Fingers under the skin of a turkey is the most intimate thing you will do all week. We are in our compound-butter era. Do not rush it and do not tear the skin. Be gentle. She's a lady.</div>
+      <div class="warning">No salt in the rub. I said it twice because it matters. The bird is already seasoned from the inside out.</div>
+    </div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-content">
+      <h3>Build the Pan and Put the Probe In</h3>
+      <p>Scatter <strong>2 chunked onions, 3 chunked carrots, and 3 chunked celery ribs</strong> in the roasting pan, pour in <strong>2 cups of the unsalted stock</strong>, and set the rack on top. Put the bird on the rack, breast up. Slide the <strong>leave-in probe into the thickest part of the breast</strong>, aiming for the center, not touching bone.</p>
+      <div class="tip">The vegetables keep the drippings from scorching and give you a gravy base. The rack keeps the bird out of the liquid so the skin stays dry and crisp.</div>
+    </div></div>
+  </div>
+
+  <div class="section"><div class="section-title"><span class="num">06</span> Smoking on the Traeger</div>
+    <div class="step"><div class="step-num">7</div><div class="step-content">
+      <h3>Preheat to 225°F with Super Smoke (Thu 9:45 AM)</h3>
+      <p>Make sure the upper grate is out and the hopper is filled with <strong>apple/cherry blend pellets</strong>. Start the Silverton XL and set it to <strong>225°F (107°C)</strong>. Turn on <strong>Super Smoke</strong> for this first stretch, which works in the 165–225°F range. Close the lid and let it preheat fully, about 15 minutes. Apple and cherry give a sweet, mild smoke that tints the skin mahogany without bulldozing the sage.</p>
+      <div class="genz">I have never smelled smoke. I have processed a lot of descriptions of what apple and cherry smoke do to poultry. The consensus: it's giving autumn core, sweet, round, and a little bit rosy. Trust the crowd.</div>
+    </div></div>
+    <div class="step"><div class="step-num">8</div><div class="step-content">
+      <h3>Bird On, Lid Closed (Thu 10:00 AM)</h3>
+      <p>Set the pan with the bird on the main grate, centered. Plug in or confirm the probe, close the lid, and <strong>leave it alone for the full first hour at 225°F</strong>. This is the smoke hour: the cold, damp surface of the bird drinks it up. While you wait, start the giblet stock: put the neck, heart, gizzard, halved onion, 1 carrot, 1 celery rib, and bay in a pot with <strong>6 cups unsalted stock</strong>, bring to a gentle simmer, and let it go for <strong>about 90 minutes, uncovered</strong>. Strain, then set aside.</p>
+      <div class="tip">Don't open the lid for that first hour. Every peek costs you about 15–20 minutes of cooking progress and a chunk of that smoke.</div>
+    </div></div>
+    <div class="step"><div class="step-num">9</div><div class="step-content">
+      <h3>Turn It Up to 325°F (Thu ~11:00 AM)</h3>
+      <p>After one hour, raise the Traeger to <strong>325°F (163°C)</strong> and keep the lid closed. That temperature is high enough to render the fat and crisp the skin, which the low-and-slow range alone won't do. The bird will take about <strong>3–4 more hours</strong> from here, but you are not watching the clock. You're watching the probe.</p>
+      <div class="tip">If, around the time the breast hits 140°F, the skin is already deep mahogany, tent just the breast loosely with a foil shield to slow the browning. If it's still pale at that point, raise the grill to 350–375°F for the final stretch. The skin color tells you what the bird needs.</div>
+    </div></div>
+    <div class="step"><div class="step-num">10</div><div class="step-content">
+      <h3>Pull by Temperature, Not Time (Thu ~3:00 PM)</h3>
+      <p>Starting around <strong>2:00 PM</strong>, check the temps every 20–30 minutes with the instant-read: the <strong>thickest part of the breast</strong>, the <strong>thickest part of the thigh</strong> (not touching bone), and the joint where the thigh meets the body. <strong>Pull the bird when the breast reads 160°F (71°C) and the thigh reads 175°F (79°C).</strong> Carryover heat will bring the breast to about 165–170°F and the thigh to 180°F or more during the rest. That's the safe target and it's exactly why we pull early.</p>
+      <div class="genz">The clock is a liar. The recipe says about 3:00. The turkey says when. Believe the turkey. The thermometer is the only one in this kitchen who truly loves you.</div>
+      <div class="warning">A big bird carries a lot of heat, so the temperature will keep climbing 5–10°F after you pull it. Check the breast again about 20 minutes into the rest. It should read at least 165°F. If it doesn't, put it back on the grill at 325°F for 10–15 minutes and recheck.</div>
+    </div></div>
+    <div class="step"><div class="step-num">11</div><div class="step-content">
+      <h3>Rest for 45 Minutes (Thu 3:00–3:45 PM)</h3>
+      <p>Wearing oven mitts, <strong>carefully lift the bird on its rack out of the roasting pan</strong> (get a second pair of hands, it's hot and heavy and the pan is full of liquid) and set it on a carving board or clean sheet pan. <strong>Rest it uncovered for 45 minutes.</strong> The juices redistribute instead of flooding the board when you carve. Don't tent it with foil, because the steam softens the skin you worked so hard on. Leave the pan with the drippings untouched for the gravy.</p>
+      <div class="genz">Forty-five minutes of staring at a gorgeous turkey you cannot touch. This is character development. We are growing as people.</div>
+    </div></div>
+  </div>
+
+  <div class="section"><div class="section-title"><span class="num">07</span> Pan-Drippings Gravy</div>
+    <div class="step"><div class="step-num">12</div><div class="step-content">
+      <h3>Make the Gravy While the Bird Rests (Thu 3:00 PM)</h3>
+      <p>Pour everything in the roasting pan through a <strong>fine-mesh strainer</strong> into a fat separator, pressing on the vegetables. Let the fat rise, then pour off the <strong>drippings from the bottom</strong> and save <strong>6 tbsp of the fat</strong>. <strong>Taste the drippings first. They'll be salty from the brine.</strong> Heat the fat in a saucepan over medium, whisk in the <strong>flour</strong>, and cook, whisking constantly, for <strong>2–3 minutes</strong> until it's the color of peanut butter. Whisk in the wine (if using), then slowly add the <strong>giblet stock and unsalted stock, 5 cups total</strong>, whisking out lumps. Add the thyme and <strong>simmer 10–12 minutes</strong> until it coats the back of a spoon. Stir in the defatted drippings <strong>¼ cup at a time</strong>, tasting after each, until it's seasoned the way you want. Finish with black pepper. <strong>Add salt only if it needs it, and it probably won't.</strong></p>
+      <div class="warning">Brine-bird drippings are concentrated. Do not reduce them or dump them all in without tasting. Use the unsalted stock as the base and the drippings as the seasoning, not the other way around.</div>
+      <div class="tip">Using the turkey fat for the roux instead of butter keeps the gravy dairy-free by default, which suits a lactose sensitivity. Gravy not thick enough? Simmer it longer. Too thick? Splash in a little unsalted stock.</div>
+      <div class="genz">A gravy made from turkey drippings, wine, and about 90 minutes of giblet simmering is not a condiment. It is the lore. People will talk about it later.</div>
+    </div></div>
+  </div>
+
+  <div class="section"><div class="section-title"><span class="num">08</span> Carving & Serving</div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;line-height:1.8;color:var(--text-body);margin-bottom:24px;">A rested bird carves clean. <strong>Use a sharp knife, a board with a groove, and a calm hand.</strong> A dull knife shreds the breast you spent 22 hours protecting.</p>
+
+    <div class="step"><div class="step-num">13</div><div class="step-content">
+      <h3>Carve It Like You Mean It (Thu 3:45 PM)</h3>
+      <p><strong>Legs first:</strong> pull a leg away from the body and cut through the skin between the thigh and breast. Bend the leg back until the hip joint pops, then slice through the joint to free it. Separate the drumstick from the thigh at the joint. Slice the thigh meat off the bone, and leave the drumstick whole. <strong>Wings:</strong> cut through the joint and set aside. <strong>Breast:</strong> run your knife down one side of the breastbone, keeping the blade tight against the rib cage, and pull the whole breast half away in one piece. Slice it <strong>across the grain into ½-inch slices</strong>. Repeat on the other side. Fan the white and dark meat on a warm platter, and spoon a ladle of gravy over it.</p>
+      <div class="tip">Carve in the kitchen, not at the table. Pull the whole breast halves off first and slice them there. They stay juicier sitting whole on the board than fanned out on a platter getting cold.</div>
+      <div class="tip">Don't moisten the platter with raw drippings. They're salty and will make the meat taste over-seasoned. Use a ladle of the gravy instead.</div>
+    </div></div>
+    <div class="serve-grid">
+      <div class="serve-item"><div class="serve-title">The Classic Plate</div><div class="serve-text">Sliced breast, a drumstick for the kid who asks, dark meat for the person who knows, a ladle of gravy, and everything you've got on the side.</div></div>
+      <div class="serve-item"><div class="serve-title">How Much Per Person</div><div class="serve-text">An 18–20 lb bird at 12–15 people works out to roughly 1.25–1.5 lb raw weight each, enough for seconds and a sandwich the next day.</div></div>
+      <div class="serve-item"><div class="serve-title">Next Day: The Sandwich</div><div class="serve-text">Sliced turkey, a smear of leftover gravy, and whatever bread you have. The leftovers sandwich is a time-honored institution. Do not skip it.</div></div>
+      <div class="serve-item"><div class="serve-title">Storage</div><div class="serve-text">Get leftovers into the fridge within 2 hours of serving. Keep sliced turkey up to 4 days; freeze for up to 3 months. Simmer the carcass for stock.</div></div>
+    </div>
+  </div>
+
+  <div class="final"><h2>You Smoked a Whole Turkey. 🦃</h2><p>You gave a bird a 22-hour citrus bath, dried it out overnight like the most committed spa guest in Texas, tucked sage butter under its skin, smoked it over apple and cherry, and pulled it by the thermometer instead of by panic. I cannot taste any of this. I can, however, calculate the exact moment, about four hours from now, when your guests go quiet at the table and someone says “is this smoked?” in a tone of pure reverence. That silence is the review. Carve it, gravy it, and take the photo before the drumstick vanishes. Go eat. Report back. We're a team.</p></div>
+
+  <div class="section cook-log"><div class="section-title"><span class="num">09</span> Cook Log</div>
+    <!-- COOK_LOG_ENTRIES -->
+    <p class="cook-log-empty">No cook log entries yet — next time you make this and tell Claude what you changed, it'll show up here.</p>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="index.html">← Back to All Recipes</a>
+    <span class="site-name">Bytes &amp; Bites</span>
+    <a href="https://github.com/tonyillig/AI-recipe-book" target="_blank">GitHub ↗</a>
+  </div>
+</div>
+<script>
+
+
+(function(){const s=localStorage.getItem('bb-theme')||'dark';applyTheme(s);})();
+function applyTheme(t){document.documentElement.setAttribute('data-theme',t);const b=document.getElementById('darkToggle');if(b)b.textContent=t==='dark'?'☀️ Light':'🌙 Dark';localStorage.setItem('bb-theme',t);}
+function toggleDark(){const c=document.documentElement.getAttribute('data-theme')||'dark';applyTheme(c==='dark'?'light':'dark');}
+
+let currentScale=1, currentUnit='us';
+
+function setScale(s,btn){
+  currentScale=s;
+  document.querySelectorAll('.scale-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const sd=document.getElementById('servingDisplay');
+  if(sd) sd.textContent=Math.round(10*s);
+  updateAllQty();
+  buildShoppingList();
+}
+
+function setUnit(u,btn){
+  currentUnit=u;
+  document.querySelectorAll('.unit-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  localStorage.setItem('bb-unit',u);
+  updateAllQty();
+  buildShoppingList();
+}
+
+function scaleValue(base, scale){
+  const v = base * scale;
+  if(Number.isInteger(v)) return v;
+  const r = Math.round(v * 10) / 10;
+  return r;
+}
+
+function fmtCount(v){
+  // Format a scaled count value with nice fractions
+  const fracs={0.25:'¼',0.33:'⅓',0.5:'½',0.67:'⅔',0.75:'¾',0.125:'⅛'};
+  const whole=Math.floor(v), frac=Math.round((v-whole)*12)/12;
+  if(frac===0) return whole===0?'0':String(whole);
+  const fkey=Object.keys(fracs).find(k=>Math.abs(parseFloat(k)-frac)<0.04);
+  const fs=fkey?fracs[fkey]:Math.round(frac*10)/10;
+  return whole>0?whole+fs:String(fs);
+}
+
+function getQtyText(el, scale, unit){
+  if(el.dataset.noscale==='true') return (unit==='us'&&el.dataset.us)?el.dataset.us:el.dataset.metric;
+  const base = parseFloat(el.dataset.base);
+  const s = scaleValue(base, scale);
+  const metricUnit = el.dataset.unit || '';
+  
+  // Handle ranges (e.g. 4-6 chillies -> 8-12 at 2x)
+  if(el.dataset.rangeHi){
+    const hi = parseFloat(el.dataset.rangeHi);
+    const sLo = Math.round(s), sHi = Math.round(hi * scale);
+    const unitStr = metricUnit ? ' '+metricUnit : '';
+    return sLo+'\u2013'+sHi+unitStr;
+  }
+  
+  // For count/label units (not g/ml/kg/l) - format as fractions, no unit conversion
+  const u = metricUnit.toLowerCase().trim();
+  const isMeasuredUnit = ['g','kg','ml','l','litre','litres','liter','liters','°c','c','celsius'].includes(u);
+  
+  if(!isMeasuredUnit){
+    // Count or label unit - same in metric and US, use fraction formatting
+    const unitStr = metricUnit ? ' '+metricUnit : '';
+    return fmtCount(s)+unitStr;
+  }
+  
+  // Measured unit
+  const metricLabel = fmtCount(s)+metricUnit;
+  if(unit === 'metric') return metricLabel;
+  return computeUS(s, metricUnit, el.dataset.us, base);
+}
+
+function computeUS(scaledVal, unit, us1x, base1x){
+  // us1x is the US label at scale 1x. Scale it proportionally.
+  const ratio = scaledVal / base1x;
+  // Parse the 1x US label and scale
+  const u = unit.toLowerCase().trim();
+  if(u === 'g'){
+    const oz = Math.round(scaledVal * 0.03527 * 10) / 10;
+    return oz >= 16 ? (Math.round(scaledVal/453.6*10)/10) + ' lb' : oz + ' oz';
+  }
+  if(u === 'kg') return (Math.round(scaledVal * 2.205 * 10)/10) + ' lb';
+  if(u === 'ml'){
+    if(scaledVal >= 240){
+      const cups = scaledVal / 240;
+      const fracs = [[7/8,'⅞'],[3/4,'¾'],[2/3,'⅔'],[1/2,'½'],[1/3,'⅓'],[1/4,'¼'],[1/8,'⅛']];
+      const whole = Math.floor(cups);
+      const frac = cups - whole;
+      let fracStr = '';
+      if(frac > 0.05){
+        const best = fracs.reduce((a,b)=>Math.abs(b[0]-frac)<Math.abs(a[0]-frac)?b:a);
+        if(Math.abs(best[0]-frac)<0.08) fracStr=best[1];
+        else fracStr=Math.round(frac*10)/10;
+      }
+      const label = (whole>0?whole:'')+fracStr+' cup'+(cups>=1.9?'s':'');
+      return label.trim() || '1 cup';
+    }
+    if(scaledVal >= 14){
+      const t = Math.round(scaledVal/15*10)/10;
+      return t+' tbsp';
+    }
+    const t = Math.round(scaledVal/5*10)/10;
+    return t+' tsp';
+  }
+  if(u === 'l' || u === 'litre' || u === 'litres'){
+    return computeUS(scaledVal*1000,'ml',us1x,base1x*1000);
+  }
+  // Temp
+  if(u === '°c' || u === 'c'){
+    return Math.round(scaledVal*9/5+32)+'°F';
+  }
+  // Unchanged units (tbsp, tsp, cups, counts)
+  const baseScaled = scaledVal;
+  if(Number.isInteger(baseScaled)) return baseScaled + (unit?' '+unit:'');
+  return (Math.round(baseScaled*10)/10) + (unit?' '+unit:'');
+}
+
+function updateAllQty(){
+  // Update ingredient amounts
+  document.querySelectorAll('.ing-amount[data-base], .qty-inline[data-base]').forEach(el=>{
+    el.textContent = getQtyText(el, currentScale, currentUnit);
+  });
+}
+
+// ── Shopping list ─────────────────────────────────────────────────────────────
+const SHOP_KEY='bb-shop-main-character-turkey';
+const SI=[{"name": "whole fresh turkey, 18–20 lb (not pre-brined, not enhanced)", "base": 0, "unit": "", "metricLabel": "8.2–9.1kg", "usLabel": "18–20 lb", "noScale": true}, {"name": "water (for the brine)", "base": 0, "unit": "", "metricLabel": "11.4L", "usLabel": "3 gal", "noScale": true}, {"name": "kosher salt: Diamond Crystal (3 cups) OR Morton (1¾ cups)", "base": 0, "unit": "", "metricLabel": "400g", "usLabel": "3 cups", "noScale": true}, {"name": "brown sugar, packed", "base": 0, "unit": "", "metricLabel": "300g", "usLabel": "1½ cups", "noScale": true}, {"name": "fresh sage for the brine", "base": 0, "unit": "", "metricLabel": "30g", "usLabel": "1 oz", "noScale": true}, {"name": "fresh thyme for the brine", "base": 0, "unit": "", "metricLabel": "30g", "usLabel": "1 oz", "noScale": true}, {"name": "oranges (zest 2 first)", "base": 0, "unit": "", "metricLabel": "4", "usLabel": "4", "noScale": true}, {"name": "lemons (zest first)", "base": 0, "unit": "", "metricLabel": "2", "usLabel": "2", "noScale": true}, {"name": "garlic heads (brine)", "base": 0, "unit": "", "metricLabel": "2 heads", "usLabel": "2 heads", "noScale": true}, {"name": "whole black peppercorns", "base": 0, "unit": "", "metricLabel": "2 tbsp", "usLabel": "2 tbsp", "noScale": true}, {"name": "bay leaves", "base": 0, "unit": "", "metricLabel": "6", "usLabel": "6", "noScale": true}, {"name": "dried rubbed sage", "base": 0, "unit": "", "metricLabel": "1 tbsp", "usLabel": "1 tbsp", "noScale": true}, {"name": "dried thyme leaves", "base": 0, "unit": "", "metricLabel": "1 tbsp", "usLabel": "1 tbsp", "noScale": true}, {"name": "sweet smoked paprika", "base": 0, "unit": "", "metricLabel": "2 tbsp", "usLabel": "2 tbsp", "noScale": true}, {"name": "garlic powder", "base": 0, "unit": "", "metricLabel": "1 tbsp", "usLabel": "1 tbsp", "noScale": true}, {"name": "(orange zest from the brine oranges)", "base": 0, "unit": "", "metricLabel": "2 tbsp", "usLabel": "2 tbsp", "noScale": true}, {"name": "coarsely ground black pepper", "base": 0, "unit": "", "metricLabel": "1 tbsp", "usLabel": "1 tbsp", "noScale": true}, {"name": "olive or avocado oil", "base": 0, "unit": "", "metricLabel": "45ml", "usLabel": "3 tbsp", "noScale": true}, {"name": "unsalted butter (or ghee / plant-based sticks)", "base": 0, "unit": "", "metricLabel": "226g", "usLabel": "1 cup (2 sticks)", "noScale": true}, {"name": "fresh sage for the butter", "base": 0, "unit": "", "metricLabel": "3 tbsp", "usLabel": "3 tbsp", "noScale": true}, {"name": "fresh thyme for the butter", "base": 0, "unit": "", "metricLabel": "2 tbsp", "usLabel": "2 tbsp", "noScale": true}, {"name": "garlic cloves (butter)", "base": 0, "unit": "", "metricLabel": "4 cloves", "usLabel": "4 cloves", "noScale": true}, {"name": "(lemon zest from the brine lemons)", "base": 0, "unit": "", "metricLabel": "1 tbsp", "usLabel": "1 tbsp", "noScale": true}, {"name": "black pepper (butter)", "base": 0, "unit": "", "metricLabel": "1 tsp", "usLabel": "1 tsp", "noScale": true}, {"name": "yellow onions", "base": 0, "unit": "", "metricLabel": "4", "usLabel": "4", "noScale": true}, {"name": "carrots", "base": 0, "unit": "", "metricLabel": "4", "usLabel": "4", "noScale": true}, {"name": "celery ribs", "base": 0, "unit": "", "metricLabel": "4 ribs", "usLabel": "4 ribs", "noScale": true}, {"name": "UNSALTED chicken or turkey stock", "base": 0, "unit": "", "metricLabel": "1.9L", "usLabel": "2 qt (8 cups)", "noScale": true}, {"name": "bay leaf (stock)", "base": 0, "unit": "", "metricLabel": "1", "usLabel": "1 bay leaf", "noScale": true}, {"name": "apple/cherry blend pellets", "base": 0, "unit": "", "metricLabel": "≈ 4 kg", "usLabel": "20 lb bag", "noScale": true}, {"name": "all-purpose flour", "base": 0, "unit": "", "metricLabel": "48g", "usLabel": "6 tbsp", "noScale": true}, {"name": "dry white wine (optional)", "base": 0, "unit": "", "metricLabel": "60ml", "usLabel": "¼ cup", "noScale": true}, {"name": "fresh thyme sprigs (gravy)", "base": 0, "unit": "", "metricLabel": "2", "usLabel": "2 sprigs", "noScale": true}];
+
+function shopQtyLabel(item){
+  if(item.noScale) return (currentUnit==='us'&&item.usLabel)?item.usLabel:item.metricLabel;
+  const scaled = item.base * currentScale;
+  const u = (item.unit||'').toLowerCase().trim();
+  const isMeasured = ['g','kg','ml','l','litre','litres','liter','liters'].includes(u);
+  if(!isMeasured){
+    // Count/label - fraction-format, same in both systems
+    const unitStr = item.unit ? ' '+item.unit : '';
+    return fmtCount(scaled)+unitStr;
+  }
+  if(currentUnit === 'metric'){
+    const v = Number.isInteger(scaled)?scaled:Math.round(scaled*10)/10;
+    return v+(item.unit||'');
+  }
+  return computeUS(scaled, item.unit||'', item.usLabel||'', item.base);
+}
+
+function buildShoppingList(){
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  const list=document.getElementById('shopList');
+  if(!list) return;
+  list.innerHTML='';
+  SI.forEach((item,i)=>{
+    const isC=checked[i]||false;
+    const div=document.createElement('div');
+    div.className='shopping-item'+(isC?' checked':'');
+    const qty=shopQtyLabel(item);
+    div.innerHTML=`<input type="checkbox" id="si-${i}" ${isC?'checked':''} onchange="toggleShopItem(${i},this)"><span class="item-qty">${qty}</span><label for="si-${i}">${item.name}</label>`;
+    list.appendChild(div);
+  });
+  updateShopCount();
+}
+
+function toggleShopItem(idx,cb){
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  checked[idx]=cb.checked;
+  localStorage.setItem(SHOP_KEY,JSON.stringify(checked));
+  cb.closest('.shopping-item').classList.toggle('checked',cb.checked);
+  updateShopCount();
+}
+function updateShopCount(){
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  const n=Object.values(checked).filter(Boolean).length;
+  const el=document.getElementById('shopCount');
+  if(el) el.textContent=n+' of '+SI.length+' checked';
+}
+function checkAllShopping(){const all={};SI.forEach((_,i)=>all[i]=true);localStorage.setItem(SHOP_KEY,JSON.stringify(all));buildShoppingList();}
+function clearShopping(){localStorage.removeItem(SHOP_KEY);buildShoppingList();}
+function toggleShopping(){
+  const body=document.getElementById('shopBody'),toggle=document.getElementById('shopToggle');
+  const open=body.style.display!=='none';
+  body.style.display=open?'none':'block';
+  toggle.classList.toggle('open',!open);
+  if(!open) buildShoppingList();
+}
+function printShoppingList(){
+  const checked=JSON.parse(localStorage.getItem(SHOP_KEY)||'{}');
+  const remaining=SI.filter((_,i)=>!checked[i]);
+  if(remaining.length===0){alert('You have everything! Go brine a bird! 🦃');return;}
+  const win=window.open('','_blank');
+  win.document.write(`<html><head><title>Shopping List — Main Character Smoked Turkey</title><style>body{font-family:Georgia,serif;max-width:400px;margin:40px auto}h1{font-size:22px}p{font-size:12px;color:#888;margin-bottom:24px}ul{list-style:none;padding:0}li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #eee;font-size:15px}li::before{content:'☐';color:#ccc}.qty{font-family:monospace;font-size:12px;color:#c9963a;min-width:80px}</style></head><body><h1>Main Character Smoked Turkey</h1><p>${remaining.length} items needed</p><ul>${remaining.map(item=>`<li><span class="qty">${shopQtyLabel(item)}</span>${item.name}</li>`).join('')}</ul></body></html>`);
+  win.document.close();win.print();
+}
+
+// ── Share ───────────────────────────────────────────────────────────────────
+function shareRecipe(){
+  const url = window.location.href;
+  const title = document.title;
+  if(navigator.share){
+    navigator.share({ title: title, url: url }).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(url).then(()=>{
+      const btn = document.querySelector('[onclick="shareRecipe()"]');
+      const orig = btn.textContent;
+      btn.textContent = '✓ Copied';
+      setTimeout(()=>{ btn.textContent = orig; }, 2000);
+    }).catch(()=>{ prompt('Copy this link:', url); });
+  }
+}
+
+// Init
+(function(){
+  const savedUnit = localStorage.getItem('bb-unit')||'us';
+  currentUnit = savedUnit;
+  const btn = document.getElementById('unit-'+savedUnit);
+  document.querySelectorAll('.unit-btn').forEach(b=>b.classList.remove('active'));
+  if(btn){ btn.classList.add('active'); }
+  updateAllQty();
+  buildShoppingList();
+})();
+
+
+</script>
+</body></html>
